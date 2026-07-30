@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daylight Journal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap"
+    rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+
+<body>
+  <main class="app">
+
+    <div class="top-bar">
+    <p class="date">Thursday, July 30</p>
+
+    <div class="clock" aria-label="Current time">
+         <span id="clock-time">10:30 PM</span>
+    </div>
+    </div>
+
+    <h1>Good morning, Jim.</h1>
+
+    <p class="subtitle">
+      A little space for the things that matter.
+    </p>
+
+    <section class="journal-card">
+      <p class="card-label">TODAY'S NOTE</p>
+
+      <textarea placeholder="What’s on your mind?"></textarea>
+
+      <div class="card-footer">
+        <div class="moods">
+          <button class="mood-button" type="button">☀️</button>
+          <button class="mood-button active" type="button">🙂</button>
+          <button class="mood-button" type="button">😌</button>
+          <button class="mood-button" type="button">🌧️</button>
+        </div>
+
+        <button class="save-button" type="button">Save entry</button>
+      </div>
+    </section>  
+  </main>
+
+<section class="monthly-preview">
+  <div class="calendar-header">
+    <div>
+      <p class="calendar-label">MONTHLY PREVIEW</p>
+      <h2>July 2026</h2>
+    </div>
+
+    <button class="calendar-button" type="button">View month →</button>
+  </div>
+
+  <div class="weekdays">
+    <span>Sun</span>
+    <span>Mon</span>
+    <span>Tue</span>
+    <span>Wed</span>
+    <span>Thu</span>
+    <span>Fri</span>
+    <span>Sat</span>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="empty-day"></div>
+    <div class="empty-day"></div>
+    <div class="empty-day"></div>
+
+    <button class="day-box" type="button">1</button>
+    <button class="day-box" type="button">2</button>
+    <button class="day-box" type="button">3</button>
+    <button class="day-box" type="button">4</button>
+
+    <button class="day-box" type="button">5</button>
+    <button class="day-box" type="button">6</button>
+    <button class="day-box" type="button">7</button>
+    <button class="day-box" type="button">8</button>
+    <button class="day-box" type="button">9</button>
+    <button class="day-box" type="button">10</button>
+    <button class="day-box" type="button">11</button>
+
+    <button class="day-box" type="button">12</button>
+    <button class="day-box" type="button">13</button>
+    <button class="day-box" type="button">14</button>
+    <button class="day-box" type="button">15</button>
+    <button class="day-box" type="button">16</button>
+    <button class="day-box" type="button">17</button>
+    <button class="day-box" type="button">18</button>
+
+    <button class="day-box" type="button">19</button>
+    <button class="day-box" type="button">20</button>
+    <button class="day-box" type="button">21</button>
+    <button class="day-box" type="button">22</button>
+    <button class="day-box" type="button">23</button>
+    <button class="day-box" type="button">24</button>
+    <button class="day-box" type="button">25</button>
+
+    <button class="day-box" type="button">26</button>
+    <button class="day-box" type="button">27</button>
+    <button class="day-box" type="button">28</button>
+    <button class="day-box" type="button">29</button>
+    <button class="day-box today" type="button">30</button>
+    <button class="day-box" type="button">31</button>
+  </div>
+</section>
+
+<script src="app.js"></script>
+
+</body>
+</html>

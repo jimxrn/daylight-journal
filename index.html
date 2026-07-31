@@ -1,127 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daylight Journal</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap"
-    rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css" />
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daylight</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
 
 <body>
-  <main class="app">
 
-    <div class="top-bar">
-    <p class="date">Thursday, July 30</p>
+<div class="layout">
 
-   <div class="side-clock" aria-label="Current time">
-        <span class="clock-tick tick-12"></span>
-        <span class="clock-tick tick-3"></span>
-        <span class="clock-tick tick-6"></span>
-        <span class="clock-tick tick-9"></span>
+    <aside class="sidebar">
 
-        <span class="clock-hand hour-hand" id="hour-hand"></span>
-        <span class="clock-hand minute-hand" id="minute-hand"></span>
-        <span class="clock-center"></span>
+        <div class="logo">
 
-        <span class="clock-time" id="clock-time">10:30 PM</span>
-    </div>
+            <div class="logo-icon">☀️</div>
 
-    </div>
+            <div>
 
-    <h1>Good morning, Jim.</h1>
+                <h2>Daylight</h2>
 
-    <p class="subtitle">
-      A little space for the things that matter.
-    </p>
+                <span>Your Personal Space</span>
 
-    <section class="journal-card">
-      <p class="card-label">TODAY'S NOTE</p>
+            </div>
 
-      <textarea placeholder="What’s on your mind?"></textarea>
-
-      <div class="card-footer">
-        <div class="moods">
-          <button class="mood-button" type="button">☀️</button>
-          <button class="mood-button active" type="button">🙂</button>
-          <button class="mood-button" type="button">😌</button>
-          <button class="mood-button" type="button">🌧️</button>
         </div>
 
-        <button class="save-button" type="button">Save entry</button>
-      </div>
-    </section>  
-  </main>
+        <nav>
 
-<section class="monthly-preview">
-  <div class="calendar-header">
-    <div>
-      <p class="calendar-label">MONTHLY PREVIEW</p>
-      <h2>July 2026</h2>
-    </div>
+            <button class="nav-item active">🏠 Dashboard</button>
 
-    <button class="calendar-button" type="button">View month →</button>
-  </div>
+            <button class="nav-item">📝 Journal</button>
 
-  <div class="weekdays">
-    <span>Sun</span>
-    <span>Mon</span>
-    <span>Tue</span>
-    <span>Wed</span>
-    <span>Thu</span>
-    <span>Fri</span>
-    <span>Sat</span>
-  </div>
+            <button class="nav-item">📅 Calendar</button>
 
-  <div class="calendar-grid">
-    <div class="empty-day"></div>
-    <div class="empty-day"></div>
-    <div class="empty-day"></div>
+            <button class="nav-item">✅ Planner</button>
 
-    <button class="day-box" type="button">1</button>
-    <button class="day-box" type="button">2</button>
-    <button class="day-box" type="button">3</button>
-    <button class="day-box" type="button">4</button>
+            <button class="nav-item">🌱 Habits</button>
 
-    <button class="day-box" type="button">5</button>
-    <button class="day-box" type="button">6</button>
-    <button class="day-box" type="button">7</button>
-    <button class="day-box" type="button">8</button>
-    <button class="day-box" type="button">9</button>
-    <button class="day-box" type="button">10</button>
-    <button class="day-box" type="button">11</button>
+            <button class="nav-item">📷 Memories</button>
 
-    <button class="day-box" type="button">12</button>
-    <button class="day-box" type="button">13</button>
-    <button class="day-box" type="button">14</button>
-    <button class="day-box" type="button">15</button>
-    <button class="day-box" type="button">16</button>
-    <button class="day-box" type="button">17</button>
-    <button class="day-box" type="button">18</button>
+            <button class="nav-item">⚙️ Settings</button>
 
-    <button class="day-box" type="button">19</button>
-    <button class="day-box" type="button">20</button>
-    <button class="day-box" type="button">21</button>
-    <button class="day-box" type="button">22</button>
-    <button class="day-box" type="button">23</button>
-    <button class="day-box" type="button">24</button>
-    <button class="day-box" type="button">25</button>
+        </nav>
 
-    <button class="day-box" type="button">26</button>
-    <button class="day-box" type="button">27</button>
-    <button class="day-box" type="button">28</button>
-    <button class="day-box" type="button">29</button>
-    <button class="day-box today" type="button">30</button>
-    <button class="day-box" type="button">31</button>
-  </div>
-</section>
+    </aside>
 
-<script src="app.js"></script>
+    <main class="dashboard">
+
+        <header class="hero">
+
+            <p id="today"></p>
+
+            <h1 id="greeting"></h1>
+
+            <p class="quote">
+
+                "Every day is another chance to begin."
+
+            </p>
+
+        </header>
+
+        <section class="dashboard-grid">
+
+            <div class="card small">
+
+                <h3>😊 Mood</h3>
+
+                <p>Feeling Calm</p>
+
+            </div>
+
+            <div class="card large">
+
+                <h3>📝 Journal</h3>
+
+                <p>Continue writing today's reflection...</p>
+
+            </div>
+
+            <div class="card medium">
+
+                <h3>📅 Calendar</h3>
+
+                <p>No upcoming events.</p>
+
+            </div>
+
+            <div class="card medium">
+
+                <h3>🌱 Habits</h3>
+
+                <p>3 of 5 completed today.</p>
+
+            </div>
+
+            <div class="card medium">
+
+                <h3>📷 Memories</h3>
+
+                <p>No photos today.</p>
+
+            </div>
+
+            <div class="card large">
+
+                <h3>🎂 Upcoming</h3>
+
+                <p>No upcoming birthdays or events.</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="assets/js/storage.js"></script>
+<script src="assets/js/greeting.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/app.js"></script>
 
 </body>
+
 </html>

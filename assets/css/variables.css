@@ -1,0 +1,33 @@
+:root {
+
+    /* Colors */
+
+    --bg: #F7F5FB;
+    --surface: #FEFCFF;
+    --surface-hover: #F4F0FB;
+
+    --primary: #9E86D9;
+    --primary-dark: #8A72C7;
+    --primary-light: #EAE3F8;
+
+    --border: #E5DDF3;
+
+    --text: #332C44;
+    --text-light: #7E7694;
+
+    --shadow:
+        0 12px 35px rgba(94, 77, 128, .08);
+
+    /* Radius */
+
+    --radius: 24px;
+
+    /* Spacing */
+
+    --space-xs: .5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+
+}

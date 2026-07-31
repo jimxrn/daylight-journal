@@ -238,19 +238,153 @@ textarea {
   justify-content: space-between;
 }
 
-.clock {
-  padding: 10px 14px;
-  border: 1px solid #e2d9ef;
-  border-radius: 12px;
-  background: #fefcff;
-  color: #6f5a98;
-  box-shadow: 0 8px 22px rgba(94, 77, 128, 0.08);
+.top-bar {
+  align-items: flex-start;
 }
 
-#clock-time {
-  font-size: 13px;
+.side-clock {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #ded3ef;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffffff, #ebe3f6);
+  color: #69568c;
+  box-shadow: 0 16px 35px rgba(94, 77, 128, 0.15);
+}
+
+.clock-label {
+  margin: 0 0 8px;
+  color: #9382b1;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.4px;
+  letter-spacing: 1.4px;
 }
 
 
+.clock-dot {
+  position: absolute;
+  bottom: 21px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a68bd4;
+}
+
+@media (max-width: 520px) {
+  .side-clock {
+    width: 86px;
+    height: 86px;
+  }
+
+  .clock-label,
+  .clock-dot {
+    display: none;
+  }
+
+  #clock-time {
+    font-size: 16px;
+  }
+}
+.side-clock {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 7px solid #fefcff;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #fbf9ff 0 58%, transparent 58.5%),
+    repeating-conic-gradient(
+      from 0deg,
+      #b7a3d8 0deg 1deg,
+      transparent 1deg 30deg
+    ),
+    #ece5f8;
+  box-shadow:
+    0 18px 42px rgba(94, 77, 128, 0.18),
+    inset 0 0 0 2px #d7caeb;
+}
+.clock-hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  z-index: 5;
+  display: block;
+  border-radius: 20px;
+  background: #594276;
+  transform-origin: bottom center;
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.7);
+}
+
+.hour-hand {
+  width: 7px;
+  height: 50px;
+}
+
+.minute-hand {
+  width: 5px;
+  height: 72px;
+  background: #8c6ab2;
+}
+
+.clock-center {
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background: #a68bd4;
+  transform: translate(-50%, -50%);
+}
+
+.clock-time {
+  position: absolute;
+  z-index: 7;
+  bottom: 24px;
+  left: 50%;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #69568c;
+  font-size: 11px;
+  font-weight: 600;
+  transform: translateX(-50%);
+}
+.day-box {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.day-box.has-birthday {
+  border-color: #c9b5e5;
+  background: #f0e9fa;
+}
+
+.birthday-label {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  overflow: hidden;
+  color: #795aa3;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

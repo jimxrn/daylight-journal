@@ -1,0 +1,178 @@
+/* ==========================================
+   WIDGETS
+========================================== */
+
+.widget{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    padding:28px;
+
+}
+
+.widget-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+}
+
+.widget-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.widget-icon{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:14px;
+
+    background:var(--primary-light);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:1.3rem;
+
+}
+
+.widget-title h3{
+
+    margin:0;
+
+    font-size:1.4rem;
+
+}
+
+.widget-subtitle{
+
+    margin-top:4px;
+
+    color:var(--text-light);
+
+    font-size:.9rem;
+
+}
+
+.widget-body{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.widget-footer{
+
+    margin-top:auto;
+
+    color:var(--text-light);
+
+    font-size:.9rem;
+
+}
+.widget-text{
+
+    color:var(--text-light);
+
+    font-size:1rem;
+
+    line-height:1.7;
+
+}
+
+.mood-picker{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin:8px 0;
+
+}
+
+.mood-btn{
+
+    .mood-btn{
+
+    width:56px;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:transparent;
+
+    font-size:2rem;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+
+}
+
+.mood-btn:hover{
+
+    transform:translateY(-3px) scale(1.08);
+
+    background:var(--primary-light);
+
+}
+
+.mood-btn.active{
+
+    background:var(--primary);
+
+    transform:scale(1.12);
+
+}
+.mood-status{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.mood-label{
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+.mood-time{
+
+    font-size:.85rem;
+
+    color:var(--text-light);
+
+}

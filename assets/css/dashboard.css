@@ -1,0 +1,72 @@
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+.dashboard{
+
+    width:100%;
+    max-width:1320px;
+
+    margin:0 auto;
+
+    padding:70px 40px 120px;
+
+}
+
+.hero{
+
+    max-width:720px;
+
+    margin:100px 0 80px;
+
+}
+
+.hero h1{
+
+    font-size:4rem;
+
+    line-height:1.1;
+
+    margin:12px 0;
+
+}
+
+#today{
+
+    color:var(--text-light);
+
+    text-transform:uppercase;
+
+    letter-spacing:.18em;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+}
+
+.quote{
+
+    margin-top:12px;
+
+    color:var(--text-light);
+
+    font-size:1.05rem;
+
+    line-height:1.7;
+
+}
+
+/* Dashboard Grid */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(12,1fr);
+
+    gap:24px;
+
+    align-items:start;
+
+}

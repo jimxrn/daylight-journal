@@ -1,0 +1,42 @@
+.dashboard{
+
+    width:100%;
+    max-width:1320px;
+    margin:0 auto;
+    padding:70px 40px 120px;
+
+}
+
+.hero{
+    max-width:720px;
+    margin:100px 0 90px;
+
+}
+
+.hero h1{
+
+    font-size:4rem;
+
+    margin:.4rem 0;
+
+}
+
+#today{
+
+    color:var(--text-light);
+
+    text-transform:uppercase;
+
+    letter-spacing:.15em;
+
+    font-weight:600;
+
+}
+
+.quote{
+
+    color:var(--text-light);
+
+    font-size:1.1rem;
+
+}

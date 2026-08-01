@@ -19,127 +19,151 @@
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/layout.css">
-    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/navigation.css">
     <link rel="stylesheet" href="assets/css/cards.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/widgets.css">
+    
 
 </head>
 
 <body>
 
-<div class="layout">
+<div class="navigation">
 
-    <aside class="sidebar">
+    <div class="logo">
 
-        <div class="logo">
+        <div class="logo-icon">
+            ☀️
+        </div>
 
-            <div class="logo-icon">☀️</div>
+        <h2>Daylight</h2>
+
+        <span>your personal space</span>
+
+    </div>
+
+    <nav>
+
+        <button class="nav-item active">Dashboard</button>
+
+        <button class="nav-item">Journal</button>
+
+        <button class="nav-item">Calendar</button>
+
+        <button class="nav-item">Planner</button>
+
+        <button class="nav-item">Habits</button>
+
+        <button class="nav-item">Memories</button>
+
+        <button class="nav-item">Settings</button>
+
+    </nav>
+
+</div>
+
+<main class="dashboard">
+
+    <header class="hero">
+
+        <p id="today"></p>
+
+        <h1 id="greeting"></h1>
+
+        <p class="quote">
+
+            Every day is another chance to begin.
+
+        </p>
+
+    </header>
+
+    <section class="dashboard-grid">
+
+       <div class="card widget small">
+
+        <div class="widget-header">
+
+            <div class="widget-title">
+
+                <div class="widget-icon">
+                😊
+            </div>
 
             <div>
 
-                <h2>Daylight</h2>
+                <h3>Today's Mood</h3>
 
-                <span>Your Personal Space</span>
+                <p class="widget-subtitle">
+                    Today
+                </p>
 
             </div>
 
         </div>
 
-        <nav>
+    </div>
 
-            <button class="nav-item active">🏠 Dashboard</button>
+    <div class="widget-body">
 
-            <button class="nav-item">📝 Journal</button>
+        <p class="widget-text">
 
-            <button class="nav-item">📅 Calendar</button>
+            How are you feeling today?
 
-            <button class="nav-item">✅ Planner</button>
+        </p>
 
-            <button class="nav-item">🌱 Habits</button>
+        <div class="mood-picker">
 
-            <button class="nav-item">📷 Memories</button>
+            <button class="mood-btn">😄</button>
+            <button class="mood-btn">😊</button>
+            <button class="mood-btn">😌</button>
+            <button class="mood-btn">😐</button>
+            <button class="mood-btn">😔</button>
+            <button class="mood-btn">😭</button>
 
-            <button class="nav-item">⚙️ Settings</button>
+        </div>
 
-        </nav>
+    </div>
 
-    </aside>
+        <div class="widget-footer">
 
-    <main class="dashboard">
+            <div class="mood-status">
 
-        <header class="hero">
+                <span class="mood-label">
 
-            <p id="today"></p>
+            Ready whenever you are.
 
-            <h1 id="greeting"></h1>
+        </span>
 
-            <p class="quote">
+        <span class="mood-time">
 
-                "Every day is another chance to begin."
+            No check-in today
 
-            </p>
+        </span>
 
-        </header>
-
-        <section class="dashboard-grid">
-
-            <div class="card small">
-
-                <h3>😊 Mood</h3>
-
-                <p>Feeling Calm</p>
-
-            </div>
-
-            <div class="card large">
-
-                <h3>📝 Journal</h3>
-
-                <p>Continue writing today's reflection...</p>
-
-            </div>
-
-            <div class="card medium">
-
-                <h3>📅 Calendar</h3>
-
-                <p>No upcoming events.</p>
-
-            </div>
-
-            <div class="card medium">
-
-                <h3>🌱 Habits</h3>
-
-                <p>3 of 5 completed today.</p>
-
-            </div>
-
-            <div class="card medium">
-
-                <h3>📷 Memories</h3>
-
-                <p>No photos today.</p>
-
-            </div>
-
-            <div class="card large">
-
-                <h3>🎂 Upcoming</h3>
-
-                <p>No upcoming birthdays or events.</p>
-
-            </div>
-
-        </section>
-
-    </main>
+    </div>
 
 </div>
 
+</section>
+
+</main>
+
+<!-- Core Scripts -->
 <script src="assets/js/storage.js"></script>
 <script src="assets/js/greeting.js"></script>
 <script src="assets/js/dashboard.js"></script>
+
+<!-- Widget Scripts -->
+<script src="assets/js/widgets/mood.js"></script>
+<script src="assets/js/widgets/journal.js"></script>
+<script src="assets/js/widgets/calendar.js"></script>
+<script src="assets/js/widgets/planner.js"></script>
+<script src="assets/js/widgets/habits.js"></script>
+<script src="assets/js/widgets/memories.js"></script>
+
+<!-- Application Entry -->
 <script src="assets/js/app.js"></script>
 
 </body>

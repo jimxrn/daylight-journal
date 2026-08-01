@@ -7,9 +7,7 @@
 body{
 
     background:var(--bg);
-
     color:var(--text);
-
     font-family:"DM Sans",sans-serif;
 
 }
@@ -23,7 +21,6 @@ button{
 h1,h2,h3{
 
     font-family:"Playfair Display",serif;
-
     font-weight:600;
 
 }
@@ -31,7 +28,6 @@ h1,h2,h3{
 a{
 
     color:inherit;
-
     text-decoration:none;
 
 }

@@ -230,9 +230,11 @@ function loadEvents(){
 
                 <div class="event-content">
 
+                    <small class="event-type">Birthday</small>
+
                     <strong>${birthday.name}</strong>
 
-                    <p>Birthday</p>
+                    <p>${birthday.notes || "No notes added"}</p>
 
                 </div>
 

@@ -519,3 +519,33 @@
 
 }
 
+/* ==========================================
+   BIRTHDAY CARD POLISH
+========================================== */
+
+.birthday-card{
+
+    background:#FFF5FA;
+
+    border:1px solid #F4D6E6;
+
+}
+
+.event-type{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+    color:#C06A9B;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+}
+

@@ -8,7 +8,7 @@
 
     <title>Daylight</title>
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -20,151 +20,387 @@
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/navigation.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/cards.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/widgets.css">
-    
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
 
 <body>
 
-<div class="navigation">
+    <!-- Navigation -->
 
-    <div class="logo">
+    <div class="navigation">
 
-        <div class="logo-icon">
-            ☀️
-        </div>
+        <div class="logo">
 
-        <h2>Daylight</h2>
-
-        <span>your personal space</span>
-
-    </div>
-
-    <nav>
-
-        <button class="nav-item active">Dashboard</button>
-
-        <button class="nav-item">Journal</button>
-
-        <button class="nav-item">Calendar</button>
-
-        <button class="nav-item">Planner</button>
-
-        <button class="nav-item">Habits</button>
-
-        <button class="nav-item">Memories</button>
-
-        <button class="nav-item">Settings</button>
-
-    </nav>
-
-</div>
-
-<main class="dashboard">
-
-    <header class="hero">
-
-        <p id="today"></p>
-
-        <h1 id="greeting"></h1>
-
-        <p class="quote">
-
-            Every day is another chance to begin.
-
-        </p>
-
-    </header>
-
-    <section class="dashboard-grid">
-
-       <div class="card widget small">
-
-        <div class="widget-header">
-
-            <div class="widget-title">
-
-                <div class="widget-icon">
-                😊
+            <div class="logo-icon">
+                ☀️
             </div>
 
-            <div>
+            <h2>Daylight</h2>
 
-                <h3>Today's Mood</h3>
+            <span>your personal space</span>
 
-                <p class="widget-subtitle">
-                    Today
-                </p>
+        </div>
+
+        <nav>
+
+            <button class="nav-item active">Dashboard</button>
+            <button class="nav-item">Journal</button>
+            <button class="nav-item">Calendar</button>
+            <button class="nav-item">Planner</button>
+            <button class="nav-item">Habits</button>
+            <button class="nav-item">Memories</button>
+            <button class="nav-item">Settings</button>
+
+        </nav>
+
+    </div>
+
+    <!-- Dashboard -->
+
+    <main class="dashboard">
+
+        <header class="hero">
+
+            <p id="today"></p>
+
+            <h1 id="greeting"></h1>
+
+            <p class="quote">
+
+                Every day is another chance to begin.
+
+            </p>
+
+        </header>
+
+        <section class="dashboard-grid">
+
+            <!-- ===================================== -->
+            <!-- Journal Widget -->
+            <!-- ===================================== -->
+
+            <div class="card widget journal-widget">
+
+                <div class="widget-header">
+
+                    <div class="widget-title">
+
+                        <div class="widget-icon">
+
+                            ✍️
+
+                        </div>
+
+                        <div>
+
+                            <h3>Today's Journal</h3>
+
+                            <p class="widget-subtitle">
+
+                                Write freely.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="widget-body">
+
+                    <textarea
+                        id="journal-entry"
+                        class="journal-textarea"
+                        rows="14"
+                        placeholder="What's on your mind today?">
+                    </textarea>
+
+                </div>
+
+                <div class="widget-footer">
+
+                    <div class="journal-info">
+
+                        <span id="word-count">
+
+                            0 words
+
+                        </span>
+
+                        <span id="last-edited">
+
+                            Not edited yet
+
+                        </span>
+
+                    </div>
+
+                </div>
 
             </div>
 
-        </div>
+            <!-- ===================================== -->
+            <!-- Mood Widget -->
+            <!-- ===================================== -->
 
-    </div>
+            <div class="card widget mood-widget">
 
-    <div class="widget-body">
+                <div class="widget-header">
 
-        <p class="widget-text">
+                    <div class="widget-title">
 
-            How are you feeling today?
+                        <div class="widget-icon">
+                            😊
+                        </div>
 
-        </p>
+                        <div>
 
-        <div class="mood-picker">
+                            <h3>Today's Mood</h3>
 
-            <button class="mood-btn">😄</button>
-            <button class="mood-btn">😊</button>
-            <button class="mood-btn">😌</button>
-            <button class="mood-btn">😐</button>
-            <button class="mood-btn">😔</button>
-            <button class="mood-btn">😭</button>
+                            <p class="widget-subtitle">
+                                Daily Check-in
+                            </p>
 
-        </div>
+                        </div>
 
-    </div>
+                    </div>
 
-        <div class="widget-footer">
+                </div>
 
-            <div class="mood-status">
+                <div class="widget-body">
 
-                <span class="mood-label">
+                    <p class="widget-text">
 
-            Ready whenever you are.
+                        How are you feeling today?
 
-        </span>
+                    </p>
 
-        <span class="mood-time">
+                    <div class="mood-picker">
 
-            No check-in today
+                        <button class="mood-btn">😄</button>
+                        <button class="mood-btn">😊</button>
+                        <button class="mood-btn">😌</button>
+                        <button class="mood-btn">😐</button>
+                        <button class="mood-btn">😔</button>
+                        <button class="mood-btn">😭</button>
 
-        </span>
+                    </div>
 
-    </div>
+                </div>
 
-</div>
+                <div class="widget-footer">
 
-</section>
+                    <div class="mood-status">
 
-</main>
+                        <span class="mood-label">
 
-<!-- Core Scripts -->
-<script src="assets/js/storage.js"></script>
-<script src="assets/js/greeting.js"></script>
-<script src="assets/js/dashboard.js"></script>
+                            Ready whenever you are.
 
-<!-- Widget Scripts -->
-<script src="assets/js/widgets/mood.js"></script>
-<script src="assets/js/widgets/journal.js"></script>
-<script src="assets/js/widgets/calendar.js"></script>
-<script src="assets/js/widgets/planner.js"></script>
-<script src="assets/js/widgets/habits.js"></script>
-<script src="assets/js/widgets/memories.js"></script>
+                        </span>
 
-<!-- Application Entry -->
-<script src="assets/js/app.js"></script>
+                        <span class="mood-time">
+
+                            No check-in today
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===================================== -->
+            <!-- Calendar Widget -->
+            <!-- ===================================== -->
+                         <div class="card widget calendar-widget">
+
+                <div class="widget-header">
+
+                    <div class="widget-title">
+
+                        <div class="widget-icon">
+                            📅
+                        </div>
+
+                        <div>
+
+                            <h3>Calendar</h3>
+
+                            <p class="widget-subtitle">
+
+                                Upcoming Events
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="widget-body">
+
+                    <p class="widget-text">
+
+                        Your calendar will appear here.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ===================================== -->
+            <!-- Planner Widget -->
+            <!-- ===================================== -->
+
+            <div class="card widget planner-widget">
+
+                <div class="widget-header">
+
+                    <div class="widget-title">
+
+                        <div class="widget-icon">
+                            ✅
+                        </div>
+
+                        <div>
+
+                            <h3>Planner</h3>
+
+                            <p class="widget-subtitle">
+
+                                Today's Tasks
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="widget-body">
+
+                    <p class="widget-text">
+
+                        Your daily planner will appear here.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ===================================== -->
+            <!-- Habits Widget -->
+            <!-- ===================================== -->
+
+            <div class="card widget habits-widget">
+
+                <div class="widget-header">
+
+                    <div class="widget-title">
+
+                        <div class="widget-icon">
+                            🌱
+                        </div>
+
+                        <div>
+
+                            <h3>Habits</h3>
+
+                            <p class="widget-subtitle">
+
+                                Stay Consistent
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="widget-body">
+
+                    <p class="widget-text">
+
+                        Your habits will appear here.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ===================================== -->
+            <!-- Memories Widget -->
+            <!-- ===================================== -->
+
+            <div class="card widget memories-widget">
+
+                <div class="widget-header">
+
+                    <div class="widget-title">
+
+                        <div class="widget-icon">
+                            📷
+                        </div>
+
+                        <div>
+
+                            <h3>Memories</h3>
+
+                            <p class="widget-subtitle">
+
+                                Photos & Moments
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="widget-body">
+
+                    <p class="widget-text">
+
+                        Save your favorite moments here.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Core Scripts -->
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/greeting.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+
+    <!-- Widget Scripts -->
+    <script src="assets/js/widgets/mood.js"></script>
+    <script src="assets/js/widgets/journal.js"></script>
+    <script src="assets/js/widgets/calendar.js"></script>
+    <script src="assets/js/widgets/planner.js"></script>
+    <script src="assets/js/widgets/habits.js"></script>
+    <script src="assets/js/widgets/memories.js"></script>
+
+    <!-- Application -->
+    <script src="assets/js/app.js"></script>
 
 </body>
 

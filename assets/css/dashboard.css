@@ -17,7 +17,7 @@
 
     max-width:720px;
 
-    margin:100px 0 80px;
+    margin:48px 0 56px;
 
 }
 
@@ -69,4 +69,32 @@
 
     align-items:start;
 
+}
+
+/* ==========================================
+   DASHBOARD WIDGET LAYOUT
+========================================== */
+
+.journal-widget{
+    grid-column: 1 / -1;
+}
+
+.mood-widget{
+    grid-column: span 3;
+}
+
+.calendar-widget{
+    grid-column: span 3;
+}
+
+.planner-widget{
+    grid-column: span 3;
+}
+
+.habits-widget{
+    grid-column: span 3;
+}
+
+.memories-widget{
+    grid-column: 1 / -1;
 }

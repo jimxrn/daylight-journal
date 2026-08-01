@@ -1,0 +1,521 @@
+/* ==========================================
+   DAYLIGHT CALENDAR
+========================================== */
+
+.calendar-page{
+
+    max-width:1320px;
+
+    margin:0 auto;
+
+    padding:40px 40px 80px;
+
+}
+
+.calendar-container{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    padding:36px;
+
+    box-shadow:0 12px 35px rgba(86,68,120,.08);
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.calendar-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:36px;
+
+}
+
+.calendar-header h1{
+
+    font-size:2.5rem;
+
+    color:var(--text);
+
+}
+
+.calendar-header button{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:var(--primary-light);
+
+    color:var(--primary);
+
+    font-size:1.2rem;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.calendar-header button:hover{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* ==========================================
+   WEEKDAYS
+========================================== */
+
+.weekdays{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+}
+
+.weekdays span{
+
+    text-align:center;
+
+    font-weight:600;
+
+    color:var(--text-light);
+
+    font-size:.9rem;
+
+    letter-spacing:.05em;
+
+    text-transform:uppercase;
+
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.calendar-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:12px;
+
+}
+
+/* ==========================================
+   DAY TILE
+========================================== */
+
+.day{
+
+    aspect-ratio:1;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:flex-start;
+
+    align-items:flex-start;
+
+    position:relative;
+
+    padding:12px;
+
+    background:white;
+
+    transition:.25s;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+.day:hover{
+
+    background:var(--primary-light);
+
+    transform:translateY(-2px);
+
+}
+
+.day.today{
+
+    background:var(--primary);
+
+    color:white;
+
+    border-color:var(--primary);
+
+}
+
+.day.empty{
+
+    border:none;
+
+    background:transparent;
+
+    cursor:default;
+
+}
+
+/* ==========================================
+   CALENDAR LAYOUT
+========================================== */
+
+.calendar-layout{
+
+    display:grid;
+
+    grid-template-columns:2fr 380px;
+
+    gap:32px;
+
+    align-items:start;
+
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.event-sidebar{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    padding:30px;
+
+    box-shadow:0 12px 35px rgba(86,68,120,.08);
+
+    position:sticky;
+
+    top:30px;
+
+}
+
+.sidebar-header{
+
+    margin-bottom:30px;
+
+}
+
+.sidebar-header h2{
+
+    margin:0;
+
+    font-size:2rem;
+
+}
+
+.sidebar-header p{
+
+    margin-top:8px;
+
+    color:var(--text-light);
+
+}
+
+.event-list{
+
+    min-height:280px;
+
+}
+
+.empty-events{
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+}
+
+#addEventBtn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#addEventBtn:hover{
+
+    opacity:.9;
+
+}
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(25,20,40,.35);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:1000;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.modal-card{
+
+    width:480px;
+
+    background:white;
+
+    border-radius:28px;
+
+    padding:32px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.15);
+
+}
+
+.modal-card h2{
+
+    margin-bottom:28px;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+    padding:14px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    font-family:inherit;
+
+    font-size:1rem;
+
+}
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:28px;
+
+}
+
+.modal-actions button{
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+#cancelEvent{
+
+    background:#F4F1FA;
+
+    color:var(--text);
+
+}
+
+#saveEvent{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* ==========================================
+   BIRTHDAY INDICATOR
+========================================== */
+
+
+.birthday-dot{
+
+    position:absolute;
+
+    top:8px;
+
+    right:8px;
+
+    font-size: 0.9rem;
+
+}
+
+/* ==========================================
+   SIDEBAR EVENT CARDS
+========================================== */
+
+.event-card{
+
+    display:flex;
+
+    gap:14px;
+
+    align-items:flex-start;
+
+    padding:16px;
+
+    margin-bottom:14px;
+
+    border-radius:18px;
+
+    background:#F9F7FC;
+
+}
+
+.event-icon{
+
+    font-size:1.5rem;
+
+}
+
+.event-content strong{
+
+    display:block;
+
+    margin-bottom:4px;
+
+}
+
+.event-content p{
+
+    margin:0;
+
+    color:var(--text-light);
+
+}
+
+.event-content small{
+
+    color:var(--primary);
+
+}
+
+.birthday-card{
+
+    background:#FFF6FB;
+
+}
+
+/* ==========================================
+   EVENT INDICATORS
+========================================== */
+
+.event-indicators{
+
+    position:absolute;
+
+    bottom:6px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    gap:4px;
+
+}
+
+.event-pill{
+
+    width:10px;
+
+    height:5px;
+
+    border-radius:999px;
+
+    background:#9B8ACF;
+
+}
+

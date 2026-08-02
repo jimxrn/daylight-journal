@@ -158,18 +158,122 @@
 
             </div>
 
+    <div class="calendar-actions">
+
             <button id="addEventBtn">
 
                 + Add Event
 
             </button>
 
-        </aside>
+            <button id="birthdaysBtn" class="birthdays-link">
+
+            🎂 Birthdays
+
+            </button>
 
     </div>
 
-</main>
+    </aside>
 
+    </div>
+
+    </main>
+
+
+<!-- ==========================================
+     ADD BIRTHDAY MODAL
+========================================== -->
+
+<div id="birthdayFormModal" class="modal hidden">
+
+    <div class="modal-card">
+
+        <h2>Add Birthday</h2>
+
+        <div class="form-group">
+
+            <label>Name</label>
+
+            <input
+                type="text"
+                id="birthdayName"
+                placeholder="e.g. Austin">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Birthday</label>
+
+            <input
+                type="date"
+                id="birthdayDate">
+
+        </div>
+
+        <div class="modal-actions">
+
+            <button id="cancelBirthday">
+
+                Cancel
+
+            </button>
+
+            <button id="saveBirthday">
+
+                Save Birthday
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     BIRTHDAY EVENT MODAL
+========================================== -->
+<div id="birthdayManagerModal" class="modal hidden">
+
+    <div class="modal-card">
+
+      <h2>🎂 Birthdays</h2>
+
+        <div class="birthday-list">
+
+            <p class="empty-events">
+
+                No birthdays yet.
+
+            </p>
+
+    </div>
+
+    <div class="birthday-footer">
+
+            <button id="openBirthdayForm">
+
+                + Add Birthday
+
+            </button>
+        
+    </div>
+
+        <div class="modal-actions">
+
+            <button id="closeBirthdayManager">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 <!-- ==========================================
      ADD EVENT MODAL
 ========================================== -->

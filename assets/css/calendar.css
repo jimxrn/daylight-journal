@@ -506,11 +506,6 @@
 
 }
 
-.birthday-card{
-
-    background:#FFF6FB;
-
-}
 
 /* ==========================================
    EVENT INDICATORS
@@ -550,9 +545,125 @@
 
 .birthday-card{
 
-    background:#FFF5FA;
+    display:flex;
 
-    border:1px solid #F4D6E6;
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 16px;
+
+    margin-bottom:12px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:#FFFFFF;
+
+    transition:.25s;
+
+}
+
+.birthday-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(124,95,215,.08);
+
+}
+.birthday-info{
+
+    flex:1;
+
+}
+
+.birthday-info strong{
+
+    display:block;
+
+    color:var(--text);
+
+    font-size:.95rem;
+
+}
+
+.birthday-info small{
+
+    display:block;
+
+    margin-top:4px;
+
+    color:var(--text-light);
+
+    font-size:.82rem;
+
+}
+.birthday-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+.birthday-actions button{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#F7F4FD;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+.birthday-actions button:hover{
+
+    background:#ECE5FC;
+
+    transform:translateY(-2px);
+
+}
+.birthday-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin:18px 0;
+
+    max-height:320px;
+
+    overflow-y:auto;
+
+}
+.birthday-list::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.birthday-list::-webkit-scrollbar-thumb{
+
+    background:#DDD3F8;
+
+    border-radius:20px;
 
 }
 
@@ -690,5 +801,142 @@
 .event-actions button:hover{
 
     transform:scale(1.15);
+
+}
+
+/* ==========================================
+   CALENDAR ACTIONS
+========================================== */
+
+.calendar-actions{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:auto;
+
+}
+
+.secondary-btn{
+
+    border:1px solid var(--border);
+
+    background:white;
+
+    color:var(--text);
+
+    padding:12px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-weight:500;
+
+}
+
+.secondary-btn:hover{
+
+    background:var(--surface);
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   BIRTHDAYS LINK
+========================================== */
+
+.birthdays-link{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    background:none;
+    border:none;
+
+    color:var(--primary);
+
+    font-size:.85rem;
+    font-weight:500;
+
+    cursor:pointer;
+    transition:.25s;
+
+    margin-top:16px;
+
+}
+
+.birthdays-link:hover{
+
+    opacity:.75;
+
+}
+
+/* ==========================================
+   BIRTHDAY FOOTER
+========================================== */
+
+.birthday-footer{
+
+    margin-top:24px;
+
+    padding-top:8px;
+
+    display:flex;
+
+    justify-content:flex-start;
+
+}
+
+.birthday-footer button{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.birthday-footer button:hover{
+
+    opacity:.9;
+
+}
+.birthday-list::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+.birthday-list::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.birthday-list::-webkit-scrollbar-thumb{
+
+    background:#DDD2F8;
+
+    border-radius:999px;
 
 }

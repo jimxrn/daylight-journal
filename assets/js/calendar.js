@@ -1,12 +1,24 @@
 // ==========================================
+// DAYLIGHT CALENDAR
+// ==========================================
+
+"use strict";
+
+// ==========================================
 // DOM ELEMENTS
 // ==========================================
+
+// Calendar
 
 const monthYear = document.getElementById("monthYear");
 const calendarGrid = document.getElementById("calendarGrid");
 
+// Sidebar
+
 const selectedDate = document.getElementById("selectedDate");
 const selectedFullDate = document.getElementById("selectedFullDate");
+
+// Event Modal
 
 const eventModal = document.getElementById("eventModal");
 const addEventBtn = document.getElementById("addEventBtn");
@@ -22,10 +34,36 @@ const eventTime = document.getElementById("eventTime");
 const eventCategory = document.getElementById("eventCategory");
 const eventNotes = document.getElementById("eventNotes");
 
-let editingEventId = null;
+// Birthday Manager
+
+const birthdaysBtn = document.getElementById("birthdaysBtn");
+
+const birthdayManagerModal =
+    document.getElementById("birthdayManagerModal");
+
+const closeBirthdayManager =
+    document.getElementById("closeBirthdayManager");
+
+const openBirthdayForm =
+    document.getElementById("openBirthdayForm");
+
+const birthdayFormModal =
+    document.getElementById("birthdayFormModal");
+
+const cancelBirthday =
+    document.getElementById("cancelBirthday");
+
+const saveBirthday =
+    document.getElementById("saveBirthday");
+
+const birthdayName =
+    document.getElementById("birthdayName");
+
+const birthdayDate =
+    document.getElementById("birthdayDate");
 
 // ==========================================
-// DATE VARIABLES
+// APPLICATION STATE
 // ==========================================
 
 const today = new Date();
@@ -34,16 +72,31 @@ let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
 let selectedDay = today.getDate();
 
+let editingEventId = null;
+let editingBirthdayId = null;
+
+// Month Names
+
 const months = [
-    "January","February","March","April","May","June",
-    "July","August","September","October","November","December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
 ];
 
 // ==========================================
-// CALENDAR
+// CALENDAR ENGINE
 // ==========================================
 
-function renderCalendar(){
+function renderCalendar() {
 
     calendarGrid.innerHTML = "";
 
@@ -51,113 +104,136 @@ function renderCalendar(){
         `${months[currentMonth]} ${currentYear}`;
 
     const firstDay =
-        new Date(currentYear,currentMonth,1).getDay();
+        new Date(currentYear, currentMonth, 1).getDay();
 
     const totalDays =
-        new Date(currentYear,currentMonth+1,0).getDate();
+        new Date(currentYear, currentMonth + 1, 0).getDate();
 
     calendarGrid.style.opacity = "0";
-
     calendarGrid.style.transform = "translateY(12px)";
 
     // Empty Cells
 
-    for(let i=0;i<firstDay;i++){
+    for (let i = 0; i < firstDay; i++) {
 
-        const empty=document.createElement("div");
+        const empty =
+            document.createElement("div");
 
-        empty.className="day empty";
+        empty.className = "day empty";
 
         calendarGrid.appendChild(empty);
 
     }
 
-    // Days
+    // Calendar Days
 
-    for(let day=1;day<=totalDays;day++){
+    for (let day = 1; day <= totalDays; day++) {
 
-        const tile=document.createElement("div");
+        const tile =
+            document.createElement("div");
 
-        tile.className="day";
+        tile.className = "day";
+        tile.textContent = day;
 
-        tile.textContent=day;
-
-        // Check if this day has a birthday
+        // Birthday Indicator
 
         const birthdays = getBirthdays();
 
-        const hasBirthday = birthdays.some(birthday =>
+        const hasBirthday = birthdays.some(birthday => {
 
-            birthday.month === currentMonth + 1 &&
-            birthday.day === day
+            if (birthday.date) {
 
-        );
-
-         if(hasBirthday){
-
-                const badge = document.createElement("div");
-
-                badge.className = "birthday-dot";
-
-                badge.textContent = "🎂";
-
-                tile.appendChild(badge);
-
-        }
-
-        // Event Check
-
-            const events =
-                JSON.parse(localStorage.getItem("daylightEvents")) || [];
-
-            const dayEvents = events.filter(event => {
-
-                const eventDate = new Date(event.date);
+                const birthDate =
+                    new Date(birthday.date);
 
                 return (
 
-                    eventDate.getFullYear() === currentYear &&
-                    eventDate.getMonth() === currentMonth &&
-                    eventDate.getDate() === day
+                    birthDate.getMonth() === currentMonth &&
+                    birthDate.getDate() === day
 
                 );
 
-            });
-
-            if(dayEvents.length){
-
-                const indicatorContainer =
-                    document.createElement("div");
-
-                indicatorContainer.className =
-                    "event-indicators";
-
-                dayEvents.forEach(()=>{
-
-                    const dot =
-                        document.createElement("span");
-
-                    dot.className="event-pill";
-
-                    indicatorContainer.appendChild(dot);
-
-                });
-
-                tile.appendChild(indicatorContainer);
-
             }
 
-        if(
-            day===today.getDate() &&
-            currentMonth===today.getMonth() &&
-            currentYear===today.getFullYear()
-        ){
+            return (
+
+                birthday.month === currentMonth + 1 &&
+                birthday.day === day
+
+            );
+
+        });
+
+        if (hasBirthday) {
+
+            const badge =
+                document.createElement("div");
+
+            badge.className = "birthday-dot";
+            badge.textContent = "🎂";
+
+            tile.appendChild(badge);
+
+        }
+
+        // Event Indicators
+
+        const events =
+            JSON.parse(
+                localStorage.getItem("daylightEvents")
+            ) || [];
+
+        const dayEvents = events.filter(event => {
+
+            const eventDate =
+                new Date(event.date);
+
+            return (
+
+                eventDate.getFullYear() === currentYear &&
+                eventDate.getMonth() === currentMonth &&
+                eventDate.getDate() === day
+
+            );
+
+        });
+
+        if (dayEvents.length) {
+
+            const indicatorContainer =
+                document.createElement("div");
+
+            indicatorContainer.className =
+                "event-indicators";
+
+            dayEvents.forEach(() => {
+
+                const dot =
+                    document.createElement("span");
+
+                dot.className = "event-pill";
+
+                indicatorContainer.appendChild(dot);
+
+            });
+
+            tile.appendChild(indicatorContainer);
+
+        }
+
+        if (
+
+            day === today.getDate() &&
+            currentMonth === today.getMonth() &&
+            currentYear === today.getFullYear()
+
+        ) {
 
             tile.classList.add("today");
 
         }
 
-        tile.addEventListener("click",()=>{
+        tile.addEventListener("click", () => {
 
             selectDate(day);
 
@@ -171,35 +247,33 @@ function renderCalendar(){
 
     setTimeout(() => {
 
-    calendarGrid.style.opacity = "1";
+        calendarGrid.style.opacity = "1";
+        calendarGrid.style.transform = "translateY(0)";
 
-    calendarGrid.style.transform = "translateY(0)";
-
-}, 100);
+    }, 100);
 
 }
-
-renderCalendar();
 
 // ==========================================
 // SELECT DATE
 // ==========================================
 
-function selectDate(day){
+function selectDate(day) {
 
     selectedDay = day;
 
-    const date = new Date(currentYear,currentMonth,day);
+    const date =
+        new Date(currentYear, currentMonth, day);
 
     selectedDate.textContent = day;
 
     selectedFullDate.textContent =
-        date.toLocaleDateString("en-US",{
+        date.toLocaleDateString("en-US", {
 
-            weekday:"long",
-            month:"long",
-            day:"numeric",
-            year:"numeric"
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
 
         });
 
@@ -211,30 +285,58 @@ function selectDate(day){
 // LOAD EVENTS
 // ==========================================
 
-function loadEvents(){
+function loadEvents() {
 
-    const eventList = document.querySelector(".event-list");
+    const eventList =
+        document.querySelector(".event-list");
 
     const events =
-        JSON.parse(localStorage.getItem("daylightEvents")) || [];
+        JSON.parse(
+            localStorage.getItem("daylightEvents")
+        ) || [];
 
-    const birthdays = getBirthdays();
+    const birthdays =
+        getBirthdays();
 
     const selectedDateKey =
-        `${currentYear}-${String(currentMonth+1).padStart(2,"0")}-${String(selectedDay).padStart(2,"0")}`;
+        `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(selectedDay).padStart(2, "0")}`;
 
-    const todayEvents = events.filter(event =>
-        event.date === selectedDateKey
-    );
+    const todayEvents =
+        events.filter(event =>
+            event.date === selectedDateKey
+        );
 
-    const todayBirthdays = birthdays.filter(birthday =>
-        birthday.month === currentMonth + 1 &&
-        birthday.day === selectedDay
-    );
+    const todayBirthdays =
+        birthdays.filter(birthday => {
+
+            if (birthday.date) {
+
+                const birthDate =
+                    new Date(birthday.date);
+
+                return (
+
+                    birthDate.getMonth() === currentMonth &&
+                    birthDate.getDate() === selectedDay
+
+                );
+
+            }
+
+            return (
+
+                birthday.month === currentMonth + 1 &&
+                birthday.day === selectedDay
+
+            );
+
+        });
 
     eventList.innerHTML = "";
 
-    // Birthdays First
+    // ==========================================
+    // BIRTHDAY CARDS
+    // ==========================================
 
     todayBirthdays.forEach(birthday => {
 
@@ -242,7 +344,11 @@ function loadEvents(){
 
             <div class="event-card birthday-card">
 
-                <div class="event-icon">🎂</div>
+                <div class="event-icon">
+
+                    🎂
+
+                </div>
 
                 <div class="event-content">
 
@@ -258,11 +364,13 @@ function loadEvents(){
 
     });
 
-    // Events
+    // ==========================================
+    // EVENT CARDS
+    // ==========================================
 
-     todayEvents.forEach(event => {
+    todayEvents.forEach(event => {
 
-         eventList.innerHTML += `
+        eventList.innerHTML += `
 
             <div class="event-card">
 
@@ -270,45 +378,60 @@ function loadEvents(){
 
                     <div class="event-title">
 
-                        <span class="event-icon">📅</span>
+                        <span class="event-icon">
 
-                             <strong>${event.title}</strong>
+                            📅
+
+                        </span>
+
+                        <strong>${event.title}</strong>
+
+                    </div>
+
+                    <div class="event-actions">
+
+                        <button
+                            class="edit-event"
+                            onclick="editEvent(${event.id})">
+
+                            ✏️
+
+                        </button>
+
+                        <button
+                            class="delete-event"
+                            onclick="deleteEvent(${event.id})">
+
+                            🗑️
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <p class="event-meta">
+
+                    ${event.time || "All Day"} • ${event.category}
+
+                </p>
 
             </div>
 
-            <div class="event-actions">
+        `;
 
-                <button
-                    class="edit-event"
-                    onclick="editEvent(${event.id})">
-                ✏️
-                </button>
+    });
 
-                <button
-                    class="delete-event"
-                    onclick="deleteEvent(${event.id})">
-                🗑️
-                </button>
+    // ==========================================
+    // EMPTY STATE
+    // ==========================================
 
-        </div>
+    if (
 
-    </div>
+        todayBirthdays.length === 0 &&
+        todayEvents.length === 0
 
-            <p class="event-meta">
-
-                ${event.time || "All Day"} • ${event.category}
-
-            </p>
-
-    </div>
-            `;
-
-        });
-
-    if(
-        todayBirthdays.length===0 &&
-        todayEvents.length===0
-    ){
+    ) {
 
         eventList.innerHTML = `
 
@@ -325,140 +448,159 @@ function loadEvents(){
 }
 
 // ==========================================
-// MODAL
+// BIRTHDAY FUNCTIONS
 // ==========================================
 
-addEventBtn.addEventListener("click",()=>{
+function renderBirthdays() {
 
-    editingEventId = null;
+    const birthdayList =
+        document.querySelector(".birthday-list");
 
-    eventTitle.value = "";
+     const birthdays = getBirthdays().sort((a, b) => {
 
-    eventTime.value = "";
+        const today = new Date();
 
-    eventCategory.value = "Personal";
+        const currentYear = today.getFullYear();
 
-    eventNotes.value = "";
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
 
-    eventModal.classList.remove("hidden");
+        dateA.setFullYear(currentYear);
+        dateB.setFullYear(currentYear);
 
-    modalTitle.textContent = "Add Event";
+        if (dateA < today) {
 
-    saveEventText.textContent = "Save Event";
+            dateA.setFullYear(currentYear + 1);
 
-});
+        }
 
-cancelEvent.addEventListener("click",()=>{
+        if (dateB < today) {
 
-    editingEventId = null;
+            dateB.setFullYear(currentYear + 1);
 
-    eventTitle.value = "";
+        }
 
-    eventTime.value = "";
+        return dateA - dateB;
 
-    eventCategory.value = "Personal";
+    });
 
-    eventNotes.value = "";
+    if (birthdays.length === 0) {
 
-    eventModal.classList.add("hidden");
+        birthdayList.innerHTML = `
 
-});
+            <p class="empty-events">
 
+                No birthdays yet.
 
-// ==========================================
-// SAVE EVENT
-// ==========================================
+            </p>
 
-saveEvent.addEventListener("click",()=>{
-
-    if(eventTitle.value.trim()===""){
-
-        alert("Please enter an event title.");
+        `;
 
         return;
 
     }
 
-    const events =
-        JSON.parse(localStorage.getItem("daylightEvents")) || [];
+    birthdayList.innerHTML = birthdays.map(birthday => `
 
-    const event={
+        <div class="birthday-card">
 
-        id:Date.now(),
+            <div class="birthday-info">
 
-        date:
-        `${currentYear}-${String(currentMonth+1).padStart(2,"0")}-${String(selectedDay).padStart(2,"0")}`,
+                <strong>🎂 ${birthday.name}</strong>
 
-        title:eventTitle.value,
+                <br>
 
-        time:eventTime.value,
+               <small>
 
-        category:eventCategory.value,
+                ${new Date(birthday.date).toLocaleDateString("en-US", {
 
-        notes:eventNotes.value
+                    month: "long",
+                    day: "numeric"
 
-    };
+                })}
 
-    if(editingEventId){
+                </small>
 
-    const index = events.findIndex(
-        event => event.id === editingEventId
-    );
+            </div>
 
-    events[index] = {
+            <div class="birthday-actions">
 
-        ...events[index],
+                <button
+                    class="edit-birthday"
+                    onclick="editBirthday('${birthday.id}')">
 
-        title: eventTitle.value,
+                    ✏️
 
-        time: eventTime.value,
+                </button>
 
-        category: eventCategory.value,
+                <button
+                    class="delete-birthday"
+                    onclick="deleteBirthday('${birthday.id}')">
 
-        notes: eventNotes.value
+                    🗑️
 
-    };
+                </button>
 
-    editingEventId = null;
+            </div>
 
-}else{
+        </div>
 
-    events.push(event);
+    `).join("");
 
 }
 
-    localStorage.setItem(
+// ==========================================
+// EDIT BIRTHDAY
+// ==========================================
 
-        "daylightEvents",
+function editBirthday(id) {
 
-        JSON.stringify(events)
+    const birthdays =getBirthdays();
 
-    );
+    const birthday = birthdays.find(birthday => birthday.id === id);
 
-    eventTitle.value = "";
+    if (!birthday) return;
 
-    eventTime.value = "";
+    editingBirthdayId = id;
 
-    eventCategory.value = "Personal";
+    birthdayName.value = birthday.name;
+    birthdayDate.value = birthday.date;
 
-    eventNotes.value = "";
+    birthdayManagerModal.classList.add("hidden");
+    birthdayFormModal.classList.remove("hidden");
 
-    eventModal.classList.add("hidden");
+}
 
-    loadEvents();
+// ==========================================
+// DELETE BIRTHDAY
+// ==========================================
 
+function deleteBirthday(id) {
+
+    const confirmDelete =
+        confirm("Delete this birthday?");
+
+    if (!confirmDelete) return;
+
+    let birthdays =
+        getBirthdays();
+
+    birthdays =
+        birthdays.filter(
+            birthday => birthday.id !== id
+        );
+
+    saveBirthdays(birthdays);
+
+    renderBirthdays();
     renderCalendar();
-
     loadEvents();
 
-    eventModal.classList.add("hidden");
+}
 
-    eventTitle.value="";
-    eventTime.value="";
-    eventCategory.selectedIndex=0;
-    eventNotes.value="";
-
-});
+// ==========================================
+// EVENT FUNCTIONS
+// ==========================================
 
 // ==========================================
 // DELETE EVENT
@@ -466,16 +608,20 @@ saveEvent.addEventListener("click",()=>{
 
 function deleteEvent(id){
 
-    const confirmDelete = confirm(
-        "Delete this event?"
-    );
+    const confirmDelete =
+        confirm("Delete this event?");
 
     if(!confirmDelete) return;
 
     let events =
-        JSON.parse(localStorage.getItem("daylightEvents")) || [];
+        JSON.parse(
+            localStorage.getItem("daylightEvents")
+        ) || [];
 
-    events = events.filter(event => event.id !== id);
+    events =
+        events.filter(
+            event => event.id !== id
+        );
 
     localStorage.setItem(
         "daylightEvents",
@@ -483,7 +629,6 @@ function deleteEvent(id){
     );
 
     loadEvents();
-
     renderCalendar();
 
 }
@@ -495,42 +640,156 @@ function deleteEvent(id){
 function editEvent(id){
 
     const events =
-        JSON.parse(localStorage.getItem("daylightEvents")) || [];
+        JSON.parse(
+            localStorage.getItem("daylightEvents")
+        ) || [];
 
     const event =
-        events.find(e => e.id === id);
+        events.find(
+            event => event.id === id
+        );
 
     if(!event) return;
 
     editingEventId = id;
 
     eventTitle.value = event.title;
-
     eventTime.value = event.time;
-
     eventCategory.value = event.category;
-
     eventNotes.value = event.notes;
 
-    modalTitle.textContent = "Edit Event";
-    saveEventText.textContent = "Update Event";
+    modalTitle.textContent =
+        "Edit Event";
+
+    saveEventText.textContent =
+        "Update Event";
 
     eventModal.classList.remove("hidden");
 
 }
 
 // ==========================================
+// MODAL FUNCTIONS
+// ==========================================
+
+// Open Event Modal
+
+addEventBtn.addEventListener("click", () => {
+
+    editingEventId = null;
+
+    eventTitle.value = "";
+    eventTime.value = "";
+    eventCategory.value = "Personal";
+    eventNotes.value = "";
+
+    modalTitle.textContent = "Add Event";
+    saveEventText.textContent = "Save Event";
+
+    eventModal.classList.remove("hidden");
+
+});
+
+// Close Event Modal
+
+cancelEvent.addEventListener("click", () => {
+
+    editingEventId = null;
+
+    eventTitle.value = "";
+    eventTime.value = "";
+    eventCategory.value = "Personal";
+    eventNotes.value = "";
+
+    eventModal.classList.add("hidden");
+
+});
+
+// ==========================================
+// SAVE EVENT
+// ==========================================
+
+saveEvent.addEventListener("click", () => {
+
+    if (eventTitle.value.trim() === "") {
+
+        alert("Please enter an event title.");
+        return;
+
+    }
+
+    const events =
+        JSON.parse(
+            localStorage.getItem("daylightEvents")
+        ) || [];
+
+    const event = {
+
+        id: editingEventId || Date.now(),
+
+        date:
+            `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(selectedDay).padStart(2, "0")}`,
+
+        title: eventTitle.value.trim(),
+        time: eventTime.value,
+        category: eventCategory.value,
+        notes: eventNotes.value
+
+    };
+
+    if (editingEventId) {
+
+        const index =
+            events.findIndex(
+                event => event.id === editingEventId
+            );
+
+        if (index !== -1) {
+
+            events[index] = event;
+
+        }
+
+    } else {
+
+        events.push(event);
+
+    }
+
+    localStorage.setItem(
+        "daylightEvents",
+        JSON.stringify(events)
+    );
+
+    editingEventId = null;
+
+    eventTitle.value = "";
+    eventTime.value = "";
+    eventCategory.value = "Personal";
+    eventNotes.value = "";
+
+    modalTitle.textContent = "Add Event";
+    saveEventText.textContent = "Save Event";
+
+    eventModal.classList.add("hidden");
+
+    renderCalendar();
+    loadEvents();
+
+});
+
+// ==========================================
 // MONTH NAVIGATION
 // ==========================================
 
-document.getElementById("prevMonth").addEventListener("click", () => {
+document.getElementById("prevMonth")
+.addEventListener("click", () => {
 
     currentMonth--;
 
-    if(currentMonth < 0){
+    if (currentMonth < 0) {
 
         currentMonth = 11;
-
         currentYear--;
 
     }
@@ -539,14 +798,14 @@ document.getElementById("prevMonth").addEventListener("click", () => {
 
 });
 
-document.getElementById("nextMonth").addEventListener("click", () => {
+document.getElementById("nextMonth")
+.addEventListener("click", () => {
 
     currentMonth++;
 
-    if(currentMonth > 11){
+    if (currentMonth > 11) {
 
         currentMonth = 0;
-
         currentYear++;
 
     }
@@ -554,3 +813,117 @@ document.getElementById("nextMonth").addEventListener("click", () => {
     renderCalendar();
 
 });
+
+// ==========================================
+// BIRTHDAY LISTENERS
+// ==========================================
+
+birthdaysBtn.addEventListener("click", () => {
+
+    renderBirthdays();
+
+    birthdayManagerModal.classList.remove("hidden");
+
+});
+
+closeBirthdayManager.addEventListener("click", () => {
+
+    birthdayManagerModal.classList.add("hidden");
+
+});
+
+openBirthdayForm.addEventListener("click", () => {
+
+    editingBirthdayId = null;
+
+    birthdayName.value = "";
+    birthdayDate.value = "";
+
+    birthdayManagerModal.classList.add("hidden");
+    birthdayFormModal.classList.remove("hidden");
+
+});
+
+cancelBirthday.addEventListener("click", () => {
+
+    birthdayName.value = "";
+    birthdayDate.value = "";
+
+    birthdayFormModal.classList.add("hidden");
+    birthdayManagerModal.classList.remove("hidden");
+
+});
+
+saveBirthday.addEventListener("click", () => {
+
+    if (
+        birthdayName.value.trim() === "" ||
+        birthdayDate.value === ""
+    ) {
+
+        alert("Please complete the birthday information.");
+        return;
+
+    }
+
+    const birthdays = getBirthdays();
+
+    if (editingBirthdayId) {
+
+        const index = birthdays.findIndex(
+            birthday => birthday.id === editingBirthdayId
+        );
+
+        if (index !== -1) {
+
+            birthdays[index] = {
+
+                ...birthdays[index],
+
+                name: birthdayName.value.trim(),
+                date: birthdayDate.value
+
+            };
+
+        }
+
+        editingBirthdayId = null;
+
+    } else {
+
+        birthdays.push({
+
+            id: crypto.randomUUID(),
+
+            name: birthdayName.value.trim(),
+
+            date: birthdayDate.value
+
+        });
+
+    }
+
+    saveBirthdays(birthdays);
+
+    birthdayName.value = "";
+    birthdayDate.value = "";
+
+    birthdayFormModal.classList.add("hidden");
+    birthdayManagerModal.classList.remove("hidden");
+
+    renderBirthdays();
+    renderCalendar();
+    loadEvents();
+
+});
+
+// ==========================================
+// INITIALIZE
+// ==========================================
+
+renderCalendar();
+renderBirthdays();
+loadEvents();
+
+
+

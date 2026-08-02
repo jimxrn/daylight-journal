@@ -123,6 +123,12 @@
     grid-template-columns:repeat(7,1fr);
 
     gap:12px;
+    
+    transition:.25s ease;
+
+    transform:translateY(0);
+
+    opacity:1;
 
 }
 
@@ -161,18 +167,23 @@
 .day:hover{
 
     background:var(--primary-light);
-
-    transform:translateY(-2px);
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 10px 20px rgba(142,124,195,.15);
 
 }
 
 .day.today{
 
-    background:var(--primary);
+   background:linear-gradient(
+        135deg,
+        #8E7CC3,
+        #B29AE3
+    );
 
     color:white;
-
-    border-color:var(--primary);
+    border-color:#8E7CC3;
+    box-shadow:
+        0 10px 25px rgba(142,124,195,.28);
 
 }
 
@@ -221,6 +232,8 @@
     position:sticky;
 
     top:30px;
+
+    transition:.3s;
 
 }
 
@@ -439,19 +452,31 @@
 
     display:flex;
 
-    gap:14px;
-
     align-items:flex-start;
 
-    padding:16px;
+    gap:16px;
 
-    margin-bottom:14px;
+    padding:18px;
+
+    margin-bottom:18px;
 
     border-radius:18px;
 
-    background:#F9F7FC;
+    background:white;
+
+    border:1px solid #EFEAF8;
+
+    transition:.25s;
 
 }
+.event-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(142,124,195,.08);
+
+}
+
 
 .event-icon{
 
@@ -549,3 +574,121 @@
 
 }
 
+.delete-event{
+
+    margin-left:auto;
+
+    border:none;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:.2s;
+
+}
+
+.delete-event:hover{
+
+    transform:scale(1.15);
+
+}
+
+.event-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-left:auto;
+
+
+}
+
+
+.edit-event,
+.delete-event{
+
+    border:none;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:.2s;
+
+}
+
+.edit-event:hover,
+.delete-event:hover{
+
+    transform:scale(1.15);
+
+}
+/* ==========================================
+   EVENT CARD V2
+========================================== */
+
+.event-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.event-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.event-meta{
+
+    margin:8px 0 0 34px;
+
+    font-size:.92rem;
+
+    color:var(--text-light);
+
+}
+
+.event-actions{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+.event-actions button{
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:.2s;
+
+}
+
+.event-actions button:hover{
+
+    transform:scale(1.15);
+
+}

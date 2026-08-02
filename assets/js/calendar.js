@@ -13,12 +13,16 @@ const addEventBtn = document.getElementById("addEventBtn");
 const cancelEvent = document.getElementById("cancelEvent");
 
 const saveEvent = document.getElementById("saveEvent");
-const saveBirthday = document.getElementById("saveBirthday");
+
+const modalTitle = document.getElementById("modalTitle");
+const saveEventText = document.getElementById("saveEventText");
 
 const eventTitle = document.getElementById("eventTitle");
 const eventTime = document.getElementById("eventTime");
 const eventCategory = document.getElementById("eventCategory");
 const eventNotes = document.getElementById("eventNotes");
+
+let editingEventId = null;
 
 // ==========================================
 // DATE VARIABLES
@@ -51,6 +55,10 @@ function renderCalendar(){
 
     const totalDays =
         new Date(currentYear,currentMonth+1,0).getDate();
+
+    calendarGrid.style.opacity = "0";
+
+    calendarGrid.style.transform = "translateY(12px)";
 
     // Empty Cells
 
@@ -161,6 +169,14 @@ function renderCalendar(){
 
     selectDate(selectedDay);
 
+    setTimeout(() => {
+
+    calendarGrid.style.opacity = "1";
+
+    calendarGrid.style.transform = "translateY(0)";
+
+}, 100);
+
 }
 
 renderCalendar();
@@ -230,11 +246,9 @@ function loadEvents(){
 
                 <div class="event-content">
 
-                    <small class="event-type">Birthday</small>
-
                     <strong>${birthday.name}</strong>
 
-                    <p>${birthday.notes || "No notes added"}</p>
+                    <p>Birthday</p>
 
                 </div>
 
@@ -246,29 +260,50 @@ function loadEvents(){
 
     // Events
 
-    todayEvents.forEach(event => {
+     todayEvents.forEach(event => {
 
-        eventList.innerHTML += `
+         eventList.innerHTML += `
 
             <div class="event-card">
 
-                <div class="event-icon">📅</div>
+                <div class="event-header">
 
-                <div class="event-content">
+                    <div class="event-title">
 
-                    <strong>${event.title}</strong>
+                        <span class="event-icon">📅</span>
 
-                    <p>${event.time || "All Day"}</p>
-
-                    <small>${event.category}</small>
-
-                </div>
+                             <strong>${event.title}</strong>
 
             </div>
 
-        `;
+            <div class="event-actions">
 
-    });
+                <button
+                    class="edit-event"
+                    onclick="editEvent(${event.id})">
+                ✏️
+                </button>
+
+                <button
+                    class="delete-event"
+                    onclick="deleteEvent(${event.id})">
+                🗑️
+                </button>
+
+        </div>
+
+    </div>
+
+            <p class="event-meta">
+
+                ${event.time || "All Day"} • ${event.category}
+
+            </p>
+
+    </div>
+            `;
+
+        });
 
     if(
         todayBirthdays.length===0 &&
@@ -295,15 +330,40 @@ function loadEvents(){
 
 addEventBtn.addEventListener("click",()=>{
 
+    editingEventId = null;
+
+    eventTitle.value = "";
+
+    eventTime.value = "";
+
+    eventCategory.value = "Personal";
+
+    eventNotes.value = "";
+
     eventModal.classList.remove("hidden");
+
+    modalTitle.textContent = "Add Event";
+
+    saveEventText.textContent = "Save Event";
 
 });
 
 cancelEvent.addEventListener("click",()=>{
 
+    editingEventId = null;
+
+    eventTitle.value = "";
+
+    eventTime.value = "";
+
+    eventCategory.value = "Personal";
+
+    eventNotes.value = "";
+
     eventModal.classList.add("hidden");
 
 });
+
 
 // ==========================================
 // SAVE EVENT
@@ -339,7 +399,33 @@ saveEvent.addEventListener("click",()=>{
 
     };
 
+    if(editingEventId){
+
+    const index = events.findIndex(
+        event => event.id === editingEventId
+    );
+
+    events[index] = {
+
+        ...events[index],
+
+        title: eventTitle.value,
+
+        time: eventTime.value,
+
+        category: eventCategory.value,
+
+        notes: eventNotes.value
+
+    };
+
+    editingEventId = null;
+
+}else{
+
     events.push(event);
+
+}
 
     localStorage.setItem(
 
@@ -348,6 +434,20 @@ saveEvent.addEventListener("click",()=>{
         JSON.stringify(events)
 
     );
+
+    eventTitle.value = "";
+
+    eventTime.value = "";
+
+    eventCategory.value = "Personal";
+
+    eventNotes.value = "";
+
+    eventModal.classList.add("hidden");
+
+    loadEvents();
+
+    renderCalendar();
 
     loadEvents();
 
@@ -360,41 +460,97 @@ saveEvent.addEventListener("click",()=>{
 
 });
 
-saveBirthday.addEventListener("click",()=>{
+// ==========================================
+// DELETE EVENT
+// ==========================================
 
-    if(eventTitle.value.trim()===""){
+function deleteEvent(id){
 
-        alert("Please enter a name.");
+    const confirmDelete = confirm(
+        "Delete this event?"
+    );
 
-        return;
+    if(!confirmDelete) return;
+
+    let events =
+        JSON.parse(localStorage.getItem("daylightEvents")) || [];
+
+    events = events.filter(event => event.id !== id);
+
+    localStorage.setItem(
+        "daylightEvents",
+        JSON.stringify(events)
+    );
+
+    loadEvents();
+
+    renderCalendar();
+
+}
+
+// ==========================================
+// EDIT EVENT
+// ==========================================
+
+function editEvent(id){
+
+    const events =
+        JSON.parse(localStorage.getItem("daylightEvents")) || [];
+
+    const event =
+        events.find(e => e.id === id);
+
+    if(!event) return;
+
+    editingEventId = id;
+
+    eventTitle.value = event.title;
+
+    eventTime.value = event.time;
+
+    eventCategory.value = event.category;
+
+    eventNotes.value = event.notes;
+
+    modalTitle.textContent = "Edit Event";
+    saveEventText.textContent = "Update Event";
+
+    eventModal.classList.remove("hidden");
+
+}
+
+// ==========================================
+// MONTH NAVIGATION
+// ==========================================
+
+document.getElementById("prevMonth").addEventListener("click", () => {
+
+    currentMonth--;
+
+    if(currentMonth < 0){
+
+        currentMonth = 11;
+
+        currentYear--;
 
     }
 
-    const birthdays = getBirthdays();
+    renderCalendar();
 
-    birthdays.push({
+});
 
-        id:Date.now(),
+document.getElementById("nextMonth").addEventListener("click", () => {
 
-        name:eventTitle.value,
+    currentMonth++;
 
-        month:currentMonth + 1,
+    if(currentMonth > 11){
 
-        day:selectedDay,
+        currentMonth = 0;
 
-        notes:eventNotes.value
+        currentYear++;
 
-    });
+    }
 
-    saveBirthdays(birthdays);
-
-    eventModal.classList.add("hidden");
-
-    eventTitle.value="";
-    eventTime.value="";
-    eventCategory.selectedIndex=0;
-    eventNotes.value="";
-
-    alert("Birthday saved!");
+    renderCalendar();
 
 });

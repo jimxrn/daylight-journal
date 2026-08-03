@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Planner • Daylight</title>
+
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/navigation.css">
+    <link rel="stylesheet" href="../assets/css/cards.css">
+    <link rel="stylesheet" href="../assets/css/widgets.css">
+    <link rel="stylesheet" href="../assets/css/planner.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+</head>
+
+<body>
+
+    <div class="app-container">
+
+            <!-- ======================================
+            SIDEBAR / NAVIGATION
+            ======================================= -->
+
+                <!-- Reuse your existing navigation here -->
+
+<main class="planner-page">
+
+    <!-- ======================================
+         PAGE HEADER
+    ======================================= -->
+
+    <section class="planner-header">
+
+        <h1>Planner</h1>
+
+        <p class="planner-tagline">
+            A place to plan your life, not just your day.
+        </p>
+
+    </section>
+
+    <!-- ======================================
+         PLANNER LAYOUT
+    ======================================= -->
+
+    <div class="planner-layout">
+
+        <!-- ======================================
+             LEFT PANEL
+        ======================================= -->
+
+        <aside class="planner-sidebar">
+
+           <!-- ======================================
+                QUICK CAPTURE
+            ====================================== -->
+
+            <section class="planner-group">
+
+                    <div class="planner-group-header">
+
+                        <h2>⚡ Quick Capture</h2>
+
+                    </div>
+
+                    <div class="quick-capture">
+
+                        <input
+                            type="text"
+                            id="quickCaptureInput"
+                            placeholder="What's on your mind today?">
+
+                        <button id="quickCaptureBtn">
+
+                             Add
+
+                        </button>
+
+                    </div>
+
+                        <div id="quickCaptureList">
+
+                        </div>
+
+            </section>
+
+                <!-- ======================================
+                 TODAY
+                 ======================================= -->
+
+            <section class="planner-group">
+
+                <div class="planner-group-header">
+
+                    <h2>🌞 Today</h2>
+
+                </div>
+
+                <div
+                    id="todayPlans"
+                    class="plan-list">
+
+                    <!-- Today Plans -->
+
+                </div>
+
+            </section>
+
+            <!-- UPCOMING -->
+
+            <section class="planner-group">
+
+                <div class="planner-group-header">
+
+                    <h2>📅 Upcoming</h2>
+
+                </div>
+
+                <div
+                    id="upcomingPlans"
+                    class="plan-list">
+
+                    <!-- Upcoming Plans -->
+
+                </div>
+
+            </section>
+
+            <!-- ALL PLANS -->
+
+            <section class="planner-group">
+
+                <div class="planner-group-header">
+
+                    <h2>📖 All Plans</h2>
+
+                </div>
+
+                <div
+                    id="allPlans"
+                    class="plan-list">
+
+                    <!-- All Plans -->
+
+                </div>
+
+            </section>
+
+            <!-- NEW PLAN -->
+
+            <button id="newPlanBtn">
+
+                + New Plan
+
+            </button>
+
+        </aside>
+
+
+        <!-- ======================================
+            NEW PLAN MODAL
+        ====================================== -->
+
+        <div
+            id="planModal"
+            class="modal hidden">
+
+            <div class="modal-content">
+
+                <h2>New Plan</h2>
+
+                <div class="form-group">
+
+                    <label>Plan Title</label>
+
+                     <input
+                    type="text"
+                    id="planTitle"
+                    placeholder="Website Launch">
+
+                </div>
+
+                <div class="form-group">
+
+                     <label>Date</label>
+
+                    <input
+                        type="date"
+                        id="planDate">
+
+                </div>
+
+                <div class="modal-actions">
+
+                    <button
+                        id="cancelPlan">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        id="savePlan">
+
+                        Create Plan
+
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================================
+             RIGHT PANEL
+        ======================================= -->
+
+        <section class="planner-workspace">
+
+            <div id="planWorkspace">
+
+        <!-- ======================================
+                     EMPTY STATE
+        ======================================= -->
+
+                <div class="planner-empty">
+
+                    <div class="empty-icon">
+
+                        📖
+
+                    </div>
+
+                    <h2>
+
+                        Welcome to your Planner
+
+                    </h2>
+
+                    <p>
+
+                        Select an existing plan from the left or create a new one to start planning.
+
+                    </p>
+
+                    <button id="emptyNewPlanBtn">
+
+                        Create Your First Plan
+
+                    </button>
+
+                </div>
+
+                <!-- ======================================
+                     PLAN DETAILS
+                     Hidden until a plan is selected
+                ======================================= -->
+
+                <div
+                    id="planDetails"
+                    class="hidden">
+
+                    <!-- Loaded dynamically via planner.js -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+</div>
+
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/planner.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,409 @@
+/* ==========================================
+   PLANNER PAGE
+========================================== */
+
+.planner-page{
+
+    padding:40px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.planner-header{
+
+    margin-bottom:30px;
+
+}
+
+.planner-header h1{
+
+    font-family:'Cormorant',serif;
+
+    font-size:3rem;
+
+    color:var(--text);
+
+    margin-bottom:8px;
+
+}
+
+.planner-tagline{
+
+    color:var(--text-light);
+
+    font-size:.95rem;
+
+}
+
+/* ==========================================
+   LAYOUT
+========================================== */
+
+.planner-layout{
+
+    display:grid;
+
+    grid-template-columns:320px 1fr;
+
+    gap:24px;
+
+    align-items:start;
+
+}
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.planner-sidebar{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:24px;
+
+    position:sticky;
+
+    top:24px;
+
+}
+
+.planner-group{
+
+    margin-bottom:30px;
+
+}
+
+.planner-group-header{
+
+    margin-bottom:14px;
+
+}
+
+.planner-group-header h2{
+
+    font-size:1rem;
+
+    color:var(--text);
+
+}
+
+.plan-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+/* ==========================================
+   WORKSPACE
+========================================== */
+
+.planner-workspace{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:40px;
+
+    min-height:700px;
+
+}
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.planner-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    height:620px;
+
+}
+
+.empty-icon{
+
+    font-size:4rem;
+
+    margin-bottom:24px;
+
+}
+
+.planner-empty h2{
+
+    margin-bottom:12px;
+
+}
+
+.planner-empty p{
+
+    color:var(--text-light);
+
+    max-width:420px;
+
+    line-height:1.6;
+
+    margin-bottom:30px;
+
+}
+/* ==========================================
+   BUTTONS
+========================================== */
+
+#newPlanBtn,
+#emptyNewPlanBtn{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+#newPlanBtn:hover,
+#emptyNewPlanBtn:hover{
+
+    transform:translateY(-2px);
+
+}
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.modal-content{
+
+    width:460px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding: 40px;
+
+    animation:modalPop .25s ease;
+}
+
+.form-group{
+
+     margin-bottom:24px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+.form-group input{
+
+    width:100%;
+
+    height:52px;
+
+    padding:0 18px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-family:'Inter',sans-serif;
+
+    background:#fff;
+
+    transition:.25s ease;
+
+
+}
+.form-group input:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(143,120,216,.12);
+
+}
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:32px;
+
+}
+
+.modal-actions button{
+
+    padding:12px 18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    transition:.25s;
+
+}
+
+#cancelPlan{
+
+    background:#F3F0F9;
+
+    color:var(--text);
+
+}
+
+#savePlan{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+@keyframes modalPop{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px) scale(.98);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+/* ==========================================
+   QUICK CAPTURE
+========================================== */
+
+.quick-capture{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:16px;
+
+}
+
+.quick-capture input{
+
+    flex:1;
+
+    height:48px;
+
+    padding:0 16px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    font-family:'Inter',sans-serif;
+
+}
+
+.quick-capture button{
+
+    padding:0 18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    cursor:pointer;
+
+}
+
+#quickCaptureList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}

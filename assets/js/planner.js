@@ -1,60 +1,43 @@
 // ==========================================
-// DOM ELEMENTS
+// DOM REFERENCES
 // ==========================================
 
-const todayPlans = document.getElementById("todayPlans");
-const upcomingPlans = document.getElementById("upcomingPlans");
+const quickCaptureInput = document.getElementById("quickCaptureInput");
+const quickCaptureBtn = document.getElementById("quickCaptureBtn");
+
+let todayList;
+
 const allPlans = document.getElementById("allPlans");
 
-const newPlanBtn = document.getElementById("newPlanBtn");
-const emptyNewPlanBtn = document.getElementById("emptyNewPlanBtn");
-
 const planWorkspace = document.getElementById("planWorkspace");
-const planDetails = document.getElementById("planDetails");
 
 const planModal = document.getElementById("planModal");
 
+const newPlanBtn = document.getElementById("newPlanBtn");
 const cancelPlan = document.getElementById("cancelPlan");
-
 const savePlan = document.getElementById("savePlan");
 
 const planTitle = document.getElementById("planTitle");
-
 const planDate = document.getElementById("planDate");
 
-const quickCaptureInput =
-document.getElementById("quickCaptureInput");
-const quickCaptureBtn =
-document.getElementById("quickCaptureBtn");
 
-const quickCaptureList =
-document.getElementById("quickCaptureList");
 
 // ==========================================
-// APPLICATION STATE
-// ==========================================
-
-let planner = [];
-
-let selectedPlanId = null;
-
-let quickCapture = [];
-
-// ==========================================
-// LOCAL STORAGE
+// APP STATE
 // ==========================================
 
 const STORAGE_KEY = "daylightPlanner";
 
-function loadPlanner() {
+let planner = [];
 
-    const saved = localStorage.getItem(STORAGE_KEY);
+let todayItems = [];
 
-    planner = saved ? JSON.parse(saved) : [];
 
-}
+// ==========================================
+// STORAGE
+// ==========================================
 
-function savePlanner() {
+function savePlanner(){
 
     localStorage.setItem(
 
@@ -65,57 +48,178 @@ function savePlanner() {
     );
 
 }
-function saveQuickCapture(){
 
-    localStorage.setItem(
-
-        "daylightQuickCapture",
-
-        JSON.stringify(quickCapture)
-
-    );
-
-}
-
-function loadQuickCapture(){
+function loadPlanner(){
 
     const saved = localStorage.getItem(
 
-        "daylightQuickCapture"
+        STORAGE_KEY
 
     );
 
-    quickCapture = saved
+    planner = saved ? JSON.parse(saved) : [];
 
-        ? JSON.parse(saved)
+}
 
-        : [];
+function saveTodayItems(){
+
+    localStorage.setItem(
+
+        "daylightToday",
+
+        JSON.stringify(todayItems)
+
+    );
+
+}
+
+function loadTodayItems(){
+
+    const saved = localStorage.getItem(
+
+        "daylightToday"
+
+    );
+
+    todayItems = saved ? JSON.parse(saved) : [];
+
+}
+// ==========================================
+// MODAL
+// ==========================================
+
+function openModal(){
+
+    planModal.classList.remove("hidden");
+
+}
+
+function closeModal(){
+
+    planModal.classList.add("hidden");
+
+    planTitle.value = "";
+
+    planDate.value = "";
+
+}
+
+
+// ==========================================
+// TODAY
+// ==========================================
+
+function addTodayItem(){
+
+    const text = quickCaptureInput.value.trim();
+
+    if(!text) return;
+
+    todayItems.push({
+
+        id: Date.now(),
+
+        text,
+
+        completed:false
+
+    });
+
+    saveTodayItems();
+
+    renderToday();
+
+    quickCaptureInput.value = "";
+
+    quickCaptureInput.focus();
+
+}
+
+function deleteTodayItem(id){
+
+    todayItems = todayItems.filter(
+
+        item=>item.id!==id
+
+    );
+
+    saveTodayItems();
+
+    renderToday();
+
+}
+
+function toggleTodayItem(id){
+
+    const item = todayItems.find(
+
+        item=>item.id===id
+
+    );
+
+    if(!item) return;
+
+    item.completed = !item.completed;
+
+    saveTodayItems();
+
+    renderToday();
 
 }
 
 // ==========================================
-// RENDER
+// PLANS
 // ==========================================
 
-function renderPlanner() {
+function createPlan(){
 
-    console.log("Planner Loaded");
+    const title = planTitle.value.trim();
+    const date = planDate.value;
+
+    if(!title){
+
+        alert("Please enter a plan title.");
+
+        return;
+
+    }
+
+    const plan = {
+
+        id: Date.now(),
+        title,
+        date,
+        goal: "",
+        notes: ""
+
+    };
+
+    planner.push(plan);
+
+    savePlanner();
+
+    renderPlanner();
+
+    closeModal();
 
 }
-function renderQuickCapture(){
 
-    quickCaptureList.innerHTML = "";
+function renderPlanner(){
 
-    quickCapture.forEach((item,index)=>{
+    allPlans.innerHTML = "";
 
-        quickCaptureList.innerHTML += `
+    planner.forEach(plan=>{
 
-            <div class="quick-item">
+        allPlans.innerHTML += `
 
-                <input
-                    type="checkbox">
+            <div
+                class="plan-card"
 
-                <span>${item}</span>
+                onclick="openPlan(${plan.id})">
+
+                <h3>${plan.title}</h3>
+
+                <small>${plan.date || "No date"}</small>
 
             </div>
 
@@ -125,82 +229,156 @@ function renderQuickCapture(){
 
 }
 
-function addQuickCapture(){
+function openPlan(id){
 
-    const text =
-    quickCaptureInput.value.trim();
+    console.log("Opening:", id);
 
-    if(!text) return;
+    const plan = planner.find(
 
-    quickCapture.push(text);
+        p => p.id === id
 
-    saveQuickCapture();
+    );
 
-    renderQuickCapture();
+    if(!plan) return;
 
-    quickCaptureInput.value="";
+    planWorkspace.innerHTML = `
+    
+        <div class="plan-details">
 
-    quickCaptureInput.focus();
+            <button class="back-btn" onclick="renderHome()">
 
-}
+            ← Back
 
-// ==========================================
-// CREATE PLAN
-// ==========================================
+            </button>   
 
-function createPlan() {
+            <h2>${plan.title}</h2>
 
-    planModal.classList.remove("hidden");
+            <p class="plan-date">
 
-    planTitle.focus();
-}
-function closeModal(){
+                ${plan.date || ""}
+            </p>    
 
-    planModal.classList.add("hidden");
+            <hr>
 
-}
+            <div class="plan-section">
 
-// ==========================================
-// OPEN PLAN
-// ==========================================
+                <h3> Goal </h3>
 
-function openPlan(id) {
+                <textarea>${plan.goal}</textarea>
 
-    selectedPlanId = id;
+            </div>
 
-    console.log("Open", id);
+            <div class="plan-section">
 
-}
+                <h3> Notes</h3>
 
-// ==========================================
-// DELETE PLAN
-// ==========================================
+                <textarea>${plan.notes}</textarea>
 
-function deletePlan(id) {
+            </div>
 
-    console.log("Delete", id);
+        </div>          
+
+    `;
 
 }
+// ==========================================
+// RENDER
+// ==========================================
+function renderHome(){
 
+    planWorkspace.innerHTML = `
+
+        <div class="planner-home">
+
+            <h2>Today</h2>
+
+            <p id="todayDate"></p>
+
+            <div id="todayList"></div>
+
+        </div>
+
+    `;
+
+    todayList = document.getElementById("todayList");
+
+    renderToday();
+
+}
+function renderToday(){
+
+    if(todayItems.length===0){
+
+        todayList.innerHTML = `
+
+            <div class="planner-empty-state">
+
+                <p>Nothing planned yet.</p>
+
+                <small>Capture something from the left.</small>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    todayList.innerHTML = "";
+
+    todayItems.forEach(item=>{
+
+        todayList.innerHTML += `
+
+            <div class="today-item">
+
+                <div class="today-left">
+
+                    <input
+
+                        type="checkbox"
+
+                        ${item.completed ? "checked" : ""}
+
+                        onchange="toggleTodayItem(${item.id})">
+
+                    <span
+
+                        class="today-text ${item.completed ? "completed" : ""}">
+
+                        ${item.text}
+
+                    </span>
+
+                </div>
+
+                <button
+
+                    class="delete-today"
+
+                    onclick="deleteTodayItem(${item.id})">
+
+                    🗑️
+
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+}
 // ==========================================
 // EVENT LISTENERS
 // ==========================================
-cancelPlan.addEventListener(
 
-    "click",
-
-    closeModal
-
-);
-
-newPlanBtn.addEventListener("click", createPlan);
-
-emptyNewPlanBtn.addEventListener("click", createPlan);
 quickCaptureBtn.addEventListener(
 
     "click",
 
-    addQuickCapture
+    addTodayItem
 
 );
 
@@ -212,7 +390,7 @@ quickCaptureInput.addEventListener(
 
         if(e.key==="Enter"){
 
-            addQuickCapture();
+            addTodayItem();
 
         }
 
@@ -220,14 +398,37 @@ quickCaptureInput.addEventListener(
 
 );
 
+newPlanBtn.addEventListener(
+
+    "click",
+
+    openModal
+
+);
+
+cancelPlan.addEventListener(
+
+    "click",
+
+    closeModal
+
+);
+
+savePlan.addEventListener(
+
+    "click",
+
+    createPlan
+
+);
 // ==========================================
 // INITIALIZE
 // ==========================================
 
 loadPlanner();
 
+loadTodayItems();
+
 renderPlanner();
 
-loadQuickCapture();
-
-renderQuickCapture();
+renderHome();

@@ -406,4 +406,289 @@
 
     gap:8px;
 
+}.planner-home{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+#todayList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+/* ==========================================
+   TODAY ITEMS
+========================================== */
+
+.today-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:16px;
+
+    padding:14px 18px;
+
+    background:#FFFFFF;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    transition:.25s ease;
+
+}
+
+.today-item:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(143,120,216,.08);
+
+}
+
+.today-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    flex:1;
+
+}
+
+.today-text{
+
+    font-family:'Inter',sans-serif;
+
+    font-size:15px;
+
+    color:var(--text);
+
+}
+
+.delete-today{
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    opacity:.5;
+
+    transition:.25s ease;
+
+}
+
+.delete-today:hover{
+
+    opacity:1;
+
+    transform:scale(1.15);
+
+}
+.plan-card{
+
+    padding:16px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    margin-bottom:12px;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    background:#fff;
+
+}
+
+.plan-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+}
+
+/* ==========================================
+   PLAN DETAILS
+========================================== */
+
+.plan-details{
+
+    max-width:760px;
+
+    margin:0 auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.plan-details h2{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:2.8rem;
+
+    font-weight:500;
+
+    letter-spacing:-0.5px;
+
+    line-height:1.1;
+
+
+}
+
+.plan-details p{
+
+    color:var(--text-light);
+
+    font-size:.95rem;
+
+    margin-bottom:10px;
+
+}
+
+.plan-details hr{
+
+    border:none;
+
+    border-top:1px solid var(--border);
+
+    margin:6px 0 10px;
+
+}
+
+.plan-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.plan-section h3{
+
+    font-size:1rem;
+
+    color:var(--text);
+
+}
+
+.plan-details textarea{
+
+    width:100%;
+
+    min-height:180px;
+
+    padding:18px;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    background:#fff;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    font-family:inherit;
+
+    resize:vertical;
+
+    transition:.25s;
+
+
+}
+
+.plan-details textarea:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(143,120,216,.12);
+
+}
+.plan-section label{
+
+    font-size:.85rem;
+
+    font-weight:500;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.2px;
+
+    color:#8C869C;
+
+}
+.back-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    width:max-content;
+
+    padding:10px 18px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:#fff;
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.back-btn:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+.plan-date{
+
+    color:var(--text-light);
+
+    font-size:.9rem;
+
+    letter-spacing:.5px;
+
 }

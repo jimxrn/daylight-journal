@@ -11,6 +11,16 @@
 
     <title>Planner • Daylight</title>
 
+    <!-- GOOGLE FONT -->
+     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/layout.css">
@@ -40,11 +50,30 @@
 
     <section class="planner-header">
 
-        <h1>Planner</h1>
+        <div class="planner-greeting">
 
-        <p class="planner-tagline">
-            A place to plan your life, not just your day.
-        </p>
+            <div>
+                <p class="greeting-label">
+                    Good morning ☀️
+                </p>
+
+                <h1>
+                    Ready to make today count?
+                </h1>
+
+                <p class="planner-tagline">
+                    Small plans today become big wins tomorrow.
+                </p>
+               
+            </div>   
+            <div class="planner-date-card">
+
+                        📅
+                <span id="todayFullDate"></span>
+
+            </div>
+
+        </div>  
 
     </section>
 
@@ -60,43 +89,9 @@
 
         <aside class="planner-sidebar">
 
-           <!-- ======================================
-                QUICK CAPTURE
-            ====================================== -->
-
-            <section class="planner-group">
-
-                    <div class="planner-group-header">
-
-                        <h2>⚡ Quick Capture</h2>
-
-                    </div>
-
-                    <div class="quick-capture">
-
-                        <input
-                            type="text"
-                            id="quickCaptureInput"
-                            placeholder="What's on your mind today?">
-
-                        <button id="quickCaptureBtn">
-
-                             Add
-
-                        </button>
-
-                    </div>
-
-                        <div id="quickCaptureList">
-
-                        </div>
-
-            </section>
-
-
             <!-- ALL PLANS -->
 
-            <section class="planner-group">
+            <section class="planner-card">
 
                 <div class="planner-group-header">
 
@@ -111,15 +106,30 @@
 
                 </div>
 
+                <!-- NEW PLAN -->
+
+                <button id="newPlanBtn">
+
+                    + New Plan
+
+                </button>
+
             </section>
 
-            <!-- NEW PLAN -->
 
-            <button id="newPlanBtn">
+             <!-- Motivation -->
 
-                + New Plan
+            <section class="planner-card motivation-card">
 
-            </button>
+                <p>☀️ </p>
+
+                <p>
+                     Planning today<br>
+                     is a gift<br>
+                     to your future self.
+                </p>
+
+            </section>
 
         </aside>
 

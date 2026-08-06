@@ -2,8 +2,9 @@
 // DOM REFERENCES
 // ==========================================
 
-const quickCaptureInput = document.getElementById("quickCaptureInput");
-const quickCaptureBtn = document.getElementById("quickCaptureBtn");
+let quickCaptureInput;
+
+let quickCaptureBtn;
 
 let todayList;
 
@@ -190,7 +191,8 @@ function createPlan(){
         title,
         date,
         goal: "",
-        notes: ""
+        notes: "",
+        checklist: []
 
     };
 
@@ -251,7 +253,17 @@ function openPlan(id){
 
             </button>   
 
-            <h2>${plan.title}</h2>
+           <p class="plan-label">
+                YOUR PLAN
+
+            </p>    
+
+            <h1 class="plan-title">
+
+                ${plan.title}
+
+            </h1>
+
 
             <p class="plan-date">
 
@@ -262,25 +274,313 @@ function openPlan(id){
 
             <div class="plan-section">
 
-                <h3> Goal </h3>
+                <h3>🎯 Goal</h3>
 
-                <textarea>${plan.goal}</textarea>
+                <p class="section-description">
+
+                    What do you want to accomplish with this plan?
+
+                </p>
+
+                <textarea id="goalTextarea">${plan.goal || ""}</textarea>
+
 
             </div>
+
+            <div class="progress-section">
+
+                <div class="progress-info">
+
+                    <span>TODAY'S PROGRESS</span>
+
+                    <span id="progressText">0 / 0</span>
+
+                </div>  
+
+
+                <div class="progress-bar">
+
+                    <div
+                        id="progressFill"
+                        class="progress-fill">
+                    </div>
+
+                </div>
+
+           </div>     
+                    
 
             <div class="plan-section">
 
-                <h3> Notes</h3>
+                <h3>✓ Checklist</h3>
 
-                <textarea>${plan.notes}</textarea>
+                <p class="section-description">
+
+                    Break your goal into smaller tasks.
+                </p>
+
+                <div class="checklist-input">
+
+                    <input
+                        id="checklistInput"
+                        type="text"
+                        placeholder="Add a checklist item">
+
+                    <button id="addChecklistBtn">
+
+                        Add
+                    </button>
+
+                </div>  
+
+                <div id="checklistList"></div>
 
             </div>
 
-        </div>          
+
+            <div class="plan-section">
+
+                <h3>📝 Notes</h3>
+
+                <p class="section-description">
+
+                    Capture ideas, reminders and progress.
+
+                </p>
+
+                <textarea id="notesTextarea">${plan.notes || ""}</textarea>
+
+            </div>
+
+        </div> 
+        
 
     `;
 
+const checklistInput = document.getElementById("checklistInput");
+const addChecklistBtn = document.getElementById("addChecklistBtn");
+
+addChecklistBtn.addEventListener("click", () => {
+
+    addChecklistItem(plan.id);
+
+ });    
+
+checklistInput.addEventListener("keydown", (e) => {
+
+         if(e.key === "Enter"){
+
+         addChecklistItem(plan.id);
+
+    }
+
+});
+
+    if(!plan.checklist){
+
+    plan.checklist = [];
+
 }
+renderChecklist(plan);
+
+updateProgress(plan);
+
+const goalTextarea = document.getElementById("goalTextarea");
+
+goalTextarea.addEventListener("input", () => {
+
+    plan.goal = goalTextarea.value;
+
+    savePlanner();
+
+});
+const notesTextarea = document.getElementById("notesTextarea");
+
+notesTextarea.addEventListener("input", () => {
+
+    plan.notes = notesTextarea.value;
+
+    savePlanner();
+
+});
+
+}
+function updateProgress(plan){
+
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+
+    if(!progressText || !progressFill) return;
+
+    const total = plan.checklist.length;
+
+    const completed = plan.checklist.filter(
+
+        item => item.done
+
+    ).length;
+
+    progressText.textContent = `${completed} of ${total} completed`;
+
+    const percent = total === 0
+        ? 0
+        : (completed / total) * 100;
+
+    progressFill.style.width = `${percent}%`;
+
+}
+function renderChecklist(plan){
+
+    const checklistList = document.getElementById("checklistList");
+
+    if(!checklistList) return;
+
+    checklistList.innerHTML = "";
+
+    if((plan.checklist || []).length === 0){
+
+        checklistList.innerHTML = `
+
+            <div class="empty-checklist">
+
+                ✨
+
+                <p>No tasks yet.</p>
+
+                <span>Add your first checklist item.</span>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+   (plan.checklist || []).forEach(item=>{
+
+        checklistList.innerHTML += `
+
+            <div class="checklist-item ${item.done ? "completed" : ""}">
+
+                <label class="checkbox-wrapper">
+
+                    <input
+                        type="checkbox"
+                        ${item.done ? "checked" : ""}
+                        onchange="toggleChecklist(${plan.id}, ${item.id})"
+                    >
+
+                    <span class="checkmark"></span>
+
+                </label>
+
+                <span>${item.text}</span>
+
+
+               <button
+                    onclick="deleteChecklistItem(${plan.id}, ${item.id})"
+                    
+                    >     
+                      ✕
+
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+}
+function addChecklistItem(planId){
+
+    const plan = planner.find(
+
+        p => p.id === planId
+
+    );
+
+    if(!plan) return;
+
+    const checklistInput = document.getElementById("checklistInput");
+
+    const text = checklistInput.value.trim();
+
+    if(text === "") return;
+
+    if(!plan.checklist){
+
+        plan.checklist = [];
+
+    }
+
+    plan.checklist.push({
+
+        id: Date.now(),
+
+        text,
+
+        done:false
+
+    });
+
+    checklistInput.value = "";
+
+    savePlanner();
+
+    renderChecklist(plan);
+
+    updateProgress(plan);
+
+}
+function toggleChecklist(planId, itemId){
+
+    const plan = planner.find(
+        p => p.id === planId
+    );
+
+    if(!plan) return;
+
+    const item = plan.checklist.find(
+        i => i.id === itemId
+    );
+
+    if(!item) return;
+
+    item.done = !item.done;
+
+    savePlanner();
+
+    renderChecklist(plan);
+
+    updateProgress(plan);
+
+}
+function deleteChecklistItem(planId, itemId){
+
+    const plan = planner.find(
+
+        p => p.id === planId
+
+    );
+
+    if(!plan) return;
+
+    plan.checklist = plan.checklist.filter(
+
+        item => item.id !== itemId
+
+    );
+
+    savePlanner();
+
+    renderChecklist(plan);
+
+    updateProgress(plan);
+
+}
+
 // ==========================================
 // RENDER
 // ==========================================
@@ -290,17 +590,56 @@ function renderHome(){
 
         <div class="planner-home">
 
-            <h2>Today</h2>
+            <div class="workspace-header">
 
-            <p id="todayDate"></p>
+                <div>
 
+                     <p class="workspace-label">
+                        TODAY'S FOCUS
+                    </p>
+
+                    <h2>
+                        Make progress, one task at a time.
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="task-input-card">
+
+                <input
+                    id="quickCaptureInput"
+                    placeholder="What do you want to accomplish today?">
+
+                <button id="quickCaptureBtn">
+
+                    Add
+                </button>
+
+            </div>
             <div id="todayList"></div>
-
-        </div>
+       </div>
 
     `;
+    quickCaptureInput = document.getElementById("quickCaptureInput");
+
+    quickCaptureBtn = document.getElementById("quickCaptureBtn");
 
     todayList = document.getElementById("todayList");
+
+    quickCaptureBtn.addEventListener("click", addTodayItem);
+
+    quickCaptureInput.addEventListener("keydown",e=>{
+
+        if(e.key==="Enter"){
+
+            addTodayItem();
+
+        }
+
+    });
 
     renderToday();
 
@@ -374,29 +713,6 @@ function renderToday(){
 // EVENT LISTENERS
 // ==========================================
 
-quickCaptureBtn.addEventListener(
-
-    "click",
-
-    addTodayItem
-
-);
-
-quickCaptureInput.addEventListener(
-
-    "keydown",
-
-    e=>{
-
-        if(e.key==="Enter"){
-
-            addTodayItem();
-
-        }
-
-    }
-
-);
 
 newPlanBtn.addEventListener(
 
@@ -432,3 +748,19 @@ loadTodayItems();
 renderPlanner();
 
 renderHome();
+
+const todayFullDate = document.getElementById("todayFullDate");
+
+if(todayFullDate){
+
+    todayFullDate.textContent = new Date().toLocaleDateString(
+        "en-US",
+        {
+            weekday:"long",
+            month:"long",
+            day:"numeric",
+            year:"numeric"
+        }
+    );
+
+}

@@ -6,9 +6,11 @@
 
 body{
 
-    background:var(--bg);
-    color:var(--text);
-    font-family:"DM Sans",sans-serif;
+    font-family:"Plus Jakarta Sans",sans-serif;
+
+    background:#FCFBFF;
+
+    color:#2D2A32;
 
 }
 

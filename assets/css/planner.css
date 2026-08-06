@@ -4,7 +4,7 @@
 
 .planner-page{
 
-    padding:40px;
+    padding:48px 56px;
 
 }
 
@@ -14,19 +14,23 @@
 
 .planner-header{
 
-    margin-bottom:30px;
+    margin-bottom:28px;
 
 }
 
 .planner-header h1{
 
-    font-family:'Cormorant',serif;
+    font-family:"Plus Jakarta Sans",sans-serif;
 
-    font-size:3rem;
+    font-size:2.6rem;
 
-    color:var(--text);
+    font-weight:800;
 
-    margin-bottom:8px;
+    letter-spacing:-1.5px;
+
+    color:#1F2937;
+
+    margin-bottom:6px;
 
 }
 
@@ -44,11 +48,11 @@
 
 .planner-layout{
 
-    display:grid;
+   display:grid;
 
-    grid-template-columns:320px 1fr;
+    grid-template-columns:250px 1fr;
 
-    gap:24px;
+    gap:36px;
 
     align-items:start;
 
@@ -59,25 +63,81 @@
 
 .planner-sidebar{
 
-    background:#fff;
+    display:flex;
 
-    border:1px solid var(--border);
+    flex-direction:column;
 
-    border-radius:18px;
-
-    padding:24px;
+    gap:20px;
 
     position:sticky;
 
-    top:24px;
+    top:32px;
+
+}
+.planner-card{
+
+    background:#FFFFFF;
+
+    border:none;
+
+    border-radius:28px;
+
+    padding:28px;
+
+    box-shadow:
+        0 10px 30px rgba(17,24,39,.05);
+
+}
+.motivation-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    min-height:180px;
+
+    padding:32px;
+
+    border-radius:28px;
+
+    background:linear-gradient(
+        180deg,
+        #FFFFFF 0%,
+        #FCFBFF 100%
+    );
+
+    box-shadow:
+        0 10px 30px rgba(17,24,39,.05);
+
+    color:#6C627C;
+
+    line-height:1.8;
+
+}
+.motivation-card p:first-child{
+
+    font-size:2rem;
+
+    margin-bottom:12px;
+
+}
+.motivation-card p:last-child{
+
+    max-width:180px;
+
+    font-size:.95rem;
+
+    font-weight:500;
 
 }
 
-.planner-group{
 
-    margin-bottom:30px;
-
-}
 
 .planner-group-header{
 
@@ -102,21 +162,24 @@
     gap:10px;
 
 }
+.plan-card.active{
+
+    background:#FFFFFF;
+
+    box-shadow:0 12px 30px rgba(17,24,39,.08);
+
+    transform:translateY(-2px);
+
+}
 /* ==========================================
    WORKSPACE
 ========================================== */
 
 .planner-workspace{
 
-    background:#fff;
+    padding:32px;
 
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:40px;
-
-    min-height:700px;
+    border-radius:28px;
 
 }
 /* ==========================================
@@ -177,7 +240,7 @@
 
     border:none;
 
-    border-radius:14px;
+    border-radius:999px;
 
     cursor:pointer;
 
@@ -185,9 +248,12 @@
 
     color:white;
 
-    font-weight:600;
+    font-weight:700;
 
     transition:.25s;
+
+    height:54px;
+
 
 }
 
@@ -439,15 +505,17 @@
 
     gap:16px;
 
-    padding:14px 18px;
+    padding:18x 22px;
 
-    background:#FFFFFF;
+    background:white;
 
     border:1px solid var(--border);
 
-    border-radius:14px;
+    border-radius:18x;
 
-    transition:.25s ease;
+    transition:.25s;
+
+    margin-bottom:14px;
 
 }
 
@@ -455,7 +523,7 @@
 
     transform:translateY(-2px);
 
-    box-shadow:0 8px 20px rgba(143,120,216,.08);
+    box-shadow:0 12px 24px rgba(17,24,39,.08);
 
 }
 
@@ -505,28 +573,102 @@
 
 }
 .plan-card{
+ 
+    background:#FAFAFC;
 
-    padding:16px;
+    border-radius:20px;
 
-    border:1px solid var(--border);
+    padding:22px;
 
-    border-radius:14px;
+    position:relative;
 
-    margin-bottom:12px;
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
 
-    cursor:pointer;
+}
 
-    transition:.25s ease;
+.plan-card::before{
 
-    background:#fff;
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:4px;
+
+    height:100%;
+
+    opacity:0;
+
+    transition:.25s;
+    
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 28px rgba(143,120,216,.12);
+}
+
+.plan-card:hover::before{
+
+    opacity:1;
 
 }
 
 .plan-card:hover{
 
-    transform:translateY(-3px);
+    background:#FFFFFF;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 24px rgba(17,24,39,.08);
+
+}
+
+.today-title{
+
+    position:relative;
+
+    display:inline-block;
+
+}
+
+.today-title::after{
+
+    content:"";
+
+    display:block;
+
+    width:42px;
+
+    height:4px;
+
+    background:#8F78D8;
+
+    border-radius:999px;
+
+    margin-top:10px;
+
+}
+.plan-card h3{
+
+    margin-bottom:6px;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+
+}
+
+.plan-card small{
+
+    color:#9CA3AF;
+
+    font-size:.82rem;
 
 }
 
@@ -577,10 +719,11 @@
 
     border:none;
 
-    border-top:1px solid var(--border);
+    height:1px;
 
-    margin:6px 0 10px;
+    background:#F1EFF7;
 
+    margin:36px 0;
 }
 
 .plan-section{
@@ -591,6 +734,8 @@
 
     gap:10px;
 
+    margin-top:42px;
+
 }
 
 .plan-section h3{
@@ -598,6 +743,27 @@
     font-size:1rem;
 
     color:var(--text);
+
+}
+.plan-section textarea{
+
+    background:#FAFAFC;
+
+    border:none;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    transition:.25s;
+}
+.plan-section textarea:focus{
+
+    outline:none;
+
+    border-color:#8F78D8;
+
+    box-shadow:0 0 0 4px rgba(143,120,216,.12);
 
 }
 
@@ -674,6 +840,8 @@
 
     transition:.25s;
 
+    margin-bottom:28px;
+
 }
 
 .back-btn:hover{
@@ -690,5 +858,564 @@
     font-size:.9rem;
 
     letter-spacing:.5px;
+
+    margin-bottom:24px;
+}
+
+.planner-workspace{
+
+    border:none;
+
+    background:#FFFFFF;
+
+    border-radius:30px;
+
+    box-shadow:0 12px 40px rgba(17,24,39,.05);
+}
+/* ==========================================
+   HERO
+========================================== */
+
+.planner-greeting{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:36px;
+
+}
+
+.greeting-label{
+
+    font-size:.95rem;
+
+    color:#8F78D8;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.planner-header h1{
+
+    font-size:2.35rem;
+
+    font-weight:800;
+
+    line-height:1.15;
+
+    letter-spacing:-2px;
+
+    color:#1F2937;
+
+    margin-bottom:12px;
+
+}
+
+.planner-tagline{
+
+    font-size:1rem;
+
+    color:#7B728A;
+
+}
+
+.planner-date-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 22px;
+
+    background:#FFFFFF;
+
+    border:1px solid #EFEAF9;
+
+    border-radius:999px;
+
+    font-weight:600;
+
+    color:#5F556F;
+
+    box-shadow:0 8px 30px rgba(143,120,216,.08);
+
+}
+
+/* ==========================================
+   WORKSPACE 
+========================================== */
+
+.workspace-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+
+    padding-bottom:24px;
+
+    border-bottom:1px solid #F1EFF7;
+
+}
+
+.workspace-label{
+
+    font-size:.8rem;
+
+    font-weight:700;
+
+    letter-spacing:.12em;
+
+    color:#8F78D8;
+
+    text-transform:uppercase;
+
+    margin-bottom:8px;
+
+}
+
+.workspace-header h2{
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    color:#1F2937;
+
+}
+
+.task-input-card{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-bottom:28px;
+
+}
+
+.task-input-card input{
+
+    flex:1;
+
+    height:54px;
+
+    border:none;
+
+    background:#F8F7FC;
+
+    border-radius:16px;
+
+    padding:0 20px;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+.task-input-card input:focus{
+
+    box-shadow:0 0 0 4px rgba(143,120,216,.12);
+
+}
+
+.task-input-card button{
+
+    height:54px;
+
+    padding:0 24px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#8F78D8;
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+.plan-label{
+
+    font-size:.75rem;
+
+    font-weight:700;
+
+    letter-spacing:.15em;
+
+    text-transform:uppercase;
+
+    color:#8F78D8;
+
+    margin-bottom:6px;
+
+}
+
+.plan-title{
+
+    font-size:2.6rem;
+
+    font-weight:700;
+
+    line-height:1.1;
+
+    margin-bottom:10px;
+
+    margin:0 0 10px;
+
+}
+
+.plan-date{
+
+    color:#8C8A9A;
+
+    font-size:.95rem;
+
+    margin-bottom:28px;
+
+}
+.section-description{
+
+    color:#8C8A9A;
+
+    font-size:.9rem;
+
+    margin:6px 0 14px;
+
+}
+
+/* ==========================================
+   PROGRESS BAR 
+========================================== */
+
+.progress-section{
+
+    margin:32px 0;
+
+}
+
+.progress-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:10px;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    color:#6C627C;
+
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:10px;
+
+    background:#F3EFFB;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #8F78D8,
+        #B79CFF
+    );
+
+    border-radius:999px;
+
+    transition:width .35s ease;
+
+}
+/* ==========================================
+   CHECKLIST CARDS
+========================================== */
+
+.checklist-input{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:16px;
+
+    margin-bottom:20px;
+
+}
+
+.checklist-input input{
+
+    flex:1;
+
+    height:48px;
+
+    padding:0 18px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:#FFFFFF;
+
+    font-size:.95rem;
+
+    transition:.25s;
+
+}
+
+.checklist-input input:focus{
+
+    outline:none;
+
+    border-color:#8F78D8;
+
+    box-shadow:0 0 0 4px rgba(143,120,216,.12);
+
+}
+
+.checklist-input button{
+
+    padding:0 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#8F78D8;
+
+    color:#fff;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    min-width:82px;
+
+    height:48px;
+
+    font-size:.95rem;
+
+}
+
+.checklist-input button:hover{
+
+    transform:translateY(-2px);
+
+    background:#7D67CB;
+
+    box-shadow:0 10px 22px rgba(143,120,216,.25);
+
+}
+.checklist-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:16px 18px;
+
+    margin-bottom:12px;
+
+    background:#FFFFFF;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    transition:.25s;
+
+    box-shadow:0 4px 14px rgba(143,120,216,.05);
+
+}
+.checklist-item.completed{
+
+    background:#FAF8FF;
+
+    opacity:.88;
+
+
+}
+
+.checklist-item:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 28px rgba(143,120,216,.12);
+
+}
+
+.checklist-item span{
+
+    flex:1;
+
+    font-size:.95rem;
+
+    color:#2F2A38;
+
+    line-height:1.4;
+
+}
+
+.checklist-item button{
+
+    width:30px;
+
+    height:30px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:transparent;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    color:#B7ADC9;
+
+    font-size:18px;
+
+    opacity:.8;
+
+    transition:.25s;
+
+}
+
+.checklist-item button:hover{
+
+    background:#F8F5FF;
+
+    color:#E46E6E;
+
+    transform:scale(1.1);
+}
+.checklist-item input:checked + span{
+
+    text-decoration:line-through;
+
+    color:#B6AEC7;
+
+    opacity:.75;
+
+}
+
+.checkbox-wrapper{
+
+    position:relative;
+
+    width:24px;
+
+    height:24px;
+
+    flex-shrink:0;
+
+}
+
+.checkbox-wrapper input{
+
+    position:absolute;
+
+    inset:0;
+
+    margin:0;
+
+    opacity:0;
+
+    cursor:pointer;
+
+}
+
+.checkmark{
+
+    width:24px;
+
+    height:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:2px solid #D8CFF5;
+
+    border-radius:8px;
+
+    background:#FFFFFF;
+
+    transition:.25s;
+
+}
+
+.checkbox-wrapper input:checked + .checkmark{
+
+    background:#8F78D8;
+
+    border-color:#8F78D8;
+
+}
+
+.checkbox-wrapper input:checked + .checkmark::after{
+
+    content:"✓";
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.progress-info span:first-child{
+
+    font-size:.75rem;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#8F78D8;
 
 }

@@ -606,6 +606,27 @@ function renderHome(){
 
             </div>
 
+            <div class="morning-banner">
+
+                <div class="banner-content">
+
+                    <span class="banner-icon">🌤</span>
+
+                    <div>
+
+                        <h4>One thoughtful step today.</h4>
+
+                        <p>A brighter tomorrow begins here.</p>
+
+                    </div>
+
+                </div>   
+
+                <div class="banner-art">
+                    ☀️
+                 </div>
+
+            </div>
 
             <div class="task-input-card">
 

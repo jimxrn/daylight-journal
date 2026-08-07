@@ -443,11 +443,18 @@ function renderChecklist(plan){
 
             <div class="empty-checklist">
 
-                ✨
+                <div class="empty-illustration">
 
-                <p>No tasks yet.</p>
+                    ☁️ 🌤 ☁️
 
-                <span>Add your first checklist item.</span>
+                </div>
+
+                <h3>Today is still unwritten.</h3>
+
+                <p>
+                    Begin with one thoughtful task.<br>
+                     Small steps create brighter tomorrows.
+                </p>
 
             </div>
 

@@ -106,7 +106,7 @@
 
     min-height:180px;
 
-    padding:32px;
+    padding:28px 20px;
 
     border-radius:28px;
 
@@ -122,6 +122,11 @@
     color:#6C627C;
 
     line-height:1.8;
+
+    gap:12px;
+
+    transition:.25s ease;
+
 
 }
 .motivation-card p:first-child{
@@ -140,7 +145,45 @@
     font-weight:500;
 
 }
+.motivation-card:hover{
 
+    transform:translateY(-3px);
+
+}
+.motivation-icon{
+
+    font-size:2.8rem;
+
+    margin-bottom:6px;
+
+}
+.motivation-card h3{
+
+    font-family:"Cormorant Garamond", serif;
+
+    font-size:1.2rem;
+
+    font-weight:600;
+
+    line-height:1.2;
+
+    letter-spacing:-0.02em;
+
+    color:#2E2636;
+
+    margin:0;
+}
+.motivation-card p{
+
+    font-size:.88rem;
+
+    line-height:1.7;
+
+    color:#7F7890;
+
+    margin-top:6px;
+
+}
 
 
 .planner-group-header{
@@ -1524,6 +1567,8 @@ background:linear-gradient(
 
     text-align:center;
 
+    padding-bottom:36px;
+
 }
 
 .brand-divider{
@@ -1623,5 +1668,56 @@ body{
         #FFFDFB,
         #F8F6F3
     );
+
+}
+.empty-checklist{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:64px 24px;
+
+}
+
+.empty-illustration{
+
+    font-size:2.5rem;
+
+    margin-bottom:28px;
+
+    opacity:.9;
+
+}
+
+.empty-checklist h3{
+
+    font-family:"Cormorant Garamond", serif;
+
+    font-size:2rem;
+
+    font-weight:600;
+
+    color:#2E2636;
+
+    margin-top:12px;
+
+    margin-bottom:12px;
+
+}
+
+.empty-checklist p{
+
+    color:#7F7890;
+
+    line-height:1.8;
+
+    max-width:340px;
 
 }

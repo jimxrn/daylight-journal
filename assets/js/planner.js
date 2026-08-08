@@ -211,7 +211,16 @@ function renderPlanner(){
 
     allPlans.innerHTML = "";
 
-    planner.forEach(plan=>{
+    const today = new Date();
+
+    const todayKey =
+        `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+    const todayPlans = planner.filter(plan =>
+        plan.date === todayKey
+    );
+
+    todayPlans.forEach(plan => {
 
         allPlans.innerHTML += `
 
@@ -219,19 +228,23 @@ function renderPlanner(){
                 class="plan-card"
                 onclick="openPlan(${plan.id})">
 
-                <div class="plan-card-info">
+                <div class="plan-card-content">
 
-                    <h3>${plan.title}</h3>
+                    <h3>
+                        ${plan.title}
+                    </h3>
 
-                    <small>${plan.date || "No date"}</small>
+                    <small>
+                        ${plan.date || "No date"}
+                    </small>
 
-                </div>    
+                </div>
 
                 <button
-                    class="plan-menu-btn"
+                    class="plan-options-btn"
                     onclick="event.stopPropagation(); openPlanMenu(${plan.id})">
 
-                     ⋮
+                    ⋯
 
                 </button>
 
@@ -241,7 +254,115 @@ function renderPlanner(){
 
     });
 
+    if(todayPlans.length === 0){
+
+        allPlans.innerHTML = `
+
+            <div class="plans-empty">
+
+                <p>
+                    Nothing planned for today.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+    renderIncomingPlans();
+   
+    
 }
+function renderIncomingPlans(){
+
+    const incomingPlansList =
+        document.getElementById("incomingPlansList");
+
+    const viewAllIncoming =
+        document.getElementById("viewAllIncoming");
+
+    if(!incomingPlansList) return;
+
+    const today = new Date();
+
+    const todayKey =
+        `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+    const incomingPlans = planner
+        .filter(plan =>
+            plan.date &&
+            plan.date > todayKey
+        )
+        .sort((a, b) =>
+            a.date.localeCompare(b.date)
+        );
+
+    const previewPlans =
+        incomingPlans.slice(0, 3);
+
+    incomingPlansList.innerHTML = "";
+
+    if(previewPlans.length === 0){
+
+        incomingPlansList.innerHTML = `
+
+            <p class="incoming-empty">
+
+                No upcoming plans.
+
+            </p>
+
+        `;
+
+        viewAllIncoming.style.display = "none";
+
+        return;
+
+    }
+
+    previewPlans.forEach(plan => {
+
+        incomingPlansList.innerHTML += `
+
+            <div
+                class="incoming-plan-item"
+                onclick="openPlan(${plan.id})">
+
+                <div class="incoming-plan-info">
+
+                    <strong>
+                        ${plan.title}
+                    </strong>
+
+                    <small>
+                        ${plan.date}
+                    </small>
+
+                </div>
+
+                <span>
+                    →
+                </span>
+
+            </div>
+
+        `;
+
+    });
+
+    if(incomingPlans.length > 3){
+
+        viewAllIncoming.style.display = "block";
+
+    } else {
+
+        viewAllIncoming.style.display = "none";
+
+    }
+
+}
+
 function openPlanMenu(planId){
 
     const plan = planner.find(p => p.id === planId);

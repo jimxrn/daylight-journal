@@ -75,6 +75,24 @@ let selectedDay = today.getDate();
 let editingEventId = null;
 let editingBirthdayId = null;
 
+function getPlannerPlans(){
+
+    const plans = JSON.parse(
+        localStorage.getItem("daylightPlanner")
+    ) || [];
+
+    return plans.map(plan => ({
+
+        ...plan,
+
+        showInCalendar:
+            plan.showInCalendar === true
+
+    }));
+
+
+}
+
 // Month Names
 
 const months = [
@@ -91,6 +109,7 @@ const months = [
     "November",
     "December"
 ];
+
 
 // ==========================================
 // CALENDAR ENGINE
@@ -253,7 +272,6 @@ function renderCalendar() {
     }, 100);
 
 }
-
 // ==========================================
 // SELECT DATE
 // ==========================================
@@ -297,6 +315,8 @@ function loadEvents() {
 
     const birthdays =
         getBirthdays();
+    
+    const plannerPlans = getPlannerPlans();
 
     const selectedDateKey =
         `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(selectedDay).padStart(2, "0")}`;
@@ -305,6 +325,12 @@ function loadEvents() {
         events.filter(event =>
             event.date === selectedDateKey
         );
+
+    const todayPlans =
+    plannerPlans.filter(plan =>
+        plan.date === selectedDateKey &&
+        plan.showInCalendar === true
+    );
 
     const todayBirthdays =
         birthdays.filter(birthday => {
@@ -357,6 +383,46 @@ function loadEvents() {
                     <p>Birthday</p>
 
                 </div>
+
+            </div>
+
+        `;
+
+    });
+
+    // ==========================================
+    // PLANNER CARDS
+    // ==========================================
+
+    todayPlans.forEach(plan => {
+
+        eventList.innerHTML += `
+
+            <div class="event-card planner-card">
+
+                <div class="event-header">
+
+                    <div class="event-title">
+
+                        <span class="event-icon">
+                            🌅
+                        </span>
+
+                        <strong>${plan.title}</strong>
+
+                    </div>
+
+                </div>
+
+                <p class="event-meta">
+                    Planner
+                </p>
+
+                ${
+                    plan.goal
+                    ? `<p class="planner-goal">${plan.goal}</p>`
+                    : ""
+                }
 
             </div>
 
@@ -429,9 +495,10 @@ function loadEvents() {
     if (
 
         todayBirthdays.length === 0 &&
-        todayEvents.length === 0
+        todayEvents.length === 0 &&
+        todayPlans.length === 0
 
-    ) {
+    ) 
 
         eventList.innerHTML = `
 
@@ -443,10 +510,9 @@ function loadEvents() {
 
         `;
 
-    }
+    
 
 }
-
 // ==========================================
 // BIRTHDAY FUNCTIONS
 // ==========================================

@@ -1721,3 +1721,260 @@ body{
     max-width:340px;
 
 }
+.plan-menu-backdrop{
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(35, 27, 50, 0.16);
+
+    backdrop-filter: blur(4px);
+
+    z-index: 999;
+
+}
+
+
+.plan-action-menu{
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(360px, calc(100vw - 32px));
+
+    padding: 18px;
+
+    background: #fffdfc;
+
+    border: 1px solid #eee7f5;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 24px 60px rgba(74, 61, 91, 0.14);
+
+    z-index: 1000;
+
+}
+
+
+.plan-menu-header{
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    padding: 4px 4px 16px;
+
+    border-bottom: 1px solid #eee8f4;
+
+}
+
+
+.plan-menu-header span{
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 0.65rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    color: #8f70d8;
+
+}
+
+
+.plan-menu-header h3{
+
+    margin: 0;
+
+    font-size: 1.1rem;
+
+    color: #28223a;
+
+}
+
+
+.plan-menu-close{
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f6f2fa;
+
+    color: #6f5a89;
+
+    font-size: 1.3rem;
+
+    cursor: pointer;
+
+}
+
+
+.plan-action{
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px 10px;
+
+    margin-top: 8px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: transparent;
+
+    text-align: left;
+
+    cursor: pointer;
+
+}
+
+
+.plan-action:hover{
+
+    background: #f8f3fc;
+
+}
+
+
+.plan-action > span{
+
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: #f1eaff;
+
+    color: #8f70d8;
+
+    font-size: 1.05rem;
+
+}
+
+
+.plan-action strong{
+
+    display: block;
+
+    color: #30283d;
+
+    font-size: 0.92rem;
+
+}
+
+
+.plan-action small{
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #9a8da8;
+
+    font-size: 0.75rem;
+
+}
+
+
+.plan-action-danger > span{
+
+    background: #fff0f2;
+
+    color: #c97888;
+
+}
+
+
+.plan-action-danger strong{
+
+    color: #9f5967;
+
+}
+/* ==========================================
+   CALENDAR TOGGLE - ADD
+========================================== */
+.calendar-toggle {
+    margin-top: 18px;
+
+    padding: 15px 17px;
+    
+    background: #faf7ff;
+
+    border: 1px solid #eee5f8;
+
+    border-radius: 16px;
+}
+
+.calendar-toggle label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    color: #3b3348;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+}
+
+.calendar-toggle input {
+
+    width: 16px;
+
+    height: 16px;
+
+    margin: 0;
+
+    accent-color: #9878d8;
+
+    cursor: pointer;
+}
+
+.calendar-toggle small {
+
+    display: block;
+
+    margin-top: 6px;
+
+    margin-left: 26px;
+
+    color: #9a8da8;
+
+    font-size: 0.75rem;
+
+    line-height: 1.4;
+    
+}

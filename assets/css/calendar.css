@@ -940,3 +940,41 @@
     border-radius:999px;
 
 }
+.planner-indicator{
+
+    margin-top: 2px;
+
+    font-size: 0.65rem;
+
+    color: #9a7bd8;
+
+}
+
+
+.planner-card{
+
+    background: #faf7ff;
+
+    border: 1px solid #eee5fb;
+
+}
+
+
+.planner-card .event-icon{
+
+    color: #9674d8;
+
+}
+
+
+.planner-goal{
+
+    margin-top: 8px;
+
+    color: #8d819b;
+
+    font-size: 0.8rem;
+
+    line-height: 1.5;
+
+}

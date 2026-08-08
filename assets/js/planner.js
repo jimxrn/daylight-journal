@@ -192,7 +192,8 @@ function createPlan(){
         date,
         goal: "",
         notes: "",
-        checklist: []
+        checklist: [],
+        showInCalendar: false
 
     };
 
@@ -216,18 +217,124 @@ function renderPlanner(){
 
             <div
                 class="plan-card"
-
                 onclick="openPlan(${plan.id})">
 
-                <h3>${plan.title}</h3>
+                <div class="plan-card-info">
 
-                <small>${plan.date || "No date"}</small>
+                    <h3>${plan.title}</h3>
+
+                    <small>${plan.date || "No date"}</small>
+
+                </div>    
+
+                <button
+                    class="plan-menu-btn"
+                    onclick="event.stopPropagation(); openPlanMenu(${plan.id})">
+
+                     ⋮
+
+                </button>
 
             </div>
 
         `;
 
     });
+
+}
+function openPlanMenu(planId){
+
+    const plan = planner.find(p => p.id === planId);
+
+    if(!plan) return;
+
+    const existing = document.getElementById("planActionMenu");
+
+    if(existing){
+        existing.remove();
+    }
+
+    const menu = document.createElement("div");
+
+    menu.id = "planActionMenu";
+
+    menu.innerHTML = `
+
+        <div class="plan-menu-backdrop"></div>
+
+        <div class="plan-action-menu">
+
+            <div class="plan-menu-header">
+
+                <div>
+                    <span>PLAN OPTIONS</span>
+                    <h3>${plan.title}</h3>
+                </div>
+
+                <button
+                    class="plan-menu-close"
+                    onclick="closePlanMenu()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+            <button
+                class="plan-action"
+                onclick="closePlanMenu(); renamePlan(${planId})">
+
+                <span>✎</span>
+
+                <div>
+                    <strong>Rename</strong>
+                    <small>Change your plan name</small>
+                </div>
+
+            </button>
+
+            <button
+                class="plan-action"
+                onclick="closePlanMenu(); duplicatePlan(${planId})">
+
+                <span>＋</span>
+
+                <div>
+                    <strong>Duplicate</strong>
+                    <small>Create a copy of this plan</small>
+                </div>
+
+            </button>
+
+            <button
+                class="plan-action plan-action-danger"
+                onclick="closePlanMenu(); deletePlan(${planId})">
+
+                <span>×</span>
+
+                <div>
+                    <strong>Delete</strong>
+                    <small>Remove this plan</small>
+                </div>
+
+            </button>
+
+        </div>
+
+    `;   
+
+    document.body.appendChild(menu);
+
+}
+
+function closePlanMenu(){
+
+    const menu = document.getElementById("planActionMenu");
+
+    if(menu){
+        menu.remove();
+    }
 
 }
 
@@ -269,6 +376,35 @@ function openPlan(id){
 
                 ${plan.date || ""}
             </p>    
+
+            <div class="calendar-toggle">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="calendarToggle"
+                        ${plan.showInCalendar ? "checked" : ""}
+                        ${!plan.date ? "disabled" : ""}
+                    >
+
+                    <span>
+                        Add this plan to Calendar
+                    </span>
+
+                </label>
+                
+                <small>
+
+                    ${
+                        plan.date
+                        ? "Show this important plan on your calendar."
+                        : "Add a date first to place this plan on Calendar."
+                    }
+
+                </small>
+
+            </div>
 
             <hr>
 
@@ -357,54 +493,139 @@ function openPlan(id){
 
     `;
 
-const checklistInput = document.getElementById("checklistInput");
-const addChecklistBtn = document.getElementById("addChecklistBtn");
+    const checklistInput = document.getElementById("checklistInput");
+    const addChecklistBtn = document.getElementById("addChecklistBtn");
 
-addChecklistBtn.addEventListener("click", () => {
+    addChecklistBtn.addEventListener("click", () => {
 
-    addChecklistItem(plan.id);
+        addChecklistItem(plan.id);
 
- });    
+    });    
 
-checklistInput.addEventListener("keydown", (e) => {
+    checklistInput.addEventListener("keydown", (e) => {
 
-         if(e.key === "Enter"){
+            if(e.key === "Enter"){
 
-         addChecklistItem(plan.id);
+            addChecklistItem(plan.id);
+
+        }
+
+    });
+
+        if(!plan.checklist){
+
+        plan.checklist = [];
 
     }
+    renderChecklist(plan);
 
-});
+    updateProgress(plan);
 
-    if(!plan.checklist){
+    const goalTextarea = document.getElementById("goalTextarea");
 
-    plan.checklist = [];
+    goalTextarea.addEventListener("input", () => {
+
+        plan.goal = goalTextarea.value;
+
+        savePlanner();
+
+    });
+    const notesTextarea = document.getElementById("notesTextarea");
+
+    notesTextarea.addEventListener("input", () => {
+
+        plan.notes = notesTextarea.value;
+
+        savePlanner();
+
+    });
+
+    const calendarToggle =
+    document.getElementById("calendarToggle");
+
+    if(calendarToggle){
+
+    calendarToggle.addEventListener(
+        "change",
+        () => {
+
+            plan.showInCalendar =
+                calendarToggle.checked;
+
+            savePlanner();
+
+        }
+    );
 
 }
-renderChecklist(plan);
 
-updateProgress(plan);
+}
+function deletePlan(planId){
 
-const goalTextarea = document.getElementById("goalTextarea");
+    const plan = planner.find(p => p.id === planId);
 
-goalTextarea.addEventListener("input", () => {
+    if(!plan) return;
 
-    plan.goal = goalTextarea.value;
+    const confirmed = confirm(
+        `Delete "${plan.title}"?\n\nThis cannot be undone.`
+    );
+
+    if(!confirmed) return;
+
+    planner = planner.filter(p => p.id !== planId);
 
     savePlanner();
 
-});
-const notesTextarea = document.getElementById("notesTextarea");
+    renderPlanner();
 
-notesTextarea.addEventListener("input", () => {
+}
+function renamePlan(planId){
 
-    plan.notes = notesTextarea.value;
+    const plan = planner.find(p => p.id === planId);
+
+    if(!plan) return;
+
+    const newTitle = prompt(
+        "Rename plan:",
+        plan.title
+    );
+
+    if(newTitle === null) return;
+
+    const trimmedTitle = newTitle.trim();
+
+    if(!trimmedTitle) return;
+
+    plan.title = trimmedTitle;
 
     savePlanner();
 
-});
+    renderPlanner();
 
 }
+
+function duplicatePlan(planId){
+
+    const plan = planner.find(p => p.id === planId);
+
+    if(!plan) return;
+
+    const duplicate = JSON.parse(
+        JSON.stringify(plan)
+    );
+
+    duplicate.id = Date.now();
+
+    duplicate.title = `${plan.title} Copy`;
+
+    planner.push(duplicate);
+
+    savePlanner();
+
+    renderPlanner();
+
+}
+
 function updateProgress(plan){
 
     const progressText = document.getElementById("progressText");

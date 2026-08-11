@@ -1,5 +1,5 @@
 /* ==========================================
-   JOURNAL WIDGET
+JOURNAL WIDGET
 ========================================== */
 
 const journalEntry = document.querySelector("#journal-entry");

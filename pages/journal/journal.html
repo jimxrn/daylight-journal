@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Daylight • Journal</title>
+
+
+    <!-- ==========================================
+         GOOGLE FONTS
+    ========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==========================================
+         SHARED CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/layout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/navigation.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/cards.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/responsive.css"
+    >
+
+
+    <!-- ==========================================
+         JOURNAL CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="journal.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         DAYLIGHT NAVIGATION
+    ========================================== -->
+
+    <div class="navigation">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🌅
+            </div>
+
+            <h2>Daylight</h2>
+
+            <span>
+                your personal space
+            </span>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-item"
+                onclick="location.href='../../index.html'"
+            >
+                Dashboard
+            </button>
+
+
+            <button
+                class="nav-item active"
+            >
+                Journal
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="location.href='../calendar/calendar.html'"
+            >
+                Calendar
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="location.href='../planner/planner.html'"
+            >
+                Planner
+            </button>
+
+
+            <button class="nav-item">
+                Habits
+            </button>
+
+
+            <button class="nav-item">
+                Memories
+            </button>
+
+
+            <button class="nav-item">
+                Settings
+            </button>
+
+        </nav>
+
+    </div>
+
+
+    <!-- ==========================================
+         JOURNAL PAGE
+    ========================================== -->
+
+    <main class="journal-page">
+
+        <div class="journal-container">
+
+
+            <!-- ======================================
+                 HEADER
+            ======================================= -->
+
+            <header class="journal-header">
+
+                <p class="journal-eyebrow">
+                    JOURNAL
+                </p>
+
+                <h1>
+                    A quiet place<br>
+                    for your thoughts.
+                </h1>
+
+                <p class="journal-intro">
+                    Take a moment. Write freely.
+                    Nothing needs to be perfect.
+                </p>
+
+            </header>
+
+
+            <!-- ======================================
+                 JOURNAL PROMPT
+            ======================================= -->
+
+            <section class="journal-section">
+
+                <div class="section-heading">
+
+                    <span>
+                        JOURNAL PROMPTS
+                    </span>
+
+                </div>
+
+
+                <div class="prompt-card">
+
+                    <div class="prompt-text-wrap">
+
+                        <p
+                            id="journal-prompt"
+                            class="journal-prompt"
+                        >
+                            “What made today feel a little lighter?”
+                        </p>
+
+                    </div>
+
+                    <div class="prompt-response">
+                         
+                        <textarea
+                            id="prompt-response"
+                            placeholder="Write your response..."
+                            spellcheck="true"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="prompt-footer">
+
+                        <span class="prompt-sun">
+                            ☀
+                        </span>
+
+
+                        <button
+                            type="button"
+                            id="new-prompt"
+                            class="new-prompt-btn"
+                        >
+                            New prompt →
+                        </button>
+
+                        <button
+
+                            type="button"
+                            id="save-prompt"
+                            class="save-prompt-btn"
+                        >
+                            Save Response ♡
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ======================================
+                 THOUGHTS TODAY
+            ======================================= -->
+
+            <section class="journal-section thoughts-section">
+
+                <div class="section-heading">
+
+                    <span>
+                        THOUGHTS TODAY
+                    </span>
+
+                </div>
+
+
+                <div class="journal-editor">
+
+                    <textarea
+                        id="journal-entry"
+                        placeholder="What's on your mind?"
+                        spellcheck="true"
+                    ></textarea>
+
+
+                    <div class="editor-footer">
+
+                        <div class="journal-meta">
+
+                            <span id="word-count">
+                                0 words
+                            </span>
+
+                            <span class="meta-divider">
+                                •
+                            </span>
+
+                            <span id="last-edited">
+                                Not saved yet
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="save-journal"
+                            class="save-entry-btn"
+                        >
+                            Save Entry <span>♡</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ==========================================
+         JOURNAL JS
+    ========================================== -->
+
+    <script src="journal.js"></script>
+
+
+</body>
+
+</html>

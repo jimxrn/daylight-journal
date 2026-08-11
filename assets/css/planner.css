@@ -173,17 +173,6 @@
 
     margin:0;
 }
-.motivation-card p{
-
-    font-size:.88rem;
-
-    line-height:1.7;
-
-    color:#7F7890;
-
-    margin-top:6px;
-
-}
 
 
 .planner-group-header{
@@ -231,7 +220,7 @@ background:linear-gradient(
 
     border-radius:36px;
 
-    padding:48px;
+    padding:36px;
 
     border:1px solid #F1ECF9;
 
@@ -1535,17 +1524,7 @@ background:linear-gradient(
 
     font-size:1.8rem;
 }
-.banner-content h4{
 
-    font-size:1.05rem;
-
-    font-weight:700;
-
-    color:#2E2636;
-
-    margin-bottom:4px;
-
-}
 .banner-content p{
 
     font-size:.92rem;
@@ -2308,4 +2287,762 @@ body{
 
 .view-incoming-btn:hover {
     background: #f5effc;
+}
+/* ==========================================
+   DAYLIGHT — MORNING LIGHT POLISH
+   ========================================== */
+
+/* ---------- PAGE TYPOGRAPHY ---------- */
+
+.planner-home,
+.planner-home button,
+.planner-home input,
+.planner-home textarea,
+.planner-home select,
+.planner-home small,
+.planner-home p,
+.planner-home span {
+
+    font-family: "DM Sans", sans-serif;
+
+}
+
+
+/* ---------- EDITORIAL HEADINGS ---------- */
+
+.planner-home h1,
+.planner-home h2 {
+
+    font-family: "Playfair Display", serif;
+
+    font-weight: 500;
+
+    letter-spacing: -0.02em;
+
+}
+
+
+/* ---------- TODAY'S FOCUS ---------- */
+
+.workspace-label {
+
+    margin-bottom: 8px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.68rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    color: #9a8da8;
+
+}
+
+.workspace-header h2 {
+
+    margin: 0;
+
+    max-width: 620px;
+
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+
+    line-height: 1.18;
+
+    color: #3f3845;
+
+}
+
+
+/* ---------- MORNING BANNER ---------- */
+
+.morning-banner {
+    position: relative;
+    overflow: hidden;
+
+    margin-top: 28px;
+    padding: 22px 24px;
+
+    min-height: 68px;
+
+    border: 1px solid #eee8e2;
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            110deg,
+            #fffdfa 0%,
+            #fbf8ff 62%,
+            #f8f3ff 100%
+        );
+
+    box-shadow:
+        0 8px 24px rgba(143, 120, 216, 0.035);
+}
+.morning-banner::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -55px;
+    top: -55px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 218, 135, 0.22) 0%,
+            rgba(255, 218, 135, 0.08) 38%,
+            rgba(255, 218, 135, 0) 72%
+        );
+
+    pointer-events: none;
+}
+
+
+.banner-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+.banner-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    border-radius: 12px;
+
+    background: #f1eafa;
+
+    font-size: 1rem;
+
+}
+
+.banner-content h4 {
+   margin: 0 0 3px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.82rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.005em;
+
+    color: #443b49;
+
+}
+
+.banner-content p {
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.69rem;
+
+    font-weight: 400;
+
+    color: #9a909e;
+
+}
+
+.banner-art {
+    position: absolute;
+
+    z-index: 2;
+
+    right: 18px;
+
+    top: 50%;
+
+    width: 46px;
+
+    height: 46px;
+
+    font-size: 0;
+
+    pointer-events: none;
+
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            rgba(245, 191, 91, 0.55) 0deg 8deg,
+            transparent 8deg 30deg
+        );
+
+    border-radius: 50%;
+
+    opacity: 0.9;
+
+    transform: translateY(-50%) rotate(-8deg);
+}
+
+.banner-art::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -10px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 214, 126, 0.22) 0%,
+            rgba(255, 214, 126, 0.10) 42%,
+            transparent 72%
+        );
+
+    filter: blur(4px);
+
+    z-index: -1;
+}
+.banner-art::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 27px;
+    height: 27px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #FFE9A8 0%,
+            #FFD36F 45%,
+            #F4B95F 100%
+        );
+
+    box-shadow:
+        0 3px 10px rgba(237, 178, 76, 0.18);
+}
+
+/* ---------- QUICK CAPTURE ---------- */
+
+.task-input-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    padding: 5px;
+
+    border: 1px solid #eee9e4;
+
+    border-radius: 17px;
+
+    background: #fffefa;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+.task-input-card:focus-within {
+    border-color: #ddd1f0;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 6px 20px rgba(143, 120, 216, 0.07);
+}
+.task-input-card input {
+
+    min-width: 0;
+
+    flex: 1;
+
+    padding: 11px 13px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.78rem;
+
+    font-weight: 400;
+
+    color: #4b4350;
+
+}
+
+.task-input-card input::placeholder {
+
+    color: #aaa1ae;
+
+}
+
+.task-input-card button {
+
+    flex: 0 0 auto;
+
+    min-width: 48px;
+
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #9b7bd0;
+
+    color: #ffffff;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.75rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.task-input-card button:hover {
+    background: #9271ca;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(143, 120, 216, 0.18);
+}
+
+.task-input-card button:active {
+    transform: translateY(0);
+}
+
+/* ---------- TODAY ITEMS ---------- */
+
+.today-item {
+    display: flex;
+
+    align-items: center;
+
+    padding: 11px 13px;
+
+    margin-top: 10px;
+
+    border: 1px solid #eee9e4;
+
+    border-radius: 15px;
+
+    background: #fffefa;
+
+    box-shadow:
+        0 5px 16px rgba(143, 120, 216, 0.04);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+
+}
+.today-item:hover {
+    border-color: #e2d8ef;
+
+    box-shadow:
+        0 7px 18px rgba(143, 120, 216, 0.07);
+
+    transform: translateY(-1px);
+}
+
+.today-text {
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.82rem;
+
+    color: #514955;
+
+}
+
+.today-text.completed {
+
+    color: #aaa2ad;
+
+}
+
+
+/* ---------- EMPTY STATE ---------- */
+
+.planner-empty-state {
+
+    padding: 22px 8px 8px;
+
+    text-align: left;
+
+    color: #8f8594;
+}
+
+.planner-empty-state p {
+
+    margin: 0 0 4px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.78rem;
+
+    font-weight: 500;
+
+    color: #756b78;
+
+}
+
+.planner-empty-state small {
+
+    display: block;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.68rem;
+
+    color: #aaa1ae;
+}
+/* ==========================================
+   MORNING LIGHT — EMPTY STATE RHYTHM
+   ========================================== */
+
+#todayList {
+    margin-top: 18px;
+}
+
+#todayList .planner-empty-state {
+    padding: 18px 12px 10px;
+    text-align: left;
+}
+
+#todayList .planner-empty-state p {
+    margin-bottom: 4px;
+}
+
+#todayList .planner-empty-state small {
+    display: block;
+}
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .morning-banner {
+        margin-top: 22px;
+        padding: 19px 18px;
+    }
+
+    .banner-content {
+        gap: 10px;
+        padding-right: 42px;
+    }
+
+    .banner-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 11px;
+    }
+
+    .banner-content h4 {
+        font-size: 0.78rem;
+    }
+
+    .banner-content p {
+        font-size: 0.66rem;
+    }
+
+    .banner-art {
+        right: 10px;
+        bottom: -3px;
+        font-size: 1.9rem;
+    }
+
+}
+/* ==========================================
+   MORNING LIGHT — SIDEBAR REFINEMENT
+   ========================================== */
+
+.planner-sidebar {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* Brand */
+
+.daylight-brand {
+    padding: 4px 8px 8px;
+
+    text-align: center;
+}
+
+.daylight-brand h2 {
+    margin: 4px 0 2px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.4rem;
+
+    font-weight: 500;
+
+    color: #403846;
+}
+
+.daylight-brand p {
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.76rem;
+
+    line-height: 1.4;
+
+    color: #817684;
+}
+
+.brand-icon {
+    font-size: 0.9rem;
+}
+
+
+/* Divider */
+
+.brand-divider {
+    width: 100%;
+
+    margin: 8px 0 4px;
+
+    border: 0;
+
+    border-top: 1px solid #eee9e4;
+}
+
+
+/* Plans */
+
+.planner-group-header h2 {
+    margin: 0 0 14px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+
+    color: #554b59;
+}
+
+
+/* Incoming */
+
+.incoming-plans-card {
+    padding: 20px 18px;
+}
+
+.incoming-label {
+    margin: 0 0 3px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.62rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.13em;
+
+    color: #9276c6;
+}
+
+.incoming-plans-header h3 {
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.82rem;
+
+    font-weight: 500;
+
+    color: #4b4350;
+}
+
+
+/* Motivation */
+
+.motivation-card {
+    text-align: center;
+
+    padding: 30px 20px;
+}
+
+.motivation-icon {
+    margin-bottom: 12px;
+
+    font-size: 1.8rem;
+}
+
+.motivation-card h3 {
+    margin: 0 0 10px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 0.95rem;
+
+    font-weight: 500;
+
+    color: #514653;
+}
+
+.motivation-card p {
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 0.72rem;
+
+    line-height: 1.7;
+
+    color: #8e8291;
+}
+/* ==========================================
+   PLAN LIST — QUIET CARDS
+   ========================================== */
+
+.plan-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+}
+
+.plan-item {
+    border-radius: 16px;
+
+    background: #faf9fc;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.plan-item:hover {
+    background: #f7f3fb;
+
+    transform: translateY(-1px);
+}
+/* ==========================================
+   MORNING LIGHT — MOBILE
+   ========================================== */
+
+@media (max-width: 760px) {
+
+    .planner-page {
+        padding: 20px 14px 40px;
+    }
+
+    .planner-header {
+        margin-bottom: 24px;
+    }
+
+    .planner-greeting {
+        flex-direction: column;
+
+        gap: 16px;
+    }
+
+    .planner-greeting h1 {
+        font-size: 1.8rem;
+        line-height: 1.15;
+    }
+
+    .planner-date-card {
+        align-self: flex-start;
+    }
+
+    .planner-layout {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .planner-sidebar {
+        order: 2;
+    }
+
+    .planner-workspace {
+        order: 1;
+
+        padding: 24px 18px;
+
+        border-radius: 28px;
+    }
+
+    .planner-sidebar {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .daylight-brand {
+        padding-bottom: 4px;
+    }
+
+    .brand-divider {
+        display: none;
+    }
+
+    .morning-banner {
+        margin-top: 22px;
+    }
+
+    .task-input-card {
+        margin-top: 18px;
+    }
+
 }

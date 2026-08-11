@@ -1,5 +1,6 @@
 /* ==========================================
-   DAYLIGHT — JOURNAL PAGE
+   DAYLIGHT — JOURNAL PAGE V2
+   Date-based Journal History
 ========================================== */
 
 
@@ -31,9 +32,38 @@ const promptResponse =
 const savePromptButton =
     document.querySelector("#save-prompt");
 
+const calendarGrid =
+    document.querySelector("#journal-calendar-grid");
+
+const historyMonth =
+    document.querySelector("#history-month");
+
+const prevMonthButton =
+    document.querySelector("#prev-journal-month");
+
+const nextMonthButton =
+    document.querySelector("#next-journal-month");
+
+const backToTodayButton =
+    document.querySelector("#back-to-today");
+
+const thoughtsLabel =
+    document.querySelector("#thoughts-label");
+
+const todayButton =
+    document.querySelector("#journal-today-btn");
+
 
 /* ==========================================
-   JOURNAL PROMPTS
+   STORAGE
+========================================== */
+
+const JOURNAL_STORAGE_KEY =
+    "daylightJournalEntries";
+
+
+/* ==========================================
+   PROMPTS
 ========================================== */
 
 const journalPrompts = [
@@ -57,21 +87,98 @@ const journalPrompts = [
 ];
 
 
+/* ==========================================
+   STATE
+========================================== */
+
+const today =
+    new Date();
+
+
+let selectedDate =
+    getDateKey(today);
+
+
+let calendarDate =
+    new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        1
+    );
+
+
 let currentPromptIndex = 0;
 
 
 /* ==========================================
-   PROMPT RESPONSES
+   DATE HELPERS
 ========================================== */
 
-function getPromptResponses() {
+function getDateKey(date) {
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+function parseDateKey(dateKey) {
+
+    const [
+        year,
+        month,
+        day
+    ] = dateKey.split("-").map(Number);
+
+
+    return new Date(
+        year,
+        month - 1,
+        day
+    );
+
+}
+
+
+function isToday(dateKey) {
+
+    return dateKey ===
+        getDateKey(new Date());
+
+}
+
+
+/* ==========================================
+   STORAGE HELPERS
+========================================== */
+
+function getJournalEntries() {
 
     const saved =
-        localStorage.getItem("promptResponses");
+        localStorage.getItem(
+            JOURNAL_STORAGE_KEY
+        );
+
 
     if (!saved) {
+
         return {};
+
     }
+
 
     try {
 
@@ -80,7 +187,7 @@ function getPromptResponses() {
     } catch (error) {
 
         console.error(
-            "Unable to load prompt responses.",
+            "Unable to load journal history.",
             error
         );
 
@@ -91,68 +198,302 @@ function getPromptResponses() {
 }
 
 
-function savePromptResponse() {
-
-    if (!promptResponse || !journalPrompt) {
-        return;
-    }
-
-
-    const prompt =
-        journalPrompts[currentPromptIndex];
-
-    const response =
-        promptResponse.value;
-
-
-    const responses =
-        getPromptResponses();
-
-
-    responses[prompt] =
-        response;
-
+function saveJournalEntries(entries) {
 
     localStorage.setItem(
-        "promptResponses",
-        JSON.stringify(responses)
+        JOURNAL_STORAGE_KEY,
+        JSON.stringify(entries)
     );
-
-
-    const originalText =
-        savePromptButton.textContent;
-
-
-    savePromptButton.textContent =
-        "Saved ♡";
-
-
-    setTimeout(() => {
-
-        savePromptButton.textContent =
-            originalText;
-
-    }, 1400);
 
 }
 
 
-function loadPromptResponse() {
+/* ==========================================
+   MIGRATE OLD JOURNAL
+========================================== */
 
-    if (!promptResponse) {
+function migrateOldJournal() {
+
+    const existingHistory =
+        localStorage.getItem(
+            JOURNAL_STORAGE_KEY
+        );
+
+
+    /*
+       If Journal V2 already exists,
+       nothing needs to be migrated.
+    */
+
+    if (existingHistory) {
+
         return;
+
     }
 
 
-    const prompt =
-        journalPrompts[currentPromptIndex];
+    const oldEntry =
+        localStorage.getItem(
+            "journalEntry"
+        );
 
-    const responses =
-        getPromptResponses();
+    const oldTime =
+        localStorage.getItem(
+            "journalTime"
+        );
+
+
+    /*
+       Nothing to migrate.
+    */
+
+    if (!oldEntry && !oldTime) {
+
+        return;
+
+    }
+
+
+    const entries = {};
+
+
+    entries[getDateKey(today)] = {
+
+        thoughts:
+            oldEntry || "",
+
+        prompt:
+            journalPrompts[0],
+
+        promptResponse:
+            "",
+
+        updatedAt:
+            oldTime || ""
+
+    };
+
+
+    saveJournalEntries(entries);
+
+}
+
+
+/* ==========================================
+   GET CURRENT ENTRY
+========================================== */
+
+function getSelectedEntry() {
+
+    const entries =
+        getJournalEntries();
+
+
+    return entries[selectedDate] || {
+
+        thoughts: "",
+
+        prompt:
+            journalPrompts[currentPromptIndex],
+
+        promptResponse: "",
+
+        updatedAt: ""
+
+    };
+
+}
+
+
+/* ==========================================
+   SAVE SELECTED ENTRY
+========================================== */
+
+function saveSelectedEntry() {
+
+    if (!journalEntry) {
+
+        return;
+
+    }
+
+
+    const entries =
+        getJournalEntries();
+
+
+    const existing =
+        entries[selectedDate] || {};
+
+
+    const now =
+        new Date();
+
+
+    const time =
+        now.toLocaleTimeString([], {
+
+            hour: "numeric",
+            minute: "2-digit"
+
+        });
+
+
+    entries[selectedDate] = {
+
+        thoughts:
+            journalEntry.value,
+
+        prompt:
+            existing.prompt ||
+            journalPrompts[currentPromptIndex],
+
+        promptResponse:
+            existing.promptResponse || "",
+
+        updatedAt:
+            time
+
+    };
+
+
+    saveJournalEntries(entries);
+
+
+    updateLastEdited(time);
+
+    renderJournalCalendar();
+
+
+    showSavedState(
+        saveButton,
+        "Saved ♡"
+    );
+
+}
+
+
+/* ==========================================
+   SAVE PROMPT RESPONSE
+========================================== */
+
+function savePromptResponse() {
+
+    if (!promptResponse) {
+
+        return;
+
+    }
+
+
+    const entries =
+        getJournalEntries();
+
+
+    const existing =
+        entries[selectedDate] || {};
+
+
+    const now =
+        new Date();
+
+
+    const time =
+        now.toLocaleTimeString([], {
+
+            hour: "numeric",
+            minute: "2-digit"
+
+        });
+
+
+    entries[selectedDate] = {
+
+        thoughts:
+            existing.thoughts ||
+            "",
+
+        prompt:
+            journalPrompts[currentPromptIndex],
+
+        promptResponse:
+            promptResponse.value,
+
+        updatedAt:
+            time
+
+    };
+
+
+    saveJournalEntries(entries);
+
+
+    updateLastEdited(time);
+
+    renderJournalCalendar();
+
+
+    showSavedState(
+        savePromptButton,
+        "Saved ♡"
+    );
+
+}
+
+
+/* ==========================================
+   LOAD SELECTED ENTRY
+========================================== */
+
+function loadSelectedEntry() {
+
+    const entry =
+        getSelectedEntry();
+
+
+    journalEntry.value =
+        entry.thoughts || "";
 
 
     promptResponse.value =
-        responses[prompt] || "";
+        entry.promptResponse || "";
+
+
+    /*
+       If the saved entry has a prompt,
+       find that prompt in our list.
+    */
+
+    const promptIndex =
+        journalPrompts.indexOf(
+            entry.prompt
+        );
+
+
+    if (promptIndex >= 0) {
+
+        currentPromptIndex =
+            promptIndex;
+
+    }
+
+
+    journalPrompt.textContent =
+        `“${journalPrompts[currentPromptIndex]}”`;
+
+
+    updateWordCount();
+
+
+    updateLastEdited(
+        entry.updatedAt
+    );
+
+
+    updateThoughtsLabel();
+
+
+    updateBackToTodayButton();
 
 }
 
@@ -164,7 +505,9 @@ function loadPromptResponse() {
 function updateWordCount() {
 
     if (!journalEntry || !wordCount) {
+
         return;
+
     }
 
 
@@ -189,107 +532,59 @@ function updateWordCount() {
 
 
 /* ==========================================
-   LOAD JOURNAL
+   LAST EDITED
 ========================================== */
 
-function loadJournal() {
+function updateLastEdited(time) {
 
-    if (!journalEntry) {
+    if (!lastEdited) {
+
         return;
-    }
-
-
-    const savedText =
-        localStorage.getItem("journalEntry");
-
-    const savedTime =
-        localStorage.getItem("journalTime");
-
-
-    if (savedText !== null) {
-
-        journalEntry.value =
-            savedText;
 
     }
 
 
-    if (savedTime && lastEdited) {
+    if (!time) {
 
         lastEdited.textContent =
-            `Edited ${savedTime}`;
+            "Not saved yet";
+
+        return;
 
     }
 
 
-    updateWordCount();
+    lastEdited.textContent =
+        `Edited ${time}`;
 
 }
 
 
 /* ==========================================
-   SAVE JOURNAL
+   SAVED BUTTON STATE
 ========================================== */
 
-function saveJournal() {
+function showSavedState(button, text) {
 
-    if (!journalEntry) {
+    if (!button) {
+
         return;
-    }
-
-
-    const text =
-        journalEntry.value;
-
-
-    localStorage.setItem(
-        "journalEntry",
-        text
-    );
-
-
-    const now =
-        new Date();
-
-
-    const time =
-        now.toLocaleTimeString([], {
-
-            hour: "numeric",
-            minute: "2-digit"
-
-        });
-
-
-    localStorage.setItem(
-        "journalTime",
-        time
-    );
-
-
-    updateWordCount();
-
-
-    if (lastEdited) {
-
-        lastEdited.textContent =
-            `Edited ${time}`;
 
     }
 
 
-    const originalText =
-        saveButton.innerHTML;
+    const original =
+        button.textContent;
 
 
-    saveButton.innerHTML =
-        "Saved ♡";
+    button.textContent =
+        text;
 
 
     setTimeout(() => {
 
-        saveButton.innerHTML =
-            originalText;
+        button.textContent =
+            original;
 
     }, 1400);
 
@@ -297,22 +592,23 @@ function saveJournal() {
 
 
 /* ==========================================
-   NEW PROMPT
+   PROMPT NAVIGATION
 ========================================== */
 
 function showNextPrompt() {
 
     /*
        Save the current response before
-       moving to another prompt.
+       moving to the next prompt.
     */
 
     savePromptResponse();
 
 
     currentPromptIndex =
-        (currentPromptIndex + 1)
-        % journalPrompts.length;
+        (
+            currentPromptIndex + 1
+        ) % journalPrompts.length;
 
 
     journalPrompt.style.opacity =
@@ -329,7 +625,17 @@ function showNextPrompt() {
             `“${journalPrompts[currentPromptIndex]}”`;
 
 
-        loadPromptResponse();
+        const entry =
+            getSelectedEntry();
+
+
+        promptResponse.value =
+            entry.prompt ===
+            journalPrompts[currentPromptIndex]
+
+                ? entry.promptResponse || ""
+
+                : "";
 
 
         journalPrompt.style.opacity =
@@ -338,7 +644,372 @@ function showNextPrompt() {
         promptResponse.style.opacity =
             "1";
 
-    }, 150);
+    }, 180);
+
+}
+
+
+/* ==========================================
+   JOURNAL CALENDAR
+========================================== */
+
+function renderJournalCalendar() {
+
+    if (!calendarGrid) {
+
+        return;
+
+    }
+
+
+    calendarGrid.innerHTML =
+        "";
+
+
+    const year =
+        calendarDate.getFullYear();
+
+    const month =
+        calendarDate.getMonth();
+
+
+    const firstDay =
+        new Date(
+            year,
+            month,
+            1
+        ).getDay();
+
+
+    const daysInMonth =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+
+    const entries =
+        getJournalEntries();
+
+
+    const monthName =
+        calendarDate.toLocaleDateString(
+            "en-US",
+            {
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+
+    historyMonth.textContent =
+        monthName;
+
+
+    /*
+       Empty cells before the first day.
+    */
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "journal-day empty";
+
+        calendarGrid.appendChild(
+            empty
+        );
+
+    }
+
+
+    /*
+       Actual days.
+    */
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        const date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        const dateKey =
+            getDateKey(date);
+
+
+        const button =
+            document.createElement("button");
+
+
+        button.type =
+            "button";
+
+
+        button.className =
+            "journal-day";
+
+
+        button.textContent =
+            day;
+
+
+        if (isToday(dateKey)) {
+
+            button.classList.add(
+                "today"
+            );
+
+        }
+
+
+        if (dateKey === selectedDate) {
+
+            button.classList.add(
+                "selected"
+            );
+
+        }
+
+
+        if (hasJournalEntry(
+            entries[dateKey]
+        )) {
+
+            button.classList.add(
+                "has-entry"
+            );
+
+        }
+
+
+        /*
+           Future dates cannot be selected.
+        */
+
+        if (
+            date >
+            new Date()
+        ) {
+
+            button.disabled =
+                true;
+
+            button.style.opacity =
+                "0.45";
+
+        } else {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    openJournalDate(
+                        dateKey
+                    );
+
+                }
+            );
+
+        }
+
+
+        calendarGrid.appendChild(
+            button
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   CHECK IF DATE HAS ENTRY
+========================================== */
+
+function hasJournalEntry(entry) {
+
+    if (!entry) {
+
+        return false;
+
+    }
+
+
+    return Boolean(
+
+        (entry.thoughts &&
+            entry.thoughts.trim()) ||
+
+        (entry.promptResponse &&
+            entry.promptResponse.trim())
+
+    );
+
+}
+
+
+/* ==========================================
+   OPEN JOURNAL DATE
+========================================== */
+
+function openJournalDate(dateKey) {
+
+    selectedDate =
+        dateKey;
+
+
+    const date =
+        parseDateKey(dateKey);
+
+
+    /*
+       Change the calendar month
+       if necessary.
+    */
+
+    calendarDate =
+        new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            1
+        );
+
+
+    loadSelectedEntry();
+
+    renderJournalCalendar();
+
+}
+
+
+/* ==========================================
+   TODAY
+========================================== */
+
+function goToToday() {
+
+    selectedDate =
+        getDateKey(
+            new Date()
+        );
+
+
+    const now =
+        new Date();
+
+
+    calendarDate =
+        new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            1
+        );
+
+
+    loadSelectedEntry();
+
+    renderJournalCalendar();
+
+}
+
+
+/* ==========================================
+   LABEL
+========================================== */
+
+function updateThoughtsLabel() {
+
+    if (!thoughtsLabel) {
+
+        return;
+
+    }
+
+
+    if (isToday(selectedDate)) {
+
+        thoughtsLabel.textContent =
+            "THOUGHTS TODAY";
+
+        return;
+
+    }
+
+
+    const date =
+        parseDateKey(
+            selectedDate
+        );
+
+
+    const formatted =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+
+    thoughtsLabel.textContent =
+        `THOUGHTS — ${formatted.toUpperCase()}`;
+
+}
+
+
+/* ==========================================
+   BACK TO TODAY BUTTON
+========================================== */
+
+function updateBackToTodayButton() {
+
+    if (!backToTodayButton) {
+
+        return;
+
+    }
+
+
+    backToTodayButton.classList.toggle(
+        "hidden",
+        isToday(selectedDate)
+    );
+
+}
+
+
+/* ==========================================
+   CALENDAR MONTH NAVIGATION
+========================================== */
+
+function changeCalendarMonth(direction) {
+
+    calendarDate =
+        new Date(
+            calendarDate.getFullYear(),
+            calendarDate.getMonth() +
+                direction,
+            1
+        );
+
+
+    renderJournalCalendar();
 
 }
 
@@ -361,17 +1032,7 @@ if (saveButton) {
 
     saveButton.addEventListener(
         "click",
-        saveJournal
-    );
-
-}
-
-
-if (newPromptButton) {
-
-    newPromptButton.addEventListener(
-        "click",
-        showNextPrompt
+        saveSelectedEntry
     );
 
 }
@@ -387,10 +1048,70 @@ if (savePromptButton) {
 }
 
 
+if (newPromptButton) {
+
+    newPromptButton.addEventListener(
+        "click",
+        showNextPrompt
+    );
+
+}
+
+
+if (prevMonthButton) {
+
+    prevMonthButton.addEventListener(
+        "click",
+        () => {
+
+            changeCalendarMonth(-1);
+
+        }
+    );
+
+}
+
+
+if (nextMonthButton) {
+
+    nextMonthButton.addEventListener(
+        "click",
+        () => {
+
+            changeCalendarMonth(1);
+
+        }
+    );
+
+}
+
+
+if (backToTodayButton) {
+
+    backToTodayButton.addEventListener(
+        "click",
+        goToToday
+    );
+
+}
+
+
+if (todayButton) {
+
+    todayButton.addEventListener(
+        "click",
+        goToToday
+    );
+
+}
+
+
 /* ==========================================
    INITIALIZE
 ========================================== */
 
-loadJournal();
+migrateOldJournal();
 
-loadPromptResponse();
+loadSelectedEntry();
+
+renderJournalCalendar();

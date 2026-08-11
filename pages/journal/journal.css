@@ -1,5 +1,5 @@
 /* ==========================================
-   DAYLIGHT — JOURNAL PAGE
+   DAYLIGHT — JOURNAL
    Morning Light / Lavender
 ========================================== */
 
@@ -13,14 +13,23 @@
     padding: 48px 24px 80px;
 }
 
-.journal-container {
-    width: min(920px, 100%);
+.journal-layout {
+    width: min(1180px, 100%);
     margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 42px;
+    align-items: start;
+}
+
+.journal-main {
+    min-width: 0;
 }
 
 
 /* ==========================================
-   JOURNAL HEADER
+   HEADER
 ========================================== */
 
 .journal-header {
@@ -67,7 +76,7 @@
 
 
 /* ==========================================
-   JOURNAL SECTIONS
+   SECTIONS
 ========================================== */
 
 .journal-section {
@@ -85,6 +94,18 @@
     text-transform: uppercase;
 
     color: #8F76C9;
+}
+
+.section-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.section-heading-row .section-heading {
+    margin-bottom: 0;
 }
 
 
@@ -114,11 +135,6 @@
     overflow: hidden;
 }
 
-
-/*
-   Soft decorative glow
-*/
-
 .prompt-card::after {
     content: "";
 
@@ -136,7 +152,6 @@
 
     pointer-events: none;
 }
-
 
 .prompt-text-wrap {
     position: relative;
@@ -161,305 +176,10 @@
 
     color: #332B46;
 
-    transition: opacity 0.15s ease;
+    transition: opacity 0.2s ease;
 }
 
 
-/* ==========================================
-   PROMPT FOOTER
-========================================== */
-
-.prompt-footer {
-    position: relative;
-    z-index: 2;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-top: 22px;
-}
-
-.prompt-sun {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 34px;
-    height: 34px;
-
-    border-radius: 50%;
-
-    background: #E9DFF8;
-
-    font-size: 1rem;
-}
-
-.new-prompt-btn {
-    border: 0;
-    padding: 0;
-
-    background: transparent;
-
-    font-family: "DM Sans", sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-
-    color: #8067BC;
-
-    cursor: pointer;
-
-    transition:
-        color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.new-prompt-btn:hover {
-    color: #62499A;
-    transform: translateX(3px);
-}
-
-
-/* ==========================================
-   THOUGHTS TODAY
-========================================== */
-
-.thoughts-section {
-    margin-top: 8px;
-}
-
-.journal-editor {
-    border: 1px solid #E2D9F0;
-    border-radius: 24px;
-
-    background: #FFFFFF;
-
-    box-shadow:
-        0 14px 35px rgba(116, 91, 166, 0.06);
-
-    overflow: hidden;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.journal-editor:focus-within {
-    border-color: #B49BDD;
-
-    box-shadow:
-        0 16px 40px rgba(116, 91, 166, 0.1);
-}
-
-
-/* ==========================================
-   TEXTAREA
-========================================== */
-
-#journal-entry {
-    display: block;
-
-    width: 100%;
-    min-height: 300px;
-
-    box-sizing: border-box;
-
-    border: 0;
-    outline: 0;
-
-    padding: 28px 30px;
-
-    resize: vertical;
-
-    background: transparent;
-
-    font-family: "DM Sans", sans-serif;
-    font-size: 1rem;
-    line-height: 1.8;
-
-    color: #342D42;
-}
-
-#journal-entry::placeholder {
-    color: #AAA0B8;
-}
-
-#journal-entry:focus {
-    outline: none;
-}
-
-
-/* ==========================================
-   EDITOR FOOTER
-========================================== */
-
-.editor-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-
-    padding: 16px 18px 16px 26px;
-
-    border-top: 1px solid #EEE8F5;
-
-    background: #FCFAFE;
-}
-
-
-/* ==========================================
-   JOURNAL META
-========================================== */
-
-.journal-meta {
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-
-    font-family: "DM Sans", sans-serif;
-    font-size: 0.72rem;
-
-    color: #9A91A6;
-}
-
-.meta-divider {
-    color: #C7BED3;
-}
-
-
-/* ==========================================
-   SAVE BUTTON
-========================================== */
-
-.save-entry-btn {
-    border: 0;
-    border-radius: 12px;
-
-    padding: 11px 18px;
-
-    background: #9B7ED4;
-
-    font-family: "DM Sans", sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-
-    color: #FFFFFF;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 7px 18px rgba(126, 96, 181, 0.2);
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.save-entry-btn:hover {
-    background: #886BC5;
-
-    transform: translateY(-1px);
-
-    box-shadow:
-        0 9px 22px rgba(126, 96, 181, 0.25);
-}
-
-.save-entry-btn:active {
-    transform: translateY(0);
-}
-
-.save-entry-btn span {
-    margin-left: 3px;
-
-    font-size: 0.9rem;
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 700px) {
-
-    .journal-page {
-        padding: 32px 16px 60px;
-    }
-
-    .journal-header {
-        margin-bottom: 36px;
-    }
-
-    .journal-header h1 {
-        font-size: 2.65rem;
-    }
-
-    .journal-intro {
-        font-size: 0.9rem;
-    }
-
-    .prompt-card {
-        padding: 24px 22px;
-        border-radius: 20px;
-    }
-
-    .journal-prompt {
-        font-size: 1.3rem;
-    }
-
-    .journal-editor {
-        border-radius: 20px;
-    }
-
-    #journal-entry {
-        min-height: 280px;
-        padding: 22px;
-    }
-
-    .editor-footer {
-        align-items: flex-start;
-        flex-direction: column;
-
-        padding: 14px 18px 18px;
-    }
-
-    .save-entry-btn {
-        width: 100%;
-    }
-
-}
-
-
-/* ==========================================
-   SMALL MOBILE
-========================================== */
-
-@media (max-width: 430px) {
-
-    .journal-page {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
-
-    .journal-header h1 {
-        font-size: 2.35rem;
-    }
-
-    .prompt-card {
-        padding: 22px 18px;
-    }
-
-    .journal-prompt {
-        font-size: 1.2rem;
-    }
-
-    #journal-entry {
-        min-height: 250px;
-    }
-
-}
 /* ==========================================
    PROMPT RESPONSE
 ========================================== */
@@ -517,8 +237,34 @@
 
 
 /* ==========================================
-   PROMPT ACTIONS
+   PROMPT FOOTER
 ========================================== */
+
+.prompt-footer {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 22px;
+}
+
+.prompt-sun {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: #E9DFF8;
+
+    font-size: 1rem;
+}
 
 .prompt-actions {
     display: flex;
@@ -526,10 +272,29 @@
     gap: 18px;
 }
 
+.new-prompt-btn {
+    border: 0;
+    padding: 0;
 
-/* ==========================================
-   SAVE PROMPT
-========================================== */
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    color: #8067BC;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.new-prompt-btn:hover {
+    color: #62499A;
+    transform: translateX(3px);
+}
 
 .save-prompt-btn {
     border: 0;
@@ -554,23 +319,437 @@
 
 .save-prompt-btn:hover {
     background: #DDD0F2;
-
     transform: translateY(-1px);
 }
 
 
 /* ==========================================
-   MOBILE PROMPT
+   THOUGHTS EDITOR
 ========================================== */
+
+.journal-editor {
+    border: 1px solid #E2D9F0;
+    border-radius: 24px;
+
+    background: #FFFFFF;
+
+    box-shadow:
+        0 14px 35px rgba(116, 91, 166, 0.06);
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.journal-editor:focus-within {
+    border-color: #B49BDD;
+
+    box-shadow:
+        0 16px 40px rgba(116, 91, 166, 0.1);
+}
+
+#journal-entry {
+    display: block;
+
+    width: 100%;
+    min-height: 300px;
+
+    box-sizing: border-box;
+
+    border: 0;
+    outline: 0;
+
+    padding: 28px 30px;
+
+    resize: vertical;
+
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+
+    color: #342D42;
+}
+
+#journal-entry::placeholder {
+    color: #AAA0B8;
+}
+
+#journal-entry:focus {
+    outline: none;
+}
+
+
+/* ==========================================
+   EDITOR FOOTER
+========================================== */
+
+.editor-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 16px 18px 16px 26px;
+
+    border-top: 1px solid #EEE8F5;
+
+    background: #FCFAFE;
+}
+
+.journal-meta {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.72rem;
+
+    color: #9A91A6;
+}
+
+.meta-divider {
+    color: #C7BED3;
+}
+
+.save-entry-btn {
+    border: 0;
+    border-radius: 12px;
+
+    padding: 11px 18px;
+
+    background: #9B7ED4;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    color: #FFFFFF;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(126, 96, 181, 0.2);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.save-entry-btn:hover {
+    background: #886BC5;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 22px rgba(126, 96, 181, 0.25);
+}
+
+
+/* ==========================================
+   BACK TO TODAY
+========================================== */
+
+.back-today-btn {
+    border: 0;
+
+    padding: 5px 0;
+
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    color: #8067BC;
+
+    cursor: pointer;
+}
+
+.back-today-btn:hover {
+    color: #62499A;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ==========================================
+   JOURNAL HISTORY
+========================================== */
+
+.journal-history {
+    position: sticky;
+    top: 28px;
+}
+
+.history-card {
+    padding: 22px;
+
+    border: 1px solid #E3D9F3;
+    border-radius: 22px;
+
+    background: rgba(250, 248, 253, 0.9);
+
+    box-shadow:
+        0 12px 30px rgba(116, 91, 166, 0.06);
+}
+
+.history-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.history-eyebrow {
+    margin: 0 0 5px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    color: #9A8AB5;
+}
+
+.history-header h2 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+
+    color: #332B46;
+}
+
+.history-navigation {
+    display: flex;
+    gap: 4px;
+}
+
+.history-navigation button {
+    width: 28px;
+    height: 28px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: #EEE6F8;
+
+    color: #8067BC;
+
+    cursor: pointer;
+}
+
+.history-navigation button:hover {
+    background: #E2D6F3;
+}
+
+
+/* ==========================================
+   MINI CALENDAR
+========================================== */
+
+.mini-weekdays,
+.journal-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.mini-weekdays {
+    margin-bottom: 7px;
+}
+
+.mini-weekdays span {
+    text-align: center;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+
+    color: #A198AA;
+}
+
+.journal-calendar-grid {
+    gap: 4px;
+}
+
+.journal-day {
+    position: relative;
+
+    aspect-ratio: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.7rem;
+
+    color: #5F566B;
+
+    cursor: default;
+}
+
+.journal-day.empty {
+    pointer-events: none;
+}
+
+.journal-day:not(.empty):hover {
+    background: #F0EAF8;
+}
+
+.journal-day.today {
+    background: #E9DFF8;
+
+    color: #7155A5;
+
+    font-weight: 700;
+}
+
+.journal-day.selected {
+    box-shadow:
+        inset 0 0 0 1.5px #9B7ED4;
+}
+
+.journal-day.has-entry::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 4px;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #9B7ED4;
+}
+
+.journal-day.has-entry.today::after {
+    background: #8067BC;
+}
+
+
+/* ==========================================
+   HISTORY LEGEND
+========================================== */
+
+.history-legend {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 17px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.62rem;
+
+    color: #9A91A6;
+}
+
+.legend-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #9B7ED4;
+}
+
+
+/* ==========================================
+   TODAY BUTTON
+========================================== */
+
+.journal-today-btn {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 9px;
+
+    border: 1px solid #E3D9F3;
+    border-radius: 10px;
+
+    background: #FFFFFF;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    color: #8067BC;
+
+    cursor: pointer;
+}
+
+.journal-today-btn:hover {
+    background: #F5F0FC;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .journal-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .journal-history {
+        position: static;
+    }
+
+    .history-card {
+        width: min(100%, 420px);
+    }
+
+}
+
 
 @media (max-width: 700px) {
 
-    .prompt-response {
-        margin-top: 16px;
+    .journal-page {
+        padding: 32px 16px 60px;
     }
 
-    #prompt-response {
-        min-height: 110px;
+    .journal-header {
+        margin-bottom: 36px;
+    }
+
+    .journal-header h1 {
+        font-size: 2.65rem;
+    }
+
+    .prompt-card {
+        padding: 24px 22px;
+        border-radius: 20px;
+    }
+
+    .journal-prompt {
+        font-size: 1.3rem;
     }
 
     .prompt-footer {
@@ -582,6 +761,57 @@
         flex-direction: column;
         align-items: flex-end;
         gap: 10px;
+    }
+
+    .journal-editor {
+        border-radius: 20px;
+    }
+
+    #journal-entry {
+        min-height: 280px;
+        padding: 22px;
+    }
+
+    .editor-footer {
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 14px 18px 18px;
+    }
+
+    .save-entry-btn {
+        width: 100%;
+    }
+
+    .history-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .journal-page {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .journal-header h1 {
+        font-size: 2.35rem;
+    }
+
+    .prompt-card {
+        padding: 22px 18px;
+    }
+
+    .journal-prompt {
+        font-size: 1.2rem;
+    }
+
+    #journal-entry {
+        min-height: 250px;
     }
 
 }

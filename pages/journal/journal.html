@@ -82,7 +82,7 @@
 
 
     <!-- ==========================================
-         DAYLIGHT NAVIGATION
+         NAVIGATION
     ========================================== -->
 
     <div class="navigation">
@@ -112,9 +112,7 @@
             </button>
 
 
-            <button
-                class="nav-item active"
-            >
+            <button class="nav-item active">
                 Journal
             </button>
 
@@ -160,160 +158,274 @@
 
     <main class="journal-page">
 
-        <div class="journal-container">
+        <div class="journal-layout">
 
 
             <!-- ======================================
-                 HEADER
+                 MAIN JOURNAL
             ======================================= -->
 
-            <header class="journal-header">
-
-                <p class="journal-eyebrow">
-                    JOURNAL
-                </p>
-
-                <h1>
-                    A quiet place<br>
-                    for your thoughts.
-                </h1>
-
-                <p class="journal-intro">
-                    Take a moment. Write freely.
-                    Nothing needs to be perfect.
-                </p>
-
-            </header>
+            <div class="journal-main">
 
 
-            <!-- ======================================
-                 JOURNAL PROMPT
-            ======================================= -->
+                <!-- HEADER -->
 
-            <section class="journal-section">
+                <header class="journal-header">
 
-                <div class="section-heading">
+                    <p class="journal-eyebrow">
+                        JOURNAL
+                    </p>
 
-                    <span>
+                    <h1>
+                        A quiet place<br>
+                        for your thoughts.
+                    </h1>
+
+                    <p class="journal-intro">
+                        Take a moment. Write freely.
+                        Nothing needs to be perfect.
+                    </p>
+
+                </header>
+
+
+                <!-- ==================================
+                     JOURNAL PROMPT
+                =================================== -->
+
+                <section class="journal-section">
+
+                    <div class="section-heading">
                         JOURNAL PROMPTS
-                    </span>
-
-                </div>
-
-
-                <div class="prompt-card">
-
-                    <div class="prompt-text-wrap">
-
-                        <p
-                            id="journal-prompt"
-                            class="journal-prompt"
-                        >
-                            “What made today feel a little lighter?”
-                        </p>
-
-                    </div>
-
-                    <div class="prompt-response">
-                         
-                        <textarea
-                            id="prompt-response"
-                            placeholder="Write your response..."
-                            spellcheck="true"
-                        ></textarea>
-
                     </div>
 
 
-                    <div class="prompt-footer">
+                    <div class="prompt-card">
 
-                        <span class="prompt-sun">
-                            ☀
-                        </span>
+                        <div class="prompt-text-wrap">
 
-
-                        <button
-                            type="button"
-                            id="new-prompt"
-                            class="new-prompt-btn"
-                        >
-                            New prompt →
-                        </button>
-
-                        <button
-
-                            type="button"
-                            id="save-prompt"
-                            class="save-prompt-btn"
-                        >
-                            Save Response ♡
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ======================================
-                 THOUGHTS TODAY
-            ======================================= -->
-
-            <section class="journal-section thoughts-section">
-
-                <div class="section-heading">
-
-                    <span>
-                        THOUGHTS TODAY
-                    </span>
-
-                </div>
-
-
-                <div class="journal-editor">
-
-                    <textarea
-                        id="journal-entry"
-                        placeholder="What's on your mind?"
-                        spellcheck="true"
-                    ></textarea>
-
-
-                    <div class="editor-footer">
-
-                        <div class="journal-meta">
-
-                            <span id="word-count">
-                                0 words
-                            </span>
-
-                            <span class="meta-divider">
-                                •
-                            </span>
-
-                            <span id="last-edited">
-                                Not saved yet
-                            </span>
+                            <p
+                                id="journal-prompt"
+                                class="journal-prompt"
+                            >
+                                “What made today feel a little lighter?”
+                            </p>
 
                         </div>
 
 
+                        <div class="prompt-response">
+
+                            <textarea
+                                id="prompt-response"
+                                placeholder="Write your response..."
+                                spellcheck="true"
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="prompt-footer">
+
+                            <span class="prompt-sun">
+                                ☀
+                            </span>
+
+
+                            <div class="prompt-actions">
+
+                                <button
+                                    type="button"
+                                    id="new-prompt"
+                                    class="new-prompt-btn"
+                                >
+                                    New prompt →
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="save-prompt"
+                                    class="save-prompt-btn"
+                                >
+                                    Save Response ♡
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     THOUGHTS TODAY / SELECTED DATE
+                =================================== -->
+
+                <section class="journal-section thoughts-section">
+
+                    <div class="section-heading-row">
+
+                        <div class="section-heading">
+                            <span id="thoughts-label">
+                                THOUGHTS TODAY
+                            </span>
+                        </div>
+
+
                         <button
-                            type="button"
-                            id="save-journal"
-                            class="save-entry-btn"
+                            id="back-to-today"
+                            class="back-today-btn hidden"
                         >
-                            Save Entry <span>♡</span>
+                            ← Back to Today
                         </button>
 
                     </div>
 
+
+                    <div class="journal-editor">
+
+                        <textarea
+                            id="journal-entry"
+                            placeholder="What's on your mind?"
+                            spellcheck="true"
+                        ></textarea>
+
+
+                        <div class="editor-footer">
+
+                            <div class="journal-meta">
+
+                                <span id="word-count">
+                                    0 words
+                                </span>
+
+                                <span class="meta-divider">
+                                    •
+                                </span>
+
+                                <span id="last-edited">
+                                    Not saved yet
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                id="save-journal"
+                                class="save-entry-btn"
+                            >
+                                Save Entry <span>♡</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- ======================================
+                 JOURNAL HISTORY
+            ======================================= -->
+
+            <aside class="journal-history">
+
+                <div class="history-card">
+
+
+                    <!-- HISTORY HEADER -->
+
+                    <div class="history-header">
+
+                        <div>
+
+                            <p class="history-eyebrow">
+                                JOURNAL HISTORY
+                            </p>
+
+                            <h2 id="history-month">
+                                August 2026
+                            </h2>
+
+                        </div>
+
+
+                        <div class="history-navigation">
+
+                            <button
+                                id="prev-journal-month"
+                                aria-label="Previous month"
+                            >
+                                ←
+                            </button>
+
+                            <button
+                                id="next-journal-month"
+                                aria-label="Next month"
+                            >
+                                →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MINI CALENDAR -->
+
+                    <div class="mini-calendar">
+
+                        <div class="mini-weekdays">
+
+                            <span>S</span>
+                            <span>M</span>
+                            <span>T</span>
+                            <span>W</span>
+                            <span>T</span>
+                            <span>F</span>
+                            <span>S</span>
+
+                        </div>
+
+
+                        <div
+                            id="journal-calendar-grid"
+                            class="journal-calendar-grid"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- LEGEND -->
+
+                    <div class="history-legend">
+
+                        <span class="legend-dot"></span>
+
+                        <span>
+                            Journal entry
+                        </span>
+
+                    </div>
+
+
+                    <!-- TODAY BUTTON -->
+
+                    <button
+                        id="journal-today-btn"
+                        class="journal-today-btn"
+                    >
+                        Today
+                    </button>
+
                 </div>
 
-            </section>
-
+            </aside>
 
         </div>
 

@@ -24,6 +24,7 @@
 }
 
 .journal-main {
+    width: 100%;
     min-width: 0;
 }
 
@@ -814,4 +815,103 @@
         min-height: 250px;
     }
 
+}
+/* ==========================================
+   JOURNAL TOP SECTION
+========================================== */
+
+.journal-top-section {
+    display: grid !important;
+
+    grid-template-columns: 270px minmax(0, 1fr) !important;
+
+    gap: 28px;
+
+    align-items: start;
+
+    width: 100%;
+
+    margin-bottom: 42px;
+}
+
+
+/* ==========================================
+   JOURNAL HISTORY
+========================================== */
+
+.journal-top-section .journal-history {
+    width: 100%;
+    margin: 0;
+
+    position: static;
+}
+
+
+/* ==========================================
+   JOURNAL PROMPT
+========================================== */
+
+.journal-top-section .prompt-section {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+
+/* ==========================================
+   PROMPT CARD
+========================================== */
+
+.journal-top-section .prompt-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .journal-top-section {
+        grid-template-columns: 1fr !important;
+        gap: 28px;
+    }
+
+}
+/* ==========================================
+   JOURNAL — FULL WIDTH COMPOSITION
+========================================== */
+
+.journal-layout {
+    width: calc(100% - 32px) !important;
+    max-width: 1180px !important;
+    margin: 0 auto !important;
+
+    display: block !important;
+}
+
+.journal-main {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0;
+}
+
+
+/* History + Prompt */
+
+.journal-top-section {
+    width: 100% !important;
+
+    display: grid !important;
+    grid-template-columns: 285px minmax(0, 1fr) !important;
+
+    gap: 28px;
+}
+
+
+/* Thoughts */
+
+.thoughts-section {
+    width: 100% !important;
 }

@@ -188,76 +188,174 @@
 
                 </header>
 
+                <!-- ======================================
+                        JOURNAL TOP SECTION
+                    ====================================== -->
 
-                <!-- ==================================
-                     JOURNAL PROMPT
-                =================================== -->
+                <div class="journal-top-section">
 
-                <section class="journal-section">
+                    <aside class="journal-history">
 
-                    <div class="section-heading">
-                        JOURNAL PROMPTS
-                    </div>
-
-
-                    <div class="prompt-card">
-
-                        <div class="prompt-text-wrap">
-
-                            <p
-                                id="journal-prompt"
-                                class="journal-prompt"
-                            >
-                                “What made today feel a little lighter?”
-                            </p>
-
-                        </div>
+                        <div class="history-card">
 
 
-                        <div class="prompt-response">
+                              <!-- HISTORY HEADER -->
 
-                            <textarea
-                                id="prompt-response"
-                                placeholder="Write your response..."
-                                spellcheck="true"
-                            ></textarea>
+                            <div class="history-header">
 
-                        </div>
+                                <div>
+
+                                    <p class="history-eyebrow">
+                                        JOURNAL HISTORY
+                                    </p>
+
+                                    <h2 id="history-month">
+                                            August 2026
+                                    </h2>
+
+                                </div>
 
 
-                        <div class="prompt-footer">
+                                <div class="history-navigation">
 
-                            <span class="prompt-sun">
-                                ☀
-                            </span>
+                                    <button
+                                        id="prev-journal-month"
+                                        aria-label="Previous month"
+                                    >
+                                        ←
+                                    </button>
 
+                                    <button
+                                        id="next-journal-month"
+                                        aria-label="Next month"
+                                    >
+                                        →
+                                    </button>
 
-                            <div class="prompt-actions">
-
-                                <button
-                                    type="button"
-                                    id="new-prompt"
-                                    class="new-prompt-btn"
-                                >
-                                    New prompt →
-                                </button>
-
-                                <button
-                                    type="button"
-                                    id="save-prompt"
-                                    class="save-prompt-btn"
-                                >
-                                    Save Response ♡
-                                </button>
+                                 </div>
 
                             </div>
 
+
+                            <!-- MINI CALENDAR -->
+
+                            <div class="mini-calendar">
+
+                                 <div class="mini-weekdays">
+
+                                    <span>S</span>
+                                    <span>M</span>
+                                    <span>T</span>
+                                    <span>W</span>
+                                    <span>T</span>
+                                    <span>F</span>
+                                    <span>S</span>
+
+                                </div>
+
+
+                                <div
+                                    id="journal-calendar-grid"
+                                    class="journal-calendar-grid"
+                                 >
+                            
+                                </div>
+
+                            </div>
+
+
+                                <!-- LEGEND -->
+
+                                <div class="history-legend">
+
+                                    <span class="legend-dot"></span>
+
+                                    <span>
+                                        Journal entry
+                                    </span>
+
+                                </div>
+
+
+                                <!-- TODAY BUTTON -->
+
+                                <button
+                                    id="journal-today-btn"
+                                    class="journal-today-btn"
+                                >
+                                    Today
+                                </button>
+
                         </div>
 
-                    </div>
+                    </aside>
 
-                </section>
+                    <section class="journal-section prompt-section">
 
+                        <div class="section-heading">
+                            JOURNAL PROMPTS
+                        </div>
+
+                        <div class="prompt-card">
+
+                            <div class="prompt-text-wrap">
+
+                                <p
+                                    id="journal-prompt"
+                                    class="journal-prompt"
+                                >
+                                    “What made today feel a little lighter?”
+
+                                </p>
+
+                            </div>
+
+
+                            <div class="prompt-response">
+
+                                <textarea
+                                    id="prompt-response"
+                                    placeholder="Write your response..."
+                                    spellcheck="true"
+                                ></textarea>
+
+                            </div>
+
+
+                            <div class="prompt-footer">
+
+                                <span class="prompt-sun">
+                                        ☀
+                                </span>
+
+
+                                <div class="prompt-actions">
+
+                                    <button
+                                        type="button"
+                                        id="new-prompt"
+                                        class="new-prompt-btn"
+                                        >
+                                        New prompt →
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        id="save-prompt"
+                                        class="save-prompt-btn"
+                                        >
+                                        Save Response ♡
+                                        </button>
+
+                                    </div>
+
+                                </div>  
+
+                            </div>      
+                     
+                    </section>
+
+                </div>
 
                 <!-- ==================================
                      THOUGHTS TODAY / SELECTED DATE
@@ -327,105 +425,6 @@
                 </section>
 
             </div>
-
-
-            <!-- ======================================
-                 JOURNAL HISTORY
-            ======================================= -->
-
-            <aside class="journal-history">
-
-                <div class="history-card">
-
-
-                    <!-- HISTORY HEADER -->
-
-                    <div class="history-header">
-
-                        <div>
-
-                            <p class="history-eyebrow">
-                                JOURNAL HISTORY
-                            </p>
-
-                            <h2 id="history-month">
-                                August 2026
-                            </h2>
-
-                        </div>
-
-
-                        <div class="history-navigation">
-
-                            <button
-                                id="prev-journal-month"
-                                aria-label="Previous month"
-                            >
-                                ←
-                            </button>
-
-                            <button
-                                id="next-journal-month"
-                                aria-label="Next month"
-                            >
-                                →
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- MINI CALENDAR -->
-
-                    <div class="mini-calendar">
-
-                        <div class="mini-weekdays">
-
-                            <span>S</span>
-                            <span>M</span>
-                            <span>T</span>
-                            <span>W</span>
-                            <span>T</span>
-                            <span>F</span>
-                            <span>S</span>
-
-                        </div>
-
-
-                        <div
-                            id="journal-calendar-grid"
-                            class="journal-calendar-grid"
-                        ></div>
-
-                    </div>
-
-
-                    <!-- LEGEND -->
-
-                    <div class="history-legend">
-
-                        <span class="legend-dot"></span>
-
-                        <span>
-                            Journal entry
-                        </span>
-
-                    </div>
-
-
-                    <!-- TODAY BUTTON -->
-
-                    <button
-                        id="journal-today-btn"
-                        class="journal-today-btn"
-                    >
-                        Today
-                    </button>
-
-                </div>
-
-            </aside>
 
         </div>
 

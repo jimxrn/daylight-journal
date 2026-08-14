@@ -307,7 +307,112 @@ function escapeDashboardHTML(text) {
 
 }
 
+/* ==========================================
+   MEMORIES WIDGET
+========================================== */
 
+function loadDashboardMemories() {
+
+    const container =
+        document.getElementById(
+            "dashboard-memories-content"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const saved =
+        localStorage.getItem(
+            "daylightMemories"
+        );
+
+    if (!saved) {
+        return;
+    }
+
+    let memories;
+
+    try {
+        memories =
+            JSON.parse(saved);
+    } catch (error) {
+        console.error(
+            "Unable to load Dashboard Memories.",
+            error
+        );
+        return;
+    }
+
+    const dates =
+        Object.keys(memories);
+
+    if (dates.length === 0) {
+        return;
+    }
+
+    dates.sort(
+        (a, b) =>
+            b.localeCompare(a)
+    );
+
+    const latestDate =
+        dates[0];
+
+    const latestMemory =
+        memories[latestDate];
+
+    if (
+        !latestMemory ||
+        !latestMemory.photo
+    ) {
+        return;
+    }
+
+    const date =
+        new Date(
+            `${latestDate}T00:00:00`
+        );
+
+    const formattedDate =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+    container.innerHTML = `
+        <div class="dashboard-memory-preview">
+
+            <img
+                src="${latestMemory.photo}"
+                alt=""
+                class="dashboard-memory-image"
+            >
+
+            <div class="dashboard-memory-info">
+
+                <span class="dashboard-memory-date">
+                    ${formattedDate}
+                </span>
+
+                <p class="dashboard-memory-caption">
+                    “${
+                        escapeDashboardHTML(
+                            latestMemory.caption ||
+                            "A little moment worth keeping."
+                        )
+                    }”
+                </p>
+
+            </div>
+
+        </div>
+    `;
+}
 /* ==========================================
    JOURNAL WIDGET
 ========================================== */
@@ -414,6 +519,126 @@ function loadDashboardJournal() {
         "Entry saved today";
 
 }
+/* ==========================================
+   MEMORIES WIDGET
+========================================== */
+
+/* ==========================================
+   MEMORIES WIDGET
+========================================== */
+
+function loadDashboardMemories() {
+
+    const container =
+        document.getElementById(
+            "dashboard-memories-content"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const saved =
+        localStorage.getItem(
+            "daylightMemories"
+        );
+
+    if (!saved) {
+        return;
+    }
+
+    let memories = {};
+
+    try {
+
+        memories =
+            JSON.parse(saved);
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load Dashboard Memories.",
+            error
+        );
+
+        return;
+    }
+
+    const dates =
+        Object.keys(memories);
+
+    if (dates.length === 0) {
+        return;
+    }
+
+    dates.sort(
+        (a, b) =>
+            b.localeCompare(a)
+    );
+
+    const latestDate =
+        dates[0];
+
+    const latestMemory =
+        memories[latestDate];
+
+    if (
+        !latestMemory ||
+        !latestMemory.photo
+    ) {
+        return;
+    }
+
+    const date =
+        new Date(
+            `${latestDate}T00:00:00`
+        );
+
+    const formattedDate =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+    const caption =
+        latestMemory.caption ||
+        "A little moment worth keeping.";
+
+    container.innerHTML = `
+
+        <div class="dashboard-memory-preview">
+
+            <img
+                src="${latestMemory.photo}"
+                alt="Memory from ${formattedDate}"
+                class="dashboard-memory-image"
+            >
+
+            <div class="dashboard-memory-info">
+
+                <span
+                    class="dashboard-memory-date"
+                >
+                    ${formattedDate}
+                </span>
+
+                <p
+                    class="dashboard-memory-caption"
+                >
+                    “${caption}”
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
 
 
 /* ==========================================
@@ -854,6 +1079,8 @@ document.addEventListener(
         renderDashboardHabits();
 
         loadDashboardJournal();
+
+        loadDashboardMemories();
 
 
         const openJournalButton =

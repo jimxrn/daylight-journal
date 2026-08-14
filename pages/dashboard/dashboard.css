@@ -1398,3 +1398,32 @@
     color: #958ca0;
     font-size: 11px;
 }
+.dashboard-memory-preview {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.dashboard-memory-image {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.dashboard-memory-info {
+    min-width: 0;
+}
+
+.dashboard-memory-date {
+    display: block;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+.dashboard-memory-caption {
+    margin: 0;
+    line-height: 1.4;
+}

@@ -1128,3 +1128,273 @@
     font-size: .75rem;
 
 }
+/* ==========================================
+   DASHBOARD — HABITS WIDGET
+========================================== */
+
+.habits-dashboard-card {
+    min-height: 190px;
+}
+
+#dashboard-habits-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* Progress */
+
+.dashboard-habits-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.dashboard-habits-progress-text {
+    color: #4a4357;
+    font-size: 13px;
+}
+
+.dashboard-habits-percentage {
+    color: #8f70b5;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* Progress bar */
+
+.dashboard-habits-progress-track {
+    width: 100%;
+    height: 4px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #eee8f3;
+}
+
+.dashboard-habits-progress-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: #9a7bbb;
+    transition: width 0.3s ease;
+}
+
+
+/* Habit list */
+
+#dashboard-habits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+/* Individual habit */
+
+.dashboard-habit-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 7px 8px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #4a4357;
+    font-family: inherit;
+    font-size: 12px;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.dashboard-habit-item:hover {
+    background: #f7f2fa;
+}
+
+
+/* Completion circle */
+
+.dashboard-habit-check {
+    width: 15px;
+    height: 15px;
+
+    flex: 0 0 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #cdb9dc;
+    border-radius: 50%;
+
+    color: #ffffff;
+    font-size: 9px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* Completed */
+
+.dashboard-habit-item.completed {
+    opacity: 0.65;
+}
+
+.dashboard-habit-item.completed
+.dashboard-habit-check {
+    border-color: #9875b7;
+    background: #9875b7;
+}
+
+.dashboard-habit-item.completed
+.dashboard-habit-name {
+    text-decoration: line-through;
+}
+
+
+/* Icon */
+
+.dashboard-habit-icon {
+    width: 20px;
+    flex: 0 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+}
+
+
+/* Name */
+
+.dashboard-habit-name {
+    min-width: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* Empty */
+
+.dashboard-habits-empty {
+    padding: 10px 0;
+
+    color: #948b9f;
+    font-size: 12px;
+}
+/* ==========================================
+   DASHBOARD — HABITS LIST
+========================================== */
+
+#dashboard-habits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.dashboard-habit-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 8px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #4a4357;
+    font-family: inherit;
+    font-size: 11px;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.dashboard-habit-item:hover {
+    background: #f7f2fa;
+}
+
+.dashboard-habit-check {
+    width: 15px;
+    height: 15px;
+
+    flex: 0 0 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #cdb9dc;
+    border-radius: 50%;
+
+    color: #fff;
+    font-size: 9px;
+}
+
+.dashboard-habit-item.completed {
+    opacity: 0.6;
+}
+
+.dashboard-habit-item.completed
+.dashboard-habit-check {
+    border-color: #9875b7;
+    background: #9875b7;
+}
+
+.dashboard-habit-item.completed
+.dashboard-habit-name {
+    color: #958ca0;
+    text-decoration: line-through;
+}
+
+.dashboard-habit-icon {
+    width: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+}
+
+.dashboard-habit-name {
+    min-width: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dashboard-habits-empty {
+    padding: 8px 0;
+
+    color: #958ca0;
+    font-size: 11px;
+}

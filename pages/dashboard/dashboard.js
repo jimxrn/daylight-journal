@@ -426,6 +426,415 @@ function openJournal() {
         "../journal/journal.html";
 
 }
+/* ==========================================
+   HABITS WIDGET
+========================================== */
+
+const DASHBOARD_HABITS_KEY =
+    "daylightHabits";
+
+
+function loadDashboardHabits() {
+
+    const saved =
+        localStorage.getItem(
+            DASHBOARD_HABITS_KEY
+        );
+
+    if (!saved) {
+        return [];
+    }
+
+    try {
+
+        const parsed =
+            JSON.parse(saved);
+
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load Dashboard Habits.",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+function isDashboardHabitScheduled(
+    habit,
+    date
+) {
+
+    const day =
+        date.getDay();
+
+
+    if (
+        habit.frequency === "weekdays"
+    ) {
+
+        return (
+            day >= 1 &&
+            day <= 5
+        );
+
+    }
+
+
+    if (
+        habit.frequency === "weekends"
+    ) {
+
+        return (
+            day === 0 ||
+            day === 6
+        );
+
+    }
+
+
+    return true;
+
+}
+
+
+function isDashboardHabitCompleted(
+    habit,
+    dateKey
+) {
+
+    return Boolean(
+        habit.completions &&
+        habit.completions[dateKey]
+    );
+
+}
+
+
+function renderDashboardHabits() {
+
+    const container =
+        document.getElementById(
+            "dashboard-habits-content"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    const habits =
+        loadDashboardHabits();
+
+
+    const today =
+        new Date();
+
+
+    const todayKey =
+        getDashboardDateKey(
+            today
+        );
+
+
+    /*
+        Only habits scheduled
+        for today and not archived.
+    */
+
+    const todaysHabits =
+        habits.filter(
+            habit => {
+
+                if (
+                    habit.archived === true
+                ) {
+
+                    return false;
+
+                }
+
+
+                return isDashboardHabitScheduled(
+                    habit,
+                    today
+                );
+
+            }
+        );
+
+
+    const total =
+        todaysHabits.length;
+
+
+    const completed =
+        todaysHabits.filter(
+            habit =>
+                isDashboardHabitCompleted(
+                    habit,
+                    todayKey
+                )
+        ).length;
+
+
+    const percentage =
+        total === 0
+            ? 0
+            : Math.round(
+                (completed / total) * 100
+            );
+
+
+    /*
+        Progress
+    */
+
+    const progressText =
+        document.getElementById(
+            "dashboard-habits-progress-text"
+        );
+
+
+    const percentageElement =
+        document.getElementById(
+            "dashboard-habits-percentage"
+        );
+
+
+    const progressFill =
+        document.getElementById(
+            "dashboard-habits-progress-fill"
+        );
+
+
+    if (progressText) {
+
+        progressText.textContent =
+            `${completed} of ${total} completed`;
+
+    }
+
+
+    if (percentageElement) {
+
+        percentageElement.textContent =
+            `${percentage}%`;
+
+    }
+
+
+    if (progressFill) {
+
+        progressFill.style.width =
+            `${percentage}%`;
+
+    }
+
+
+    /*
+        Empty state
+    */
+
+    const list =
+        document.getElementById(
+            "dashboard-habits-list"
+        );
+
+
+    if (!list) {
+        return;
+    }
+
+
+    if (todaysHabits.length === 0) {
+
+        list.innerHTML = `
+
+            <div class="dashboard-habits-empty">
+
+                Nothing scheduled today.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+        Keep Dashboard compact.
+        Show up to 4 habits.
+    */
+
+    const visibleHabits =
+        todaysHabits.slice(0, 4);
+
+
+    list.innerHTML =
+        visibleHabits
+            .map(
+                habit => {
+
+                    const isCompleted =
+                        isDashboardHabitCompleted(
+                            habit,
+                            todayKey
+                        );
+
+
+                    return `
+
+                        <button
+                            type="button"
+                            class="
+                                dashboard-habit-item
+                                ${
+                                    isCompleted
+                                        ? "completed"
+                                        : ""
+                                }
+                            "
+                            data-habit-id="${habit.id}"
+                        >
+
+                            <span
+                                class="dashboard-habit-check"
+                            >
+                                ${
+                                    isCompleted
+                                        ? "✓"
+                                        : ""
+                                }
+                            </span>
+
+
+                            <span
+                                class="dashboard-habit-icon"
+                            >
+                                ${escapeDashboardHTML(
+                                    habit.icon || "♡"
+                                )}
+                            </span>
+
+
+                            <span
+                                class="dashboard-habit-name"
+                            >
+                                ${escapeDashboardHTML(
+                                    habit.name
+                                )}
+                            </span>
+
+                        </button>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    /*
+        Toggle completion directly
+        from Dashboard.
+    */
+
+    list
+        .querySelectorAll(
+            ".dashboard-habit-item"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        toggleDashboardHabit(
+                            button.dataset.habitId
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+function toggleDashboardHabit(
+    habitId
+) {
+
+    const habits =
+        loadDashboardHabits();
+
+
+    const habit =
+        habits.find(
+            item =>
+                item.id === habitId
+        );
+
+
+    if (!habit) {
+        return;
+    }
+
+
+    if (!habit.completions) {
+
+        habit.completions = {};
+
+    }
+
+
+    const todayKey =
+        getDashboardDateKey();
+
+
+    habit.completions[todayKey] =
+        !habit.completions[todayKey];
+
+
+    localStorage.setItem(
+        DASHBOARD_HABITS_KEY,
+        JSON.stringify(habits)
+    );
+
+
+    renderDashboardHabits();
+
+}
+
+
+/* ==========================================
+   DASHBOARD HABITS REFRESH
+========================================== */
+
+window.addEventListener(
+    "focus",
+    renderDashboardHabits
+);
+
+
+window.addEventListener(
+    "storage",
+    renderDashboardHabits
+);
 
 
 /* ==========================================
@@ -441,6 +850,8 @@ document.addEventListener(
         renderDashboardPlanner();
 
         renderDashboardCalendar();
+        
+        renderDashboardHabits();
 
         loadDashboardJournal();
 

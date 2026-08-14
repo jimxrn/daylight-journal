@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Daylight • Habits</title>
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared Daylight CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/layout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/navigation.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/cards.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/responsive.css"
+    >
+
+    <!-- Habits CSS -->
+    <link
+        rel="stylesheet"
+        href="habits.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         NAVIGATION
+    ========================================== -->
+
+    <div class="navigation">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🌅
+            </div>
+
+            <h2>
+                Daylight
+            </h2>
+
+            <span>
+                your personal space
+            </span>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-item"
+                onclick="location.href='../../index.html'"
+            >
+                Dashboard
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="location.href='../journal/journal.html'"
+            >
+                Journal
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="location.href='../calendar/calendar.html'"
+            >
+                Calendar
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="location.href='../planner/planner.html'"
+            >
+                Planner
+            </button>
+
+
+            <button
+                class="nav-item active"
+            >
+                Habits
+            </button>
+
+
+            <button
+                class="nav-item"
+            >
+                Memories
+            </button>
+
+
+            <button
+                class="nav-item"
+            >
+                Settings
+            </button>
+
+        </nav>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         HABITS
+    ========================================== -->
+
+    <main class="habits-page">
+
+
+        <div class="habits-container">
+
+
+            <!-- HEADER -->
+
+            <header class="habits-header">
+
+                <div>
+
+                    <p class="habits-eyebrow">
+                        DAILY PRACTICE
+                    </p>
+
+                    <h1>
+                        Habits
+                    </h1>
+
+                    <p class="habits-subtitle">
+                        Small things, done consistently.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="today-button"
+                    id="todayButton"
+                >
+                    Today
+                </button>
+
+            </header>
+
+
+
+            <!-- TODAY -->
+
+            <section class="habits-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            TODAY
+                        </p>
+
+                        <h2 id="todayDate">
+                            Today
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HABIT LIST -->
+
+                <div
+                    class="habit-list"
+                    id="habitList"
+                >
+
+                    <!-- JavaScript will render habits here -->
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- PROGRESS -->
+
+            <section class="progress-card">
+
+
+                <div class="progress-circle">
+
+                    <span id="progressNumber">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-content">
+
+                    <p class="section-label">
+                        TODAY'S PROGRESS
+                    </p>
+
+                    <h3 id="progressText">
+                        0 of 0 completed
+                    </h3>
+
+                    <p id="progressMessage">
+                        Start with one small thing.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ADD HABIT -->
+
+            <div class="habit-actions">
+
+                <button
+                    id="addHabitButton"
+                    type="button"
+                >
+                    + Add a habit
+                </button>
+
+                <button
+                    id="manageHabitsButton"
+                    type="button"
+                    class="manage-habits-button"
+                >
+                    Manage habits
+                </button>
+
+            </div>
+
+            <!-- RHYTHM -->
+
+            <section class="rhythm-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            YOUR RHYTHM
+                        </p>
+
+                        <h2>
+                            A little consistency goes a long way.
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="view-all-button"
+                        id="viewAllButton"
+                    >
+                        View all
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="rhythm-card"
+                    id="rhythmCard"
+                >
+
+                    <!-- JavaScript will render rhythm -->
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+         ADD HABIT MODAL
+    ========================================== -->
+
+    <div
+        class="habit-modal hidden"
+        id="habitModal"
+    >
+
+
+        <div
+            class="modal-overlay"
+            id="modalOverlay"
+        >
+        </div>
+
+
+        <div class="habit-modal-content">
+
+
+            <button
+                class="modal-close"
+                id="closeHabitModal"
+            >
+                ×
+            </button>
+
+
+            <p id="habitModalLabel" class="section-label">
+                NEW HABIT
+            </p>
+
+
+            <h2 id="habitModalTitle">
+                 Add something worth practicing.
+            </h2>
+
+
+            <p class="modal-description">
+                Keep it simple. Choose something you
+                want to return to.
+            </p>
+
+
+            <label for="habitName">
+                Habit name
+            </label>
+
+
+            <input
+                type="text"
+                id="habitName"
+                placeholder="e.g. Drink water"
+            >
+
+
+            <label for="habitIcon">
+                Icon
+            </label>
+
+
+            <select id="habitIcon">
+
+                <option value="💧">
+                    💧 Water
+                </option>
+
+                <option value="📖">
+                    📖 Reading
+                </option>
+
+                <option value="🚶">
+                    🚶 Movement
+                </option>
+
+                <option value="✎">
+                    ✎ Journal
+                </option>
+
+                <option value="🌿">
+                    🌿 Wellness
+                </option>
+
+                <option value="☀️">
+                    ☀️ Morning
+                </option>
+
+                <option value="♡">
+                    ♡ Personal
+                </option>
+
+            </select>
+
+            <label for="habitFrequency">
+                 Frequency
+            </label>
+
+            <select id="habitFrequency">
+
+                <option value="daily">
+                    Every day
+                </option>
+
+                <option value="weekdays">
+                    Weekdays
+                </option>
+
+                <option value="weekends">
+                    Weekends
+                </option>
+
+            </select>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="cancel-button"
+                    id="cancelHabit"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="save-button"
+                    id="saveHabit"
+                >
+                    Add habit
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Habits JavaScript -->
+
+    <script src="habits.js"></script>
+
+
+</body>
+
+</html>

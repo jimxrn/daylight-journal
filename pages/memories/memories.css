@@ -1,0 +1,1825 @@
+/* ==========================================
+   DAYLIGHT — MEMORIES
+========================================== */
+
+.memories-page {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 42px 0 70px;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.memories-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+
+.memories-eyebrow {
+    margin: 0 0 6px;
+
+    color: #9274B5;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: .64rem;
+    font-weight: 600;
+
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+
+.memories-header h1 {
+    margin: 0;
+
+    color: #413746;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 500;
+}
+
+
+.memories-subtitle {
+    margin: 4px 0 0;
+
+    color: #A28FAE;
+
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 1.35rem;
+}
+
+
+.memory-add-button {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #B49BC8;
+    color: #FFFFFF;
+
+    font-size: 1.7rem;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(130, 100, 150, .16);
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+
+.memory-add-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 11px 24px rgba(130, 100, 150, .22);
+}
+
+
+
+/* ==========================================
+   MAIN LAYOUT
+========================================== */
+
+.memories-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(340px, .75fr);
+
+    gap: 18px;
+
+    align-items: start;
+}
+
+
+
+/* ==========================================
+   CALENDAR CARD
+========================================== */
+
+.memories-calendar-card {
+    padding: 26px;
+
+    border: 1px solid #ECE5F0;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #FFFEFF,
+            #FBF7FD
+        );
+
+    box-shadow:
+        0 10px 30px rgba(100, 80, 115, .045);
+}
+
+
+.calendar-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    margin-bottom: 24px;
+}
+
+
+.calendar-heading h2 {
+    min-width: 180px;
+
+    margin: 0;
+
+    color: #514658;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+
+    text-align: center;
+}
+
+
+.month-button {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #E3D8E9;
+    border-radius: 50%;
+
+    background: #F8F3FA;
+
+    color: #9175A5;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+
+    cursor: pointer;
+}
+
+
+.month-button:hover {
+    background: #F1E9F5;
+}
+
+
+
+/* ==========================================
+   WEEKDAYS
+========================================== */
+
+.weekday-row {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    gap: 7px;
+
+    margin-bottom: 7px;
+}
+
+
+.weekday-row span {
+    padding: 5px;
+
+    color: #9A8AA3;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: .66rem;
+    font-weight: 500;
+
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+
+/* ==========================================
+   MEMORY CALENDAR
+========================================== */
+
+.memory-calendar {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    gap: 7px;
+}
+
+
+.memory-day {
+    position: relative;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    border: 1px solid #ECE4EF;
+    border-radius: 11px;
+
+    background: #FCFAFD;
+
+    cursor: pointer;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+}
+
+
+.memory-day:hover {
+    transform: translateY(-2px);
+
+    border-color: #CDBADB;
+
+    box-shadow:
+        0 7px 16px rgba(100, 80, 115, .10);
+}
+
+
+.memory-day.empty {
+    border-color: transparent;
+    background: transparent;
+    cursor: default;
+}
+
+
+.memory-day.today {
+    border-color: #B49BC8;
+
+    box-shadow:
+        inset 0 0 0 1px #B49BC8;
+}
+
+
+.memory-day.has-memory {
+    border-color: transparent;
+}
+
+
+.memory-day-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.memory-day-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(42, 31, 48, .34),
+            transparent 48%
+        );
+}
+
+
+.memory-day-number {
+    position: absolute;
+
+    right: 8px;
+    bottom: 6px;
+
+    color: #4C4052;
+
+    font-family: "Playfair Display", serif;
+    font-size: .8rem;
+}
+
+
+.has-memory .memory-day-number {
+    color: #FFFFFF;
+
+    text-shadow:
+        0 1px 4px rgba(0,0,0,.25);
+}
+
+
+.memory-day-empty-number {
+    position: absolute;
+
+    right: 8px;
+    bottom: 6px;
+
+    color: #75677D;
+
+    font-family: "Playfair Display", serif;
+    font-size: .8rem;
+}
+
+
+.memory-day.selected {
+    outline: 2px solid #B49BC8;
+    outline-offset: 2px;
+}
+
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+.memories-message {
+    margin-top: 22px;
+    padding: 25px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #F7F0FA,
+            #FCF8FD
+        );
+
+    text-align: center;
+}
+
+
+.message-sun {
+    color: #A68ABD;
+    font-size: 1.2rem;
+}
+
+
+.memories-message p {
+    margin: 7px 0 2px;
+
+    color: #796786;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+}
+
+
+.memories-message span {
+    color: #9D91A4;
+
+    font-size: .72rem;
+}
+
+
+.message-heart {
+    margin-top: 8px;
+
+    color: #B49BC8;
+    font-size: .9rem;
+}
+
+
+
+/* ==========================================
+   DETAIL PANEL
+========================================== */
+
+.memory-detail {
+    min-height: 480px;
+
+    border: 1px solid #ECE5F0;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #FFFEFF,
+            #FBF7FD
+        );
+
+    box-shadow:
+        0 10px 30px rgba(100, 80, 115, .045);
+
+    overflow: hidden;
+}
+
+
+.memory-detail-inner {
+    padding: 27px;
+}
+
+
+.memory-detail-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.memory-detail-date {
+    margin: 0;
+
+    color: #514658;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+
+.memory-detail-weekday {
+    margin: 4px 0 0;
+
+    color: #9A8EA0;
+
+    font-size: .72rem;
+}
+
+
+.memory-detail-heart {
+    margin: 16px 0;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #B49BC8;
+
+    font-size: .75rem;
+}
+
+
+.memory-detail-heart::before,
+.memory-detail-heart::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #E6DCEB;
+}
+
+
+.memory-photo {
+    width: 100%;
+
+    aspect-ratio: 4 / 4.4;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+
+.memory-caption {
+    margin: 20px 8px;
+
+    color: #967BA7;
+
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 1.45rem;
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+
+.memory-actions {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.memory-primary-button,
+.memory-secondary-button {
+    width: 100%;
+
+    padding: 12px 16px;
+
+    border-radius: 999px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: .75rem;
+
+    cursor: pointer;
+}
+
+
+.memory-primary-button {
+    border: none;
+
+    background: #B49BC8;
+    color: #FFFFFF;
+}
+
+
+.memory-secondary-button {
+    border: 1px solid #E3D8E9;
+
+    background: transparent;
+    color: #947E9F;
+}
+
+
+.memory-primary-button:hover {
+    background: #A78ABB;
+}
+
+
+.memory-secondary-button:hover {
+    background: #FAF6FC;
+}
+
+
+
+/* ==========================================
+   ADD MEMORY
+========================================== */
+
+.memory-add-panel {
+    padding: 27px;
+}
+
+
+.memory-upload {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 1.45;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: 1px dashed #CDBADB;
+    border-radius: 15px;
+
+    background: #FCF9FD;
+
+    color: #9A89A4;
+
+    cursor: pointer;
+
+    text-align: center;
+}
+
+
+.memory-upload:hover {
+    background: #FAF5FC;
+}
+
+
+.memory-upload-icon {
+    color: #B49BC8;
+    font-size: 1.7rem;
+}
+
+
+.memory-upload strong {
+    color: #75647E;
+
+    font-family: "Playfair Display", serif;
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+
+.memory-upload span {
+    font-size: .68rem;
+}
+
+
+.memory-upload input {
+    display: none;
+}
+
+
+.memory-preview {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: inherit;
+}
+
+
+.memory-upload.has-preview {
+    border-style: solid;
+}
+
+
+.memory-upload.has-preview
+.memory-upload-content {
+    display: none;
+}
+
+
+.memory-form-label {
+    display: block;
+
+    margin: 20px 0 8px;
+
+    color: #6F6275;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: .72rem;
+    font-weight: 500;
+}
+
+
+.memory-caption-input {
+    width: 100%;
+    min-height: 115px;
+
+    resize: vertical;
+
+    padding: 12px 14px;
+
+    border: 1px solid #E5DCE9;
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #FFFEFF;
+
+    color: #514658;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: .82rem;
+
+    line-height: 1.5;
+}
+
+
+.memory-caption-input:focus {
+    border-color: #B49BC8;
+
+    box-shadow:
+        0 0 0 3px rgba(180, 155, 200, .10);
+}
+
+
+.memory-save-button {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 12px 16px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #B49BC8;
+    color: #FFFFFF;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: .76rem;
+
+    cursor: pointer;
+}
+
+
+.memory-save-button:hover {
+    background: #A78ABB;
+}
+
+
+
+/* ==========================================
+   EMPTY DETAIL
+========================================== */
+
+.memory-empty-detail {
+    min-height: 480px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+
+.memory-empty-sun {
+    color: #B49BC8;
+    font-size: 1.7rem;
+}
+
+
+.memory-empty-detail h2 {
+    margin: 12px 0 5px;
+
+    color: #55485D;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+
+.memory-empty-detail p {
+    max-width: 260px;
+
+    margin: 0;
+
+    color: #9B8EA2;
+
+    font-size: .74rem;
+}
+
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1050px) {
+
+    .memories-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .memory-detail {
+        min-height: auto;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .memories-page {
+        width: min(
+            100% - 28px,
+            650px
+        );
+
+        padding-top: 28px;
+    }
+
+
+    .memories-calendar-card {
+        padding: 15px;
+    }
+
+
+    .memory-calendar,
+    .weekday-row {
+        gap: 4px;
+    }
+
+
+    .memory-day {
+        border-radius: 7px;
+    }
+
+
+    .memory-day-number,
+    .memory-day-empty-number {
+        right: 5px;
+        bottom: 4px;
+        font-size: .65rem;
+    }
+
+}
+/* ==========================================
+   MEMORIES — POLISH PASS 01
+========================================== */
+
+/* Give the calendar a little more breathing room */
+
+.memories-calendar-card {
+    padding: 28px;
+}
+
+
+/* Slightly stronger calendar tiles */
+
+.memory-day {
+    border-color: #E7DDEC;
+    border-radius: 12px;
+    background: #FDFBFE;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+}
+
+
+/* Empty days stay quiet */
+
+.memory-day:not(.has-memory):not(.empty):hover {
+    background: #FBF7FD;
+    border-color: #DCCCE4;
+}
+
+
+/* Photo days should feel like little keepsakes */
+
+.memory-day.has-memory {
+    box-shadow:
+        0 3px 10px rgba(113, 87, 128, .08);
+}
+
+
+.memory-day.has-memory:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 9px 20px rgba(113, 87, 128, .14);
+}
+
+
+/* Today's memory gets a soft Daylight ring */
+
+.memory-day.today {
+    border-color: #B49BC8;
+
+    box-shadow:
+        0 0 0 2px rgba(180, 155, 200, .12);
+}
+
+
+/* Selected day */
+
+.memory-day.selected {
+    outline: 2px solid #A98BBC;
+    outline-offset: 2px;
+}
+
+
+/* Date number */
+
+.memory-day-number,
+.memory-day-empty-number {
+    font-size: .72rem;
+    font-weight: 500;
+}
+
+
+/* Make the photo feel slightly softer */
+
+.memory-day-image {
+    transition: transform .25s ease;
+}
+
+
+.memory-day:hover .memory-day-image {
+    transform: scale(1.025);
+}
+
+
+/* ==========================================
+   DETAIL CARD
+========================================== */
+
+.memory-detail {
+    border-radius: 18px;
+}
+
+
+.memory-detail-inner,
+.memory-add-panel {
+    padding: 29px;
+}
+
+
+.memory-detail-date {
+    color: #493B50;
+}
+
+
+.memory-detail-weekday {
+    margin-top: 5px;
+
+    color: #9C8FA4;
+
+    letter-spacing: .01em;
+}
+
+
+.memory-photo {
+    aspect-ratio: 4 / 4.3;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 18px rgba(90, 68, 102, .08);
+}
+
+
+/* ==========================================
+   ADD BUTTON
+========================================== */
+
+.memory-add-button {
+    width: 42px;
+    height: 42px;
+
+    background: #B49BC8;
+
+    box-shadow:
+        0 7px 18px rgba(130, 100, 150, .16);
+}
+
+
+.memory-add-button:hover {
+    transform: translateY(-2px) scale(1.03);
+}
+
+
+/* ==========================================
+   DAYLIGHT MESSAGE
+========================================== */
+
+.memories-message {
+    margin-top: 24px;
+
+    border: 1px solid #F0E7F3;
+}
+
+
+.message-sun {
+    font-size: 1rem;
+}
+
+
+.memories-message p {
+    color: #76617F;
+}
+
+
+.memories-message span {
+    color: #A092A8;
+}
+/* ==========================================
+   MEMORIES — ADD MEMORY POLISH
+========================================== */
+
+.memory-add-panel {
+    padding: 28px;
+}
+
+
+/* Upload area */
+
+.memory-upload {
+    aspect-ratio: 1 / 1.02;
+
+    margin-top: 4px;
+
+    border: 1px dashed #C9B4D5;
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #FCF9FD,
+            #F9F3FB
+        );
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+.memory-upload:hover {
+    border-color: #AE91C2;
+
+    background:
+        linear-gradient(
+            145deg,
+            #FBF7FC,
+            #F6EEF9
+        );
+
+    transform: translateY(-1px);
+}
+
+
+/* Upload icon */
+
+.memory-upload-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #F0E6F5;
+
+    color: #A287B5;
+
+    font-size: 1.15rem;
+}
+
+
+/* Upload heading */
+
+.memory-upload strong {
+    margin-top: 4px;
+
+    color: #66566E;
+
+    font-family: "Playfair Display", serif;
+    font-size: .92rem;
+}
+
+
+/* Upload helper */
+
+.memory-upload span {
+    color: #A093A7;
+
+    font-size: .66rem;
+    line-height: 1.45;
+}
+
+
+/* Preview */
+
+.memory-preview {
+    transition:
+        transform .25s ease;
+}
+
+
+.memory-upload:hover
+.memory-preview {
+    transform: scale(1.01);
+}
+
+
+/* ==========================================
+   CAPTION
+========================================== */
+
+.memory-form-label {
+    margin-top: 22px;
+    margin-bottom: 8px;
+
+    color: #75677D;
+
+    font-size: .68rem;
+    font-weight: 500;
+
+    letter-spacing: .02em;
+}
+
+
+.memory-caption-input {
+    min-height: 105px;
+
+    border-color: #E5DCE9;
+    border-radius: 14px;
+
+    background: #FFFEFF;
+
+    font-family: "Caveat", cursive;
+    font-size: 1.25rem;
+
+    color: #66566E;
+
+    line-height: 1.35;
+}
+
+
+.memory-caption-input::placeholder {
+    color: #B2A5B8;
+}
+
+
+.memory-caption-input:focus {
+    border-color: #B49BC8;
+
+    box-shadow:
+        0 0 0 3px rgba(
+            180,
+            155,
+            200,
+            .10
+        );
+}
+
+
+/* ==========================================
+   SAVE
+========================================== */
+
+.memory-save-button {
+    margin-top: 14px;
+
+    padding: 13px 18px;
+
+    background: #B49BC8;
+
+    box-shadow:
+        0 6px 14px rgba(
+            130,
+            100,
+            150,
+            .12
+        );
+
+    transition:
+        transform .18s ease,
+        background .18s ease,
+        box-shadow .18s ease;
+}
+
+
+.memory-save-button:hover {
+    transform: translateY(-1px);
+
+    background: #A98BBC;
+
+    box-shadow:
+        0 8px 18px rgba(
+            130,
+            100,
+            150,
+            .17
+        );
+}
+/* ==========================================
+   MEMORY EDITORIAL DETAILS
+========================================== */
+
+.memories-header {
+    position: relative;
+}
+
+
+.memory-month-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+
+.memory-month-title h2 {
+    margin: 0;
+
+    color: #514658;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1.38rem;
+    font-weight: 500;
+}
+
+
+#memory-month-subtitle {
+    margin: 0;
+
+    color: #A38BAE;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: .95rem;
+    font-style: italic;
+}
+
+
+/* ==========================================
+   BOTANICAL SIGNATURE
+========================================== */
+
+.memory-botanical {
+    position: absolute;
+
+    color: #BBA2C9;
+
+    font-family: "Cormorant Garamond", serif;
+
+    opacity: .55;
+
+    pointer-events: none;
+}
+
+
+.memory-botanical-left {
+    left: -7px;
+    top: -10px;
+
+    font-size: 3.8rem;
+
+    transform:
+        rotate(-18deg);
+}
+
+
+/* ==========================================
+   SUN SIGNATURE
+========================================== */
+
+.memory-sun {
+    position: absolute;
+
+    right: 70px;
+    top: -3px;
+
+    color: #C0A5CF;
+
+    font-size: 2.2rem;
+
+    opacity: .28;
+
+    pointer-events: none;
+}
+/* ==========================================
+   MONTHLY CLOSING NOTE
+========================================== */
+
+.memories-message {
+    position: relative;
+
+    min-height: 96px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 22px 30px;
+
+    overflow: hidden;
+}
+
+
+.message-botanical {
+    margin-bottom: 3px;
+
+    color: #B49BC8;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.25rem;
+
+    transform: rotate(-8deg);
+
+    opacity: .75;
+}
+
+
+#memory-month-message {
+    margin: 0;
+
+    color: #66546E;
+
+    font-family: "Playfair Display", serif;
+    font-size: .98rem;
+}
+
+
+#memory-month-count {
+    margin-top: 3px;
+
+    color: #9C8DA4;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: .9rem;
+    font-style: italic;
+}
+
+
+.message-heart {
+    margin-top: 6px;
+
+    color: #B49BC8;
+}
+/* ==========================================
+   DAYLIGHT — MEMORIES
+   CATRIONA AESTHETIC PASS
+========================================== */
+
+.memories-header {
+    position: relative;
+}
+
+
+/* ------------------------------------------
+   EDITORIAL MONTH
+------------------------------------------ */
+
+.memory-month-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.memory-month-title h2 {
+    color: #514658;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    letter-spacing: .01em;
+}
+
+#memory-month-subtitle {
+    color: #A38BAE;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: .95rem;
+    font-style: italic;
+}
+
+
+/* ------------------------------------------
+   BOTANICAL DETAIL
+------------------------------------------ */
+
+.memory-botanical {
+    position: absolute;
+
+    color: #B9A0C6;
+
+    opacity: .45;
+
+    pointer-events: none;
+}
+
+.memory-botanical-left {
+    left: 8px;
+    top: -8px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 3rem;
+
+    transform: rotate(-18deg);
+}
+
+
+/* ------------------------------------------
+   SUN DETAIL
+------------------------------------------ */
+
+.memory-sun {
+    position: absolute;
+
+    right: 72px;
+    top: 0;
+
+    color: #B9A0C6;
+
+    font-size: 1.7rem;
+
+    opacity: .25;
+
+    pointer-events: none;
+}
+
+
+/* ------------------------------------------
+   PHOTO TILES
+------------------------------------------ */
+
+.memory-day.has-memory {
+    overflow: hidden;
+
+    border: 1px solid rgba(
+        180,
+        155,
+        200,
+        .18
+    );
+
+    box-shadow:
+        0 5px 16px rgba(
+            90,
+            70,
+            100,
+            .08
+        );
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease;
+}
+
+.memory-day.has-memory:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 22px rgba(
+            90,
+            70,
+            100,
+            .12
+        );
+}
+
+.memory-day-image {
+    filter: saturate(.92);
+
+    transition:
+        transform .35s ease,
+        filter .35s ease;
+}
+
+.memory-day.has-memory:hover
+.memory-day-image {
+    transform: scale(1.025);
+
+    filter: saturate(1);
+}
+
+
+/* ------------------------------------------
+   SELECTED DAY
+------------------------------------------ */
+
+.memory-day.selected {
+    box-shadow:
+        0 0 0 1px #B49BC8,
+        0 7px 20px rgba(
+            120,
+            90,
+            140,
+            .12
+        );
+}
+
+
+/* ------------------------------------------
+   MONTHLY CLOSING
+------------------------------------------ */
+
+.memories-message {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100px;
+
+    padding: 24px 30px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #FCF9FD,
+            #F9F3FB
+        );
+
+    border: 1px solid rgba(
+        190,
+        165,
+        205,
+        .18
+    );
+
+    border-radius: 18px;
+}
+
+.message-botanical {
+    margin-bottom: 2px;
+
+    color: #B49BC8;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.15rem;
+
+    opacity: .7;
+}
+
+#memory-month-message {
+    margin: 0;
+
+    color: #66546E;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#memory-month-count {
+    margin-top: 4px;
+
+    color: #9C8DA4;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: .95rem;
+    font-style: italic;
+}
+
+.message-heart {
+    margin-top: 7px;
+
+    color: #B49BC8;
+
+    font-size: .9rem;
+}
+
+
+/* ------------------------------------------
+   MEMORY DETAIL
+------------------------------------------ */
+
+.memory-detail-date {
+    color: #514658;
+
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+}
+
+.memory-detail-weekday {
+    color: #A38BAE;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.memory-detail-heart {
+    margin: 8px 0 18px;
+
+    color: #B49BC8;
+
+    font-size: .9rem;
+
+    letter-spacing: 5px;
+}
+
+
+/* ------------------------------------------
+   CAPTION
+------------------------------------------ */
+
+.memory-caption-input {
+    font-family: "DM Sans", sans-serif;
+}
+
+.memory-caption {
+    color: #66546E;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.45rem;
+    font-style: italic;
+    line-height: 1.4;
+}
+/* ==========================================
+   DAYLIGHT — WARM EDITORIAL
+========================================== */
+
+body {
+    background: #FBF7F3;
+}
+
+
+/* Main cards */
+
+.memories-calendar,
+.memories-detail,
+.memory-detail-panel {
+    background: #FFFDFC;
+    border-color: #E8DDD8;
+    box-shadow:
+        0 8px 28px rgba(110, 82, 105, .055);
+}
+
+
+/* Calendar cells */
+
+.memory-day {
+    background: #FFFDFC;
+    border-color: #E9DFE5;
+
+    color: #67586A;
+}
+
+.memory-day:hover {
+    background: #FAF3FA;
+    border-color: #CDB7D5;
+}
+
+
+/* Selected date */
+
+.memory-day.selected {
+    background: #FAF4FA;
+
+    border-color: #B49BC8;
+
+    box-shadow:
+        0 0 0 1px #B49BC8,
+        0 6px 18px rgba(
+            120,
+            90,
+            140,
+            .10
+        );
+}
+
+
+/* Empty upload area */
+
+.memory-upload {
+    background:
+        linear-gradient(
+            145deg,
+            #FFFCFA,
+            #FAF4F9
+        );
+
+    border-color: #D8C3D9;
+}
+
+
+/* Upload icon */
+
+.memory-upload-icon {
+    background: #F1E7F4;
+    color: #A889B5;
+}
+
+
+/* Text */
+
+#memory-month-subtitle {
+    color: #A181A0;
+}
+
+#memory-month-message {
+    color: #665261;
+}
+
+#memory-month-count {
+    color: #9B8796;
+}
+
+
+/* Detail divider */
+
+.memory-detail-heart {
+    color: #B79ABB;
+}
+
+
+/* Caption input */
+
+.memory-caption-input {
+    background: #FFFDFC;
+    border-color: #E5D9DD;
+    color: #62545D;
+}
+
+.memory-caption-input::placeholder {
+    color: #B19DA8;
+}
+
+
+/* Save */
+
+.memory-save-button {
+    background: #B397C2;
+
+    box-shadow:
+        0 7px 18px rgba(
+            120,
+            90,
+            140,
+            .13
+        );
+}
+
+.memory-save-button:hover {
+    background: #A78AB7;
+}
+
+
+/* Monthly closing */
+
+.memories-message {
+    background:
+        linear-gradient(
+            145deg,
+            #FBF4FA,
+            #F8EFEF
+        );
+
+    border-color: #E9DCDD;
+}
+
+
+/* Photo */
+
+.memory-day-image {
+    filter: saturate(.94) contrast(.98);
+}
+
+/* FINAL WARMTH */
+
+.memories-calendar,
+.memories-detail {
+    background: #FFFCF8;
+}
+
+.memory-day {
+    background: #FFFDFB;
+    border-color: #E7DDD8;
+}
+
+.memories-message {
+    background:
+        linear-gradient(
+            145deg,
+            #FCF5F8,
+            #FBF1ED
+        );
+}
+
+.memory-upload {
+    background:
+        linear-gradient(
+            145deg,
+            #FFFCF9,
+            #FBF3F5
+        );
+}
+.memory-botanical-left {
+    left: 0;
+    top: -8px;
+    width: 48px;
+
+    color: #B79EBC;
+    opacity: .48;
+
+    pointer-events: none;
+}
+
+.memory-botanical-left svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+.memory-sun {
+    position: absolute;
+
+    right: 70px;
+    top: 0;
+
+    width: 25px;
+
+    color: #B79EBC;
+    opacity: .32;
+
+    pointer-events: none;
+}
+
+.memory-sun svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}

@@ -138,63 +138,22 @@ function isToday(
 
 function getMemories() {
 
-    const saved =
-        localStorage.getItem(
-            MEMORIES_STORAGE_KEY
-        );
-
-
-    if (!saved) {
-
-        return {};
-
-    }
-
-
-    try {
-
-        const parsed =
-            JSON.parse(
-                saved
-            );
-
-
-        return (
-            parsed &&
-            typeof parsed === "object"
-        )
-            ? parsed
-            : {};
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Unable to load memories.",
-            error
-        );
-
-        return {};
-
-    }
+    return getDaylightSection(
+        "memories"
+    );
 
 }
-
 
 function saveMemories(
     memories
 ) {
 
-    localStorage.setItem(
-        MEMORIES_STORAGE_KEY,
-        JSON.stringify(
-            memories
-        )
+    saveDaylightSection(
+        "memories",
+        memories
     );
 
 }
-
 
 /* ==========================================
    MONTH
@@ -804,112 +763,101 @@ function renderAddMemory(
 
 
     photoInput.addEventListener(
-        "change",
-        event => {
+    "change",
+    event => {
 
-            const file =
-                event.target.files[0];
+        const file =
+            event.target.files[0];
 
-
-            if (!file) {
-                return;
-            }
-
-
-            resizeImage(
-                file,
-                photo => {
-
-                    selectedPhoto =
-                        photo;
+        if (!file) {
+            return;
+        }
 
 
-                    upload.classList.add(
-                        "has-preview"
+        resizeImage(
+            file,
+            photo => {
+
+                selectedPhoto =
+                    photo;
+
+
+                upload.classList.add(
+                    "has-preview"
+                );
+
+
+                let preview =
+                    upload.querySelector(
+                        ".memory-preview"
                     );
 
 
-                    upload.innerHTML = `
+                if (!preview) {
 
-                        <img
-                            class="memory-preview"
-                            src="${photo}"
-                            alt="Selected memory photo"
-                        >
-
-                        <div
-                            class="memory-upload-content"
-                        >
-                            <strong>
-                                Change photo
-                            </strong>
-
-                            <span>
-                                One photo per day.
-                            </span>
-                        </div>
-
-                        <input
-                            type="file"
-                            id="memory-photo"
-                            accept="image/*"
-                        >
-
-                    `;
-
-
-                    const replacementInput =
-                        document.getElementById(
-                            "memory-photo"
+                    preview =
+                        document.createElement(
+                            "img"
                         );
 
+                    preview.className =
+                        "memory-preview";
 
-                    replacementInput.addEventListener(
-                        "change",
-                        event => {
+                    preview.alt =
+                        "Selected memory photo";
 
-                            const replacement =
-                                event.target.files[0];
-
-
-                            if (!replacement) {
-                                return;
-                            }
-
-
-                            resizeImage(
-                                replacement,
-                                resizedPhoto => {
-
-                                    selectedPhoto =
-                                        resizedPhoto;
-
-
-                                    const preview =
-                                        upload.querySelector(
-                                            ".memory-preview"
-                                        );
-
-
-                                    if (preview) {
-
-                                        preview.src =
-                                            resizedPhoto;
-
-                                    }
-
-                                }
-                            );
-
-                        }
+                    upload.prepend(
+                        preview
                     );
 
                 }
-            );
 
-        }
+
+                preview.src =
+                    photo;
+
+
+                const content =
+                    upload.querySelector(
+                        ".memory-upload-content"
+                    );
+
+
+                if (content) {
+
+                    const strong =
+                        content.querySelector(
+                            "strong"
+                        );
+
+                    const span =
+                        content.querySelector(
+                            "span"
+                        );
+
+
+                    if (strong) {
+
+                        strong.textContent =
+                            "Change photo";
+
+                    }
+
+
+                    if (span) {
+
+                        span.textContent =
+                            "One photo per day.";
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
     );
-
 
     document
         .getElementById(

@@ -290,7 +290,7 @@
 
                     </aside>
 
-                    <section class="journal-section prompt-section">
+                    <div class="journal-section prompt-section">
 
                         <div class="section-heading">
                             JOURNAL PROMPTS
@@ -351,11 +351,59 @@
 
                                 </div>  
 
-                            </div>      
-                     
+                            </div>
+
+                        </div>
+                    
                     </section>
 
                 </div>
+
+                        <div
+                            id="saved-prompt-entry"
+                            class="saved-journal-entry hidden"
+                            >
+                            <div class="saved-entry-header">
+
+                                <div>
+
+                                    <p class="saved-entry-eyebrow">
+                                        SAVED REFLECTION
+                                    </p>
+
+                                    <h3 id="saved-prompt-date">
+                                        August 14, 2026
+                                    </h3>
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    id="edit-prompt-entry"
+                                    class="edit-entry-btn"
+                                >
+                                    Edit ✎
+                                </button>
+
+                            </div>
+
+                            <div 
+
+                                id= "saved-prompt-question"
+                                class="saved-prompt-question">
+
+                                “What made today feel a little lighter?”
+
+                            </div>
+
+
+                            <div
+                                id="saved-prompt-text"
+                                class="saved-entry-text"
+                            ></div>
+
+
+                        </div>  
 
                 <!-- ==================================
                      THOUGHTS TODAY / SELECTED DATE
@@ -427,6 +475,41 @@
             </div>
 
         </div>
+
+        <div id="saved-journal-entry" class="saved-journal-entry hidden">
+
+            <div class="saved-entry-header">
+
+                <div>
+
+                    <p class="saved-entry-eyebrow">
+                        SAVED ENTRY
+                    </p>
+
+                    <h3 id="saved-entry-date">
+                        August 14, 2026
+                    </h3>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="edit-journal-entry"
+                    class="edit-entry-btn"
+                    >
+                        Edit ✎
+
+                </button>
+            
+            </div>
+
+
+            <div
+                id="saved-entry-text"
+                class="saved-entry-text"
+            ></div>
+
+        </div>    
 
     </main>
 

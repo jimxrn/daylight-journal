@@ -1,0 +1,1130 @@
+/* ==========================================
+   DAYLIGHT — DASHBOARD
+========================================== */
+
+/* ==========================================
+   DASHBOARD — WARM PALETTE
+========================================== */
+
+.dashboard-page {
+
+    --dashboard-bg: #FBF8F5;
+
+    --dashboard-card: #FFFCF9;
+
+    --dashboard-border: #E9E0E8;
+
+    --dashboard-text: #30263A;
+
+    --dashboard-muted: #8C808B;
+
+    --dashboard-purple: #8F78B8;
+
+    --dashboard-lavender: #F2EBFA;
+
+    --dashboard-blush: #F8E9E7;
+
+}
+
+
+/* ==========================================
+   PAGE
+========================================== */
+
+.dashboard-page {
+
+    width: 100%;
+    max-width: 1320px;
+
+    margin: 0 auto;
+
+    background: var(--dashboard-bg);
+
+    color: var(--dashboard-text);
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(238, 222, 232, .28),
+            transparent 28%
+        ),
+        #FBF8F5;
+
+}
+
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.dashboard-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 40px;
+
+    margin: 32px 0 46px;
+
+}
+
+
+.dashboard-header-content {
+
+    max-width: 760px;
+
+}
+
+
+.dashboard-date {
+
+    margin: 0 0 12px;
+
+    color: var(--text-light);
+
+    text-transform: uppercase;
+
+    letter-spacing: .18em;
+
+    font-size: .78rem;
+
+    font-weight: 600;
+
+}
+
+
+.dashboard-greeting {
+
+    margin: 0;
+
+    font-size: 4rem;
+
+    line-height: 1.08;
+
+    letter-spacing: -.03em;
+
+}
+
+
+.dashboard-tagline {
+
+    margin: 14px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+
+}
+
+
+/* ==========================================
+   DATE CARD
+========================================== */
+
+.dashboard-date-card {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 15px 22px;
+
+   border: 1px solid var(--dashboard-border);
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, .78);
+
+    box-shadow: 0 8px 24px rgba(70, 50, 90, .04);
+
+    color: var(--text-dark);
+
+    font-size: .9rem;
+
+    font-weight: 600;
+
+}
+
+
+.date-icon {
+
+    font-size: 1rem;
+
+}
+
+
+/* ==========================================
+   SECTION LABEL
+========================================== */
+
+.section-heading {
+
+    margin-bottom: 16px;
+
+}
+
+
+.section-heading span {
+
+    color: var(--text-light);
+
+    text-transform: uppercase;
+
+    letter-spacing: .18em;
+
+    font-size: .72rem;
+
+    font-weight: 700;
+
+}
+
+
+/* ==========================================
+   TODAY
+========================================== */
+
+.dashboard-today {
+
+    margin-bottom: 34px;
+
+}
+
+
+.today-hero-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 150px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 34px 40px;
+
+    border: 1px solid var(--dashboard-border);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            110deg,
+            #fff7fb 0%,
+            #f8f1ff 55%,
+            #f1e8ff 100%
+        );
+
+    box-shadow:
+        0 16px 40px rgba(85, 55, 110, .07);
+
+}
+
+
+.today-hero-content {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.today-hero-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .72);
+
+    color: var(--primary);
+
+    font-size: 1.25rem;
+
+}
+
+
+.today-hero-card h2 {
+
+    margin: 0;
+
+    font-size: 1.05rem;
+
+    line-height: 1.5;
+
+}
+
+
+.today-hero-card p {
+
+    margin: 7px 0 0;
+
+    color: var(--text-light);
+
+    font-size: .9rem;
+
+}
+
+
+.today-hero-art {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 110px;
+
+    height: 110px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .36);
+
+    font-size: 3rem;
+
+}
+
+
+/* Decorative soft circle */
+
+.today-hero-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+
+    height: 220px;
+
+    right: -50px;
+
+    bottom: -105px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .42);
+
+}
+
+
+/* ==========================================
+   TODAY'S ACTIVITY
+========================================== */
+
+.dashboard-activity {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 24px;
+
+    margin-bottom: 34px;
+
+}
+
+
+.dashboard-panel {
+
+    min-height: 300px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 28px;
+
+    border: 1px solid var(--dashboard-border);
+
+    border-radius: 24px;
+
+    background: var(--dashboard-card);
+
+    box-shadow:
+        0 14px 35px rgba(70, 50, 90, .055);
+
+}
+
+
+.panel-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.panel-eyebrow {
+
+    margin: 0 0 5px;
+
+    color: var(--text-light);
+
+    text-transform: uppercase;
+
+    letter-spacing: .16em;
+
+    font-size: .65rem;
+
+    font-weight: 700;
+
+}
+
+
+.panel-header h2 {
+
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.65rem;
+
+    font-weight: 500;
+
+}
+
+
+.panel-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #f1eaff;
+
+    color: var(--primary);
+
+    font-size: 1rem;
+
+}
+
+
+.panel-content {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 24px 0;
+
+}
+
+
+.dashboard-empty-state {
+
+    margin: 0;
+
+    color: var(--text-light);
+
+    font-size: .9rem;
+
+    line-height: 1.7;
+
+}
+
+
+.panel-footer {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border-color);
+
+}
+
+
+.panel-link {
+
+    padding: 0;
+
+    border: none;
+
+    background: none;
+
+    color: var(--primary);
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: .82rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: opacity .2s ease;
+
+}
+
+
+.panel-link:hover {
+
+    opacity: .68;
+
+}
+
+
+/* ==========================================
+   PERSONAL SPACE
+========================================== */
+
+.dashboard-personal {
+
+    display: grid;
+
+    grid-template-columns: 1.35fr 1fr 1fr;
+
+    gap: 24px;
+
+}
+
+
+.dashboard-personal-card {
+
+    min-height: 250px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 28px;
+
+    border: 1px solid var(--dashboard-border);
+
+    border-radius: 24px;
+
+    background: var(--dashboard-card);
+
+    box-shadow:
+        0 14px 35px rgba(70, 50, 90, .055);
+
+}
+
+
+.personal-card-header {
+
+    margin-bottom: 22px;
+
+}
+
+
+.personal-card-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+
+.personal-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #f1eaff;
+
+    font-size: 1rem;
+
+}
+
+
+.personal-card-title h2 {
+
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.45rem;
+
+    font-weight: 500;
+
+}
+
+
+/* ==========================================
+   JOURNAL PREVIEW
+========================================== */
+
+.dashboard-journal-preview {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 8px 0 22px;
+
+}
+
+
+.dashboard-journal-preview:not(:has(.dashboard-empty-state)) {
+
+    align-items: flex-start;
+
+}
+
+
+.dashboard-journal-preview {
+
+    font-family: "Playfair Display", serif;
+
+    color: var(--text-dark);
+
+    font-size: 1.02rem;
+
+    line-height: 1.75;
+
+}
+
+
+.personal-card-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border-color);
+
+    color: var(--text-light);
+
+    font-size: .72rem;
+
+}
+
+
+/* ==========================================
+   HABITS / MEMORIES
+========================================== */
+
+.dashboard-personal-content {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.habits-dashboard-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.92),
+            rgba(246,242,255,.82)
+        );
+
+}
+
+
+.memories-dashboard-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.92),
+            rgba(255,247,250,.84)
+        );
+
+}
+
+
+/* ==========================================
+   RESPONSIVE — TABLET
+========================================== */
+
+@media (max-width: 1000px) {
+
+    .dashboard-page {
+
+        padding: 50px 28px 80px;
+
+    }
+
+
+    .dashboard-greeting {
+
+        font-size: 3.2rem;
+
+    }
+
+
+    .dashboard-personal {
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .journal-dashboard-card {
+
+        grid-column: 1 / -1;
+
+    }
+
+}
+
+
+/* ==========================================
+   RESPONSIVE — MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .dashboard-page {
+
+        padding: 35px 18px 70px;
+
+    }
+
+
+    .dashboard-header {
+
+        flex-direction: column;
+
+        margin: 30px 0 42px;
+
+    }
+
+
+    .dashboard-greeting {
+
+        font-size: 2.65rem;
+
+    }
+
+
+    .dashboard-date-card {
+
+        align-self: flex-start;
+
+    }
+
+
+    .dashboard-activity {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .dashboard-personal {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .journal-dashboard-card {
+
+        grid-column: auto;
+
+    }
+
+
+    .today-hero-card {
+
+        min-height: 170px;
+
+        padding: 28px;
+
+        .today-hero-card {
+
+    background:
+        linear-gradient(
+            110deg,
+            #FFF5F0 0%,
+            #F9EFF7 48%,
+            #F0E8F8 100%
+        );
+
+}
+
+    }
+
+
+    .today-hero-art {
+
+        width: 75px;
+
+        height: 75px;
+
+        font-size: 2.2rem;
+
+    }
+
+
+    .dashboard-panel,
+    .dashboard-personal-card {
+
+        padding: 24px;
+
+    }
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+    .dashboard-greeting {
+
+        font-size: 2.25rem;
+
+    }
+
+
+    .dashboard-tagline {
+
+        font-size: .9rem;
+
+    }
+
+
+    .today-hero-card {
+
+        padding: 24px;
+
+    }
+
+
+    .today-hero-art {
+
+        display: none;
+
+    }
+
+
+    .personal-card-footer {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+}
+/* ==========================================
+   DASHBOARD — PLANNER PREVIEW
+========================================== */
+
+.dashboard-plan-list {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.dashboard-plan-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+
+}
+
+
+.dashboard-plan-check {
+
+    width: 28px;
+
+    height: 28px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #F3ECFA;
+
+    color: var(--dashboard-purple);
+
+    font-size: .85rem;
+
+}
+
+
+.dashboard-plan-text {
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: var(--dashboard-text);
+
+    font-size: .88rem;
+
+}
+
+
+.dashboard-plan-item.is-completed
+.dashboard-plan-text {
+
+    text-decoration: line-through;
+
+    color: var(--dashboard-muted);
+
+}
+
+
+.dashboard-plan-item.is-completed
+.dashboard-plan-check {
+
+    background: #EDE5F7;
+
+}
+
+
+.dashboard-plan-more {
+
+    margin: 12px 0 0 40px;
+
+    color: var(--dashboard-muted);
+
+    font-size: .75rem;
+
+}
+
+
+.dashboard-planner-empty {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.dashboard-planner-empty span {
+
+    color: var(--dashboard-muted);
+
+    font-size: .75rem;
+
+}
+/* ==========================================
+   DASHBOARD — CALENDAR PREVIEW
+========================================== */
+
+.dashboard-calendar-list {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+}
+
+
+.dashboard-calendar-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+
+}
+
+
+.dashboard-calendar-icon {
+
+    width: 32px;
+
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #F3ECFA;
+
+    font-size: .85rem;
+
+}
+
+
+.dashboard-calendar-item.is-birthday
+.dashboard-calendar-icon {
+
+    background: #FBECEA;
+
+}
+
+
+.dashboard-calendar-info {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.dashboard-calendar-info strong {
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: var(--dashboard-text);
+
+    font-size: .84rem;
+
+    font-weight: 600;
+
+}
+
+
+.dashboard-calendar-info span {
+
+    color: var(--dashboard-muted);
+
+    font-size: .7rem;
+
+}
+
+
+.dashboard-calendar-empty {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.dashboard-calendar-empty span {
+
+    color: var(--dashboard-muted);
+
+    font-size: .75rem;
+
+}
+
+
+.dashboard-calendar-more {
+
+    margin: 12px 0 0 44px;
+
+    color: var(--dashboard-muted);
+
+    font-size: .75rem;
+
+}

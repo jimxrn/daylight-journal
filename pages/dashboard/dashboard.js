@@ -66,69 +66,26 @@ function renderDashboardDate() {
 
 function getDashboardPlannerData() {
 
-    let todayItems = [];
-
-    let plans = [];
-
-
-    /*
-       Quick-capture tasks
-       from the Planner.
-    */
-
-    const savedToday =
-        localStorage.getItem(
-            "daylightToday"
+    const plannerData =
+        getDaylightSection(
+            "planner"
         );
 
 
-    if (savedToday) {
-
-        try {
-
-            todayItems =
-                JSON.parse(savedToday);
-
-        } catch (error) {
-
-            console.error(
-                "Unable to read today's Planner tasks.",
-                error
-            );
-
-        }
-
-    }
+    const todayItems =
+        Array.isArray(
+            plannerData?.todayItems
+        )
+            ? plannerData.todayItems
+            : [];
 
 
-    /*
-       Dated plans
-       from the Planner.
-    */
-
-    const savedPlanner =
-        localStorage.getItem(
-            "daylightPlanner"
-        );
-
-
-    if (savedPlanner) {
-
-        try {
-
-            plans =
-                JSON.parse(savedPlanner);
-
-        } catch (error) {
-
-            console.error(
-                "Unable to read Planner plans.",
-                error
-            );
-
-        }
-
-    }
+    const plans =
+        Array.isArray(
+            plannerData?.plans
+        )
+            ? plannerData.plans
+            : [];
 
 
     const todayKey =
@@ -143,8 +100,11 @@ function getDashboardPlannerData() {
 
 
     return {
+
         todayItems,
+
         todaysPlans
+
     };
 
 }
@@ -511,34 +471,17 @@ function loadDashboardJournal() {
     }
 
 
-    const raw =
-        localStorage.getItem(
-            "daylightJournalEntries"
+    const journalData =
+        getDaylightSection(
+            "journal"
         );
 
 
-    let entries = {};
-
-
-    if (raw) {
-
-        try {
-
-            entries =
-                JSON.parse(raw);
-
-        } catch (error) {
-
-            console.error(
-                "Unable to load Dashboard Journal data.",
-                error
-            );
-
-            return;
-
-        }
-
-    }
+    const entries =
+        journalData &&
+        journalData.entries
+            ? journalData.entries
+            : {};
 
 
     const todayKey =
@@ -1064,23 +1007,17 @@ function getDashboardCalendarData() {
         getDashboardDateKey();
 
 
-    let events = [];
+    const calendarData =
+    getDaylightSection(
+        "calendar"
+    );
 
-    try {
-
-        events =
-            JSON.parse(
-                localStorage.getItem("daylightEvents")
-            ) || [];
-
-    } catch (error) {
-
-        console.error(
-            "Unable to read Calendar events.",
-            error
-        );
-
-    }
+    const events =
+        Array.isArray(
+            calendarData?.events
+        )
+            ? calendarData.events
+            : [];
 
 
     const todayEvents =

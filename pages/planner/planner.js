@@ -27,7 +27,7 @@ const planDate = document.getElementById("planDate");
 // APP STATE
 // ==========================================
 
-const STORAGE_KEY = "daylightPlanner";
+const PLANNER_SECTION = "planner";
 
 let planner = [];
 
@@ -38,53 +38,143 @@ let todayItems = [];
 // STORAGE
 // ==========================================
 
-function savePlanner(){
+function getPlannerData() {
 
-    localStorage.setItem(
+    const saved =
+        getDaylightSection(
+            PLANNER_SECTION
+        );
 
-        STORAGE_KEY,
+    return {
 
-        JSON.stringify(planner)
+        plans:
+            Array.isArray(saved?.plans)
+                ? saved.plans
+                : [],
+
+        todayItems:
+            Array.isArray(saved?.todayItems)
+                ? saved.todayItems
+                : []
+
+    };
+
+}
+
+
+function savePlannerData() {
+
+    saveDaylightSection(
+
+        PLANNER_SECTION,
+
+        {
+
+            plans: planner,
+
+            todayItems: todayItems
+
+        }
 
     );
 
 }
 
-function loadPlanner(){
 
-    const saved = localStorage.getItem(
+function loadPlannerData() {
 
-        STORAGE_KEY
+    const data =
+        getPlannerData();
 
-    );
 
-    planner = saved ? JSON.parse(saved) : [];
+    /* ==========================================
+       LEGACY MIGRATION
+    ========================================== */
+
+    const legacyPlanner =
+        localStorage.getItem(
+            "daylightPlanner"
+        );
+
+    const legacyToday =
+        localStorage.getItem(
+            "daylightToday"
+        );
+
+
+    /*
+       If centralized Planner data is empty,
+       recover existing legacy data.
+    */
+
+    if (
+        data.plans.length === 0 &&
+        legacyPlanner
+    ) {
+
+        try {
+
+            data.plans =
+                JSON.parse(
+                    legacyPlanner
+                );
+
+        } catch (error) {
+
+            console.error(
+                "Unable to migrate legacy Planner plans.",
+                error
+            );
+
+        }
+
+    }
+
+
+    if (
+        data.todayItems.length === 0 &&
+        legacyToday
+    ) {
+
+        try {
+
+            data.todayItems =
+                JSON.parse(
+                    legacyToday
+                );
+
+        } catch (error) {
+
+            console.error(
+                "Unable to migrate legacy Today items.",
+                error
+            );
+
+        }
+
+    }
+
+
+    /*
+       Apply recovered data.
+    */
+
+    planner =
+        data.plans;
+
+    todayItems =
+        data.todayItems;
+
+
+    /*
+       Save the recovered data
+       into centralized Daylight storage.
+    */
+
+    savePlannerData();
 
 }
 
-function saveTodayItems(){
-
-    localStorage.setItem(
-
-        "daylightToday",
-
-        JSON.stringify(todayItems)
-
-    );
-
-}
-
-function loadTodayItems(){
-
-    const saved = localStorage.getItem(
-
-        "daylightToday"
-
-    );
-
-    todayItems = saved ? JSON.parse(saved) : [];
-
-}
 // ==========================================
 // MODAL
 // ==========================================
@@ -126,7 +216,7 @@ function addTodayItem(){
 
     });
 
-    saveTodayItems();
+    savePlannerData();
 
     renderToday();
 
@@ -144,7 +234,7 @@ function deleteTodayItem(id){
 
     );
 
-    saveTodayItems();
+    savePlannerData();
 
     renderToday();
 
@@ -162,7 +252,7 @@ function toggleTodayItem(id){
 
     item.completed = !item.completed;
 
-    saveTodayItems();
+    savePlannerData();
 
     renderToday();
 
@@ -199,7 +289,7 @@ function createPlan(){
 
     planner.push(plan);
 
-    savePlanner();
+   savePlannerData();
 
     renderPlanner();
 
@@ -648,7 +738,7 @@ function openPlan(id){
 
         plan.goal = goalTextarea.value;
 
-        savePlanner();
+        savePlannerData();
 
     });
     const notesTextarea = document.getElementById("notesTextarea");
@@ -657,7 +747,7 @@ function openPlan(id){
 
         plan.notes = notesTextarea.value;
 
-        savePlanner();
+        savePlannerData();
 
     });
 
@@ -673,7 +763,7 @@ function openPlan(id){
             plan.showInCalendar =
                 calendarToggle.checked;
 
-            savePlanner();
+            savePlannerData();
 
         }
     );
@@ -695,7 +785,7 @@ function deletePlan(planId){
 
     planner = planner.filter(p => p.id !== planId);
 
-    savePlanner();
+    savePlannerData();
 
     renderPlanner();
 
@@ -719,7 +809,7 @@ function renamePlan(planId){
 
     plan.title = trimmedTitle;
 
-    savePlanner();
+    savePlannerData();
 
     renderPlanner();
 
@@ -741,7 +831,7 @@ function duplicatePlan(planId){
 
     planner.push(duplicate);
 
-    savePlanner();
+    savePlannerData();
 
     renderPlanner();
 
@@ -876,7 +966,7 @@ function addChecklistItem(planId){
 
     checklistInput.value = "";
 
-    savePlanner();
+    savePlannerData();
 
     renderChecklist(plan);
 
@@ -899,7 +989,7 @@ function toggleChecklist(planId, itemId){
 
     item.done = !item.done;
 
-    savePlanner();
+    savePlannerData();
 
     renderChecklist(plan);
 
@@ -922,7 +1012,7 @@ function deleteChecklistItem(planId, itemId){
 
     );
 
-    savePlanner();
+    savePlannerData();
 
     renderChecklist(plan);
 
@@ -1111,9 +1201,7 @@ savePlan.addEventListener(
 // INITIALIZE
 // ==========================================
 
-loadPlanner();
-
-loadTodayItems();
+loadPlannerData();
 
 renderPlanner();
 

@@ -84,6 +84,9 @@ const editPromptEntryButton =
    STORAGE
 ========================================== */
 
+const JOURNAL_SECTION =
+    "journal";
+
 const JOURNAL_STORAGE_KEY =
     "daylightJournalEntries";
 
@@ -92,40 +95,43 @@ const JOURNAL_PROMPT_STORAGE_KEY =
 
 function getPromptAssignments() {
 
-    const saved =
-        localStorage.getItem(
-            JOURNAL_PROMPT_STORAGE_KEY
+    const journalData =
+        getDaylightSection(
+            JOURNAL_SECTION
         );
 
-    if (!saved) {
-        return {};
-    }
+    return (
+        journalData?.promptAssignments &&
+        typeof journalData.promptAssignments === "object"
+    )
+        ? journalData.promptAssignments
+        : {};
 
-    try {
-
-        return JSON.parse(saved);
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load journal prompt assignments.",
-            error
-        );
-
-        return {};
-
-    }
 }
 
 
 function savePromptAssignments(assignments) {
 
-    localStorage.setItem(
-        JOURNAL_PROMPT_STORAGE_KEY,
-        JSON.stringify(assignments)
+    const journalData =
+        getDaylightSection(
+            JOURNAL_SECTION
+        );
+
+    saveDaylightSection(
+        JOURNAL_SECTION,
+        {
+
+            ...(journalData || {}),
+
+            promptAssignments:
+                assignments
+
+        }
     );
 
 }
+
+
 function getRandomPromptIndex(excludeIndex = -1) {
 
     const assignments =
@@ -424,45 +430,149 @@ function isToday(dateKey) {
 /* ==========================================
    STORAGE HELPERS
 ========================================== */
-
 function getJournalEntries() {
 
-    const saved =
-        localStorage.getItem(
-            JOURNAL_STORAGE_KEY
+    const journalData =
+        getDaylightSection(
+            JOURNAL_SECTION
         );
 
-
-    if (!saved) {
-
-        return {};
-
-    }
-
-
-    try {
-
-        return JSON.parse(saved);
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load journal history.",
-            error
-        );
-
-        return {};
-
-    }
+    return (
+        journalData?.entries &&
+        typeof journalData.entries === "object"
+    )
+        ? journalData.entries
+        : {};
 
 }
 
 
 function saveJournalEntries(entries) {
 
-    localStorage.setItem(
-        JOURNAL_STORAGE_KEY,
-        JSON.stringify(entries)
+    const journalData =
+        getDaylightSection(
+            JOURNAL_SECTION
+        );
+
+    saveDaylightSection(
+        JOURNAL_SECTION,
+        {
+
+            ...(journalData || {}),
+
+            entries
+
+        }
+    );
+
+}
+function migrateJournalToCentralStorage() {
+
+    const centralized =
+        getDaylightSection(
+            JOURNAL_SECTION
+        );
+
+
+    const legacyEntriesRaw =
+        localStorage.getItem(
+            "daylightJournalEntries"
+        );
+
+
+    const legacyAssignmentsRaw =
+        localStorage.getItem(
+            "daylightJournalPromptAssignments"
+        );
+
+
+    let entries =
+        centralized?.entries || {};
+
+
+    let promptAssignments =
+        centralized?.promptAssignments || {};
+
+
+    if (
+        Object.keys(entries).length === 0 &&
+        legacyEntriesRaw
+    ) {
+
+        try {
+
+            const migratedEntries =
+                JSON.parse(
+                    legacyEntriesRaw
+                );
+
+            if (
+                migratedEntries &&
+                typeof migratedEntries === "object"
+            ) {
+
+                entries =
+                    migratedEntries;
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Unable to migrate Journal entries.",
+                error
+            );
+
+        }
+
+    }
+
+
+    if (
+        Object.keys(promptAssignments).length === 0 &&
+        legacyAssignmentsRaw
+    ) {
+
+        try {
+
+            const migratedAssignments =
+                JSON.parse(
+                    legacyAssignmentsRaw
+                );
+
+            if (
+                migratedAssignments &&
+                typeof migratedAssignments === "object"
+            ) {
+
+                promptAssignments =
+                    migratedAssignments;
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Unable to migrate Journal prompt assignments.",
+                error
+            );
+
+        }
+
+    }
+
+
+    saveDaylightSection(
+        JOURNAL_SECTION,
+        {
+
+            ...(centralized || {}),
+
+            entries,
+
+            promptAssignments
+
+        }
     );
 
 }
@@ -1000,6 +1110,8 @@ function loadSelectedEntry() {
         updatePromptSaveButton();
 
         showSavedPromptEntry(entry);
+        
+        showSavedJournalEntry(entry);
 
 
     currentPromptIndex =
@@ -1667,6 +1779,8 @@ if (editPromptEntryButton) {
 ========================================== */
 
 migrateOldJournal();
+
+migrateJournalToCentralStorage();
 
 loadSelectedEntry();
 

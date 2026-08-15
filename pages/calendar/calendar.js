@@ -75,21 +75,124 @@ let selectedDay = today.getDate();
 let editingEventId = null;
 let editingBirthdayId = null;
 
-function getPlannerPlans(){
+/* ==========================================
+   CENTRALIZED STORAGE
+========================================== */
 
-    const plans = JSON.parse(
-        localStorage.getItem("daylightPlanner")
-    ) || [];
+const CALENDAR_SECTION = "calendar";
 
-    return plans.map(plan => ({
 
-        ...plan,
+function getCalendarEvents() {
 
-        showInCalendar:
-            plan.showInCalendar === true
+    const data =
+        getDaylightSection(
+            CALENDAR_SECTION
+        );
 
-    }));
+    return Array.isArray(data?.events)
+        ? data.events
+        : [];
 
+}
+
+
+function saveCalendarEvents(events) {
+
+    saveDaylightSection(
+        CALENDAR_SECTION,
+        {
+            events
+        }
+    );
+
+}
+
+
+function loadCalendarEvents() {
+
+    const centralized =
+        getCalendarEvents();
+
+    const legacy =
+        localStorage.getItem(
+            "daylightEvents"
+        );
+
+
+    /*
+       Migrate existing Calendar events
+       the first time centralized storage
+       is still empty.
+    */
+
+    if (
+        centralized.length === 0 &&
+        legacy
+    ) {
+
+        try {
+
+            const migrated =
+                JSON.parse(
+                    legacy
+                );
+
+            if (
+                Array.isArray(
+                    migrated
+                )
+            ) {
+
+                saveCalendarEvents(
+                    migrated
+                );
+
+                return migrated;
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Unable to migrate legacy Calendar events.",
+                error
+            );
+
+        }
+
+    }
+
+
+    return centralized;
+
+}
+
+function getPlannerPlans() {
+
+    const plannerData =
+        getDaylightSection(
+            "planner"
+        );
+
+
+    const plans =
+        Array.isArray(
+            plannerData?.plans
+        )
+            ? plannerData.plans
+            : [];
+
+
+    return plans.map(
+        plan => ({
+
+            ...plan,
+
+            showInCalendar:
+                plan.showInCalendar === true
+
+        })
+    );
 
 }
 
@@ -198,9 +301,7 @@ function renderCalendar() {
         // Event Indicators
 
         const events =
-            JSON.parse(
-                localStorage.getItem("daylightEvents")
-            ) || [];
+            loadCalendarEvents();
 
         const dayEvents = events.filter(event => {
 
@@ -309,9 +410,7 @@ function loadEvents() {
         document.querySelector(".event-list");
 
     const events =
-        JSON.parse(
-            localStorage.getItem("daylightEvents")
-        ) || [];
+      loadCalendarEvents();
 
     const birthdays =
         getBirthdays();
@@ -680,18 +779,15 @@ function deleteEvent(id){
     if(!confirmDelete) return;
 
     let events =
-        JSON.parse(
-            localStorage.getItem("daylightEvents")
-        ) || [];
+        loadCalendarEvents();
 
     events =
         events.filter(
             event => event.id !== id
         );
 
-    localStorage.setItem(
-        "daylightEvents",
-        JSON.stringify(events)
+     saveCalendarEvents(
+        events
     );
 
     loadEvents();
@@ -706,9 +802,7 @@ function deleteEvent(id){
 function editEvent(id){
 
     const events =
-        JSON.parse(
-            localStorage.getItem("daylightEvents")
-        ) || [];
+       loadCalendarEvents();
 
     const event =
         events.find(
@@ -785,9 +879,7 @@ saveEvent.addEventListener("click", () => {
     }
 
     const events =
-        JSON.parse(
-            localStorage.getItem("daylightEvents")
-        ) || [];
+        loadCalendarEvents();
 
     const event = {
 
@@ -822,9 +914,8 @@ saveEvent.addEventListener("click", () => {
 
     }
 
-    localStorage.setItem(
-        "daylightEvents",
-        JSON.stringify(events)
+    saveCalendarEvents(
+        events
     );
 
     editingEventId = null;

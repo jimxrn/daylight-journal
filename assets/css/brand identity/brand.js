@@ -303,7 +303,7 @@ const DAYLIGHT_NAVIGATION = [
 
     {
         label: "Dashboard",
-        path: "/index.html"
+        path: "../dashboard/dashboard.html"
     },
 
     {

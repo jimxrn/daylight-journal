@@ -70,6 +70,11 @@
         href="../../assets/css/responsive.css"
     >
 
+    <link
+        rel="stylesheet"
+        href="../../assets/css/brand%20identity/brand.css"
+    >
+
 
     <!-- ==========================================
          DASHBOARD CSS
@@ -83,89 +88,14 @@
 </head>
 
 
-<body>
+<body data-page="dashboard">
 
 
     <!-- ==========================================
          NAVIGATION
     =========================================== -->
 
-    <div class="navigation">
-
-        <div class="logo">
-
-            <div class="logo-icon">
-                ☀️
-            </div>
-
-            <h2>
-                Daylight
-            </h2>
-
-            <span>
-                your personal space
-            </span>
-
-        </div>
-
-
-        <nav>
-
-            <button
-                class="nav-item active"
-                onclick="location.href='dashboard.html'"
-            >
-                Dashboard
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="location.href='../journal/journal.html'"
-            >
-                Journal
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="location.href='../calendar/calendar.html'"
-            >
-                Calendar
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="location.href='../planner/planner.html'"
-            >
-                Planner
-            </button>
-
-
-            <button
-                class="nav-item"
-            >
-                Habits
-            </button>
-
-
-            <button
-                class="nav-item"
-            >
-                Memories
-            </button>
-
-
-            <button
-                class="nav-item"
-            >
-                Settings
-            </button>
-
-        </nav>
-
-    </div>
+    <div id="daylight-brand"></div>
 
 
     <!-- ==========================================
@@ -616,6 +546,8 @@
     <script src="../../assets/js/storage.js"></script>
 
     <script src="../../assets/js/greeting.js"></script>
+
+    <script src="../../assets/css/brand%20identity/brand.js"></script>
 
     <script src="dashboard.js"></script>
 

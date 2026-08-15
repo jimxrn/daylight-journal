@@ -1,0 +1,365 @@
+/* ==========================================
+   DAYLIGHT — BRAND SYSTEM
+========================================== */
+
+:root {
+
+    /* ==========================================
+       BRAND COLORS
+    ========================================== */
+
+    --daylight-lavender-50: #F7F6FB;
+    --daylight-lavender-100: #EBDDF5;
+    --daylight-lavender-200: #DCCDF2;
+    --daylight-lavender-300: #C8B6E8;
+    --daylight-lavender-400: #B49DDC;
+    --daylight-lavender-500: #9B84C8;
+
+    --daylight-lavender-deep: #7B6D8F;
+
+    --daylight-warm-50: #FDEDE1;
+    --daylight-warm-100: #F7D5C8;
+
+    --daylight-surface: #FFFFFF;
+    --daylight-background: #F7F6FB;
+
+    --daylight-text: #443B5A;
+    --daylight-text-soft: #7B6D8F;
+    --daylight-border: #E4DDF0;
+
+    /* ==========================================
+       BRAND TYPOGRAPHY
+    ========================================== */
+
+    --daylight-font-display:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    --daylight-font-body:
+        "Inter",
+        Arial,
+        sans-serif;
+
+    /* ==========================================
+       BRAND SHAPE
+    ========================================== */
+
+    --daylight-radius-sm: 10px;
+    --daylight-radius-md: 16px;
+    --daylight-radius-lg: 22px;
+    --daylight-radius-pill: 999px;
+
+    /* ==========================================
+       BRAND SHADOW
+    ========================================== */
+
+    --daylight-shadow-soft:
+        0 10px 30px rgba(123, 109, 143, 0.08);
+
+    --daylight-shadow-hover:
+        0 14px 34px rgba(123, 109, 143, 0.12);
+
+}
+
+
+/* ==========================================
+   DAYLIGHT BRAND HEADER
+========================================== */
+
+.daylight-brand-header {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        24px
+        24px
+        14px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ==========================================
+   BRAND LOCKUP
+========================================== */
+
+.daylight-brand-lockup {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+/* ==========================================
+   OFFICIAL DAYLIGHT ICON
+========================================== */
+
+.daylight-brand-icon {
+
+    width: 72px;
+
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 10px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #EBDDF5,
+            #DCCDF2
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(123, 109, 143, 0.08);
+
+    overflow: hidden;
+
+}
+
+
+/* SVG inside the icon */
+
+.daylight-brand-icon svg {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+}
+
+
+/* ==========================================
+   WORDMARK
+========================================== */
+
+.daylight-brand-name {
+
+    margin: 0;
+
+    font-family:
+        var(--daylight-font-display);
+
+    font-size: 2.15rem;
+
+    line-height: 1;
+
+    font-weight: 500;
+
+    letter-spacing: -0.03em;
+
+    color:
+        var(--daylight-text);
+
+}
+
+
+/* ==========================================
+   TAGLINE
+========================================== */
+
+.daylight-brand-tagline {
+
+    margin: 7px 0 0;
+
+    font-family:
+        var(--daylight-font-body);
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.24em;
+
+    text-transform: lowercase;
+
+    color:
+        var(--daylight-lavender-500);
+
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+.daylight-brand-nav {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 22px;
+
+}
+
+
+.daylight-brand-nav a {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 34px;
+
+    padding:
+        8px
+        14px;
+
+    border-radius:
+        var(--daylight-radius-pill);
+
+    text-decoration: none;
+
+    font-family:
+        var(--daylight-font-body);
+
+    font-size: 0.78rem;
+
+    font-weight: 500;
+
+    color:
+        var(--daylight-text-soft);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.daylight-brand-nav a:hover {
+
+    color:
+        var(--daylight-text);
+
+    background:
+        rgba(220, 205, 242, 0.45);
+
+}
+
+
+.daylight-brand-nav a.active {
+
+    color: #FFFFFF;
+
+    background:
+        var(--daylight-lavender-400);
+
+    box-shadow:
+        0 6px 14px
+        rgba(180, 157, 220, 0.22);
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .daylight-brand-header {
+
+        padding:
+            18px
+            16px
+            12px;
+
+    }
+
+    .daylight-brand-icon {
+
+        width: 62px;
+
+        height: 62px;
+
+        border-radius: 17px;
+
+    }
+
+    .daylight-brand-name {
+
+        font-size: 1.85rem;
+
+    }
+
+    .daylight-brand-nav {
+
+        gap: 4px;
+
+    }
+
+    .daylight-brand-nav a {
+
+        padding:
+            7px
+            10px;
+
+        font-size: 0.72rem;
+
+    }
+
+}
+.planner-page .brand-icon {
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 12px;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+}
+/* ==========================================
+   DAYLIGHT — PAGE BACKGROUND
+========================================== */
+
+body[data-page="journal"],
+body[data-page="calendar"],
+body[data-page="habits"] {
+
+    background-color: #F8F6F3;
+
+}

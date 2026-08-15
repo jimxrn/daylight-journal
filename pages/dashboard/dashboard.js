@@ -314,6 +314,10 @@ function escapeDashboardHTML(text) {
    MEMORIES WIDGET
 ========================================== */
 
+/* ==========================================
+   MEMORIES WIDGET
+========================================== */
+
 function loadDashboardMemories() {
 
     const container =
@@ -321,41 +325,24 @@ function loadDashboardMemories() {
             "dashboard-memories-content"
         );
 
-
     if (!container) {
         return;
     }
 
 
-    const saved =
-        localStorage.getItem(
-            "daylightMemories"
-        );
+    /* ==========================================
+       READ FROM CENTRAL DAYLIGHT STORAGE
+    ========================================== */
+
+    const memories =
+        getDaylightSection(
+            "memories"
+        ) || {};
 
 
-    if (!saved) {
-        return;
-    }
-
-
-    let memories;
-
-    try {
-
-        memories =
-            JSON.parse(saved);
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load Dashboard Memories.",
-            error
-        );
-
-        return;
-
-    }
-
+    /* ==========================================
+       TODAY
+    ========================================== */
 
     const todayKey =
         getDashboardDateKey();
@@ -384,13 +371,23 @@ function loadDashboardMemories() {
 
 
     if (dates.length === 0) {
+
+        container.innerHTML = `
+            <p class="dashboard-empty-state">
+                Your memories will appear here.
+            </p>
+        `;
+
         return;
     }
 
 
+    /* ==========================================
+       SELECT MEMORY
+    ========================================== */
+
     const selectedDate =
         dates[0];
-
 
     const selectedMemory =
         memories[selectedDate];
@@ -400,9 +397,20 @@ function loadDashboardMemories() {
         !selectedMemory ||
         !selectedMemory.photo
     ) {
+
+        container.innerHTML = `
+            <p class="dashboard-empty-state">
+                Your memories will appear here.
+            </p>
+        `;
+
         return;
     }
 
+
+    /* ==========================================
+       FORMAT DATE
+    ========================================== */
 
     const date =
         new Date(
@@ -421,6 +429,19 @@ function loadDashboardMemories() {
         );
 
 
+    /* ==========================================
+       CAPTION
+    ========================================== */
+
+    const caption =
+        selectedMemory.caption ||
+        "A little moment worth keeping.";
+
+
+    /* ==========================================
+       RENDER
+    ========================================== */
+
     container.innerHTML = `
 
         <div class="dashboard-memory-preview">
@@ -433,15 +454,18 @@ function loadDashboardMemories() {
 
             <div class="dashboard-memory-info">
 
-                <span class="dashboard-memory-date">
+                <span
+                    class="dashboard-memory-date"
+                >
                     ${formattedDate}
                 </span>
 
-                <p class="dashboard-memory-caption">
+                <p
+                    class="dashboard-memory-caption"
+                >
                     “${
                         escapeDashboardHTML(
-                            selectedMemory.caption ||
-                            "A little moment worth keeping."
+                            caption
                         )
                     }”
                 </p>

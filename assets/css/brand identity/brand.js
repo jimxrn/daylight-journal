@@ -299,45 +299,77 @@ function renderDaylightIcon(
    BRAND NAVIGATION
 ========================================== */
 
+function getDaylightBasePath() {
+
+    const pathname =
+        window.location.pathname;
+
+    const pagesIndex =
+        pathname.indexOf("/pages/");
+
+    if (pagesIndex !== -1) {
+
+        return pathname.substring(
+            0,
+            pagesIndex
+        );
+
+    }
+
+    return "";
+
+}
+
+
+const DAYLIGHT_BASE_PATH =
+    getDaylightBasePath();
+
+
 const DAYLIGHT_NAVIGATION = [
 
     {
         label: "Dashboard",
-        path: "../dashboard/dashboard.html"
+        path:
+            `${DAYLIGHT_BASE_PATH}/pages/dashboard/dashboard.html`
     },
 
     {
         label: "Journal",
-        path: "/pages/journal/journal.html"
+        path:
+            `${DAYLIGHT_BASE_PATH}/pages/journal/journal.html`
     },
 
     {
         label: "Calendar",
-        path: "/pages/calendar/calendar.html"
+        path:
+            `${DAYLIGHT_BASE_PATH}/pages/calendar/calendar.html`
     },
 
     {
         label: "Planner",
-        path: "/pages/planner/planner.html"
+        path:
+            `${DAYLIGHT_BASE_PATH}/pages/planner/planner.html`
     },
 
     {
         label: "Habits",
-        path: "/pages/habits/habits.html"
+        path:
+            `${DAYLIGHT_BASE_PATH}/pages/habits/habits.html`
     },
 
     {
         label: "Memories",
-        path: "/pages/memories/memories.html"
+        path:
+            `${DAYLIGHT_BASE_PATH}/pages/memories/memories.html`
     },
 
     {
         label: "Settings",
-        path: "/pages/settings/settings.html"
+        path:
+            `${DAYLIGHT_BASE_PATH}/pages/settings/settings.html`
     }
 
 ];
-
 
 /* ==========================================
    CREATE BRAND HEADER

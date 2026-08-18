@@ -24,7 +24,7 @@ else if (hour < 18) {
    LOAD NAME FROM DAYLIGHT SETTINGS
 ========================================== */
 
-let name = "Jim";
+let name = "there";
 
 try {
 
@@ -38,7 +38,7 @@ try {
 
         name =
             settings.name.trim() ||
-            "Jim";
+            "there";
 
     }
 

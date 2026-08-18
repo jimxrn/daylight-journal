@@ -1,537 +1,232 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Daylight • Journal</title>
-
-
-    <!-- ==========================================
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Daylight • Journal</title>
+<!-- ==========================================
          GOOGLE FONTS
     ========================================== -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- ==========================================
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- ==========================================
          SHARED CSS
     ========================================== -->
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/variables.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/base.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/layout.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/navigation.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/cards.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/responsive.css"
-    >
-
-    <link
-    rel="stylesheet"
-    href="../../assets/css/brand%20identity/brand.css"
-    >   
-
-
-    <!-- ==========================================
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/base.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/navigation.css" rel="stylesheet"/>
+<link href="../../assets/css/cards.css" rel="stylesheet"/>
+<link href="../../assets/css/responsive.css" rel="stylesheet"/>
+<link href="../../assets/css/brand%20identity/brand.css" rel="stylesheet"/>
+<!-- ==========================================
          JOURNAL CSS
     ========================================== -->
-
-    <link
-        rel="stylesheet"
-        href="journal.css"
-    >
-
+<link href="journal.css" rel="stylesheet"/>
 </head>
-
-
 <body data-page="journal">
-
-
-    <!-- ==========================================
+<!-- ==========================================
          NAVIGATION
     ========================================== -->
-
-    <div id="daylight-brand">
-
-        <div class="logo">
-
-            <div class="logo-icon">
-                🌅
-            </div>
-
-            <h2>Daylight</h2>
-
-            <span>
-                your personal space
-            </span>
-
-        </div>
-
-
-        <nav>
-
-            <button
-                class="nav-item"
-                onclick="location.href='../../index.html'"
-            >
-                Dashboard
-            </button>
-
-
-            <button class="nav-item active">
-                Journal
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="location.href='../calendar/calendar.html'"
-            >
-                Calendar
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="location.href='../planner/planner.html'"
-            >
-                Planner
-            </button>
-
-
-            <button class="nav-item">
-                Habits
-            </button>
-
-
-            <button class="nav-item">
-                Memories
-            </button>
-
-
-            <button class="nav-item">
-                Settings
-            </button>
-
-        </nav>
-
-    </div>
-
-
-    <!-- ==========================================
+<div id="daylight-brand"></div>
+<!-- ==========================================
          JOURNAL PAGE
     ========================================== -->
-
-    <main class="journal-page">
-
-        <div class="journal-layout">
-
-
-            <!-- ======================================
+<main class="journal-page">
+<div class="journal-layout">
+<!-- ======================================
                  MAIN JOURNAL
             ======================================= -->
-
-            <div class="journal-main">
-
-
-                <!-- HEADER -->
-
-                <header class="journal-header">
-
-                    <p class="journal-eyebrow">
+<div class="journal-main">
+<!-- HEADER -->
+<header class="journal-header">
+<p class="journal-eyebrow">
                         JOURNAL
                     </p>
-
-                    <h1>
-                        A quiet place<br>
+<h1>
+                        A quiet place<br/>
                         for your thoughts.
                     </h1>
-
-                    <p class="journal-intro">
+<p class="journal-intro">
                         Take a moment. Write freely.
                         Nothing needs to be perfect.
                     </p>
-
-                </header>
-
-                <!-- ======================================
+</header>
+<!-- ======================================
                         JOURNAL TOP SECTION
                     ====================================== -->
-
-                <div class="journal-top-section">
-
-                    <aside class="journal-history">
-
-                        <div class="history-card">
-
-
-                              <!-- HISTORY HEADER -->
-
-                            <div class="history-header">
-
-                                <div>
-
-                                    <p class="history-eyebrow">
+<div class="journal-top-section">
+<aside class="journal-history">
+<div class="history-card">
+<!-- HISTORY HEADER -->
+<div class="history-header">
+<div>
+<p class="history-eyebrow">
                                         JOURNAL HISTORY
                                     </p>
-
-                                    <h2 id="history-month">
+<h2 id="history-month">
                                             August 2026
                                     </h2>
-
-                                </div>
-
-
-                                <div class="history-navigation">
-
-                                    <button
-                                        id="prev-journal-month"
-                                        aria-label="Previous month"
-                                    >
+</div>
+<div class="history-navigation">
+<button aria-label="Previous month" id="prev-journal-month">
                                         ←
                                     </button>
-
-                                    <button
-                                        id="next-journal-month"
-                                        aria-label="Next month"
-                                    >
+<button aria-label="Next month" id="next-journal-month">
                                         →
                                     </button>
-
-                                 </div>
-
-                            </div>
-
-
-                            <!-- MINI CALENDAR -->
-
-                            <div class="mini-calendar">
-
-                                 <div class="mini-weekdays">
-
-                                    <span>S</span>
-                                    <span>M</span>
-                                    <span>T</span>
-                                    <span>W</span>
-                                    <span>T</span>
-                                    <span>F</span>
-                                    <span>S</span>
-
-                                </div>
-
-
-                                <div
-                                    id="journal-calendar-grid"
-                                    class="journal-calendar-grid"
-                                 >
-                            
-                                </div>
-
-                            </div>
-
-
-                                <!-- LEGEND -->
-
-                                <div class="history-legend">
-
-                                    <span class="legend-dot"></span>
-
-                                    <span>
+</div>
+</div>
+<!-- MINI CALENDAR -->
+<div class="mini-calendar">
+<div class="mini-weekdays">
+<span>S</span>
+<span>M</span>
+<span>T</span>
+<span>W</span>
+<span>T</span>
+<span>F</span>
+<span>S</span>
+</div>
+<div class="journal-calendar-grid" id="journal-calendar-grid">
+</div>
+</div>
+<!-- LEGEND -->
+<div class="history-legend">
+<span class="legend-dot"></span>
+<span>
                                         Journal entry
                                     </span>
-
-                                </div>
-
-
-                                <!-- TODAY BUTTON -->
-
-                                <button
-                                    id="journal-today-btn"
-                                    class="journal-today-btn"
-                                >
+</div>
+<!-- TODAY BUTTON -->
+<button class="journal-today-btn" id="journal-today-btn">
                                     Today
                                 </button>
-
-                        </div>
-
-                    </aside>
-
-                    <div class="journal-section prompt-section">
-
-                        <div class="section-heading">
+</div>
+</aside>
+<div class="journal-section prompt-section">
+<div class="section-heading">
                             JOURNAL PROMPTS
                         </div>
-
-                        <div class="prompt-card">
-
-                            <div class="prompt-text-wrap">
-
-                                <p
-                                    id="journal-prompt"
-                                    class="journal-prompt"
-                                >
+<div class="prompt-card">
+<div class="prompt-text-wrap">
+<p class="journal-prompt" id="journal-prompt">
                                     “What made today feel a little lighter?”
 
                                 </p>
-
-                            </div>
-
-
-                            <div class="prompt-response">
-
-                                <textarea
-                                    id="prompt-response"
-                                    placeholder="Write your response..."
-                                    spellcheck="true"
-                                ></textarea>
-
-                            </div>
-
-
-                            <div class="prompt-footer">
-
-                                <span class="prompt-sun">
+</div>
+<div class="prompt-response">
+<textarea id="prompt-response" placeholder="Write your response..." spellcheck="true"></textarea>
+</div>
+<div class="prompt-footer">
+<span class="prompt-sun">
                                         ☀
                                 </span>
-
-
-                                <div class="prompt-actions">
-
-                                    <button
-                                        type="button"
-                                        id="new-prompt"
-                                        class="new-prompt-btn"
-                                        >
+<div class="prompt-actions">
+<button class="new-prompt-btn" id="new-prompt" type="button">
                                         New prompt →
                                     </button>
-
-                                    <button
-                                        type="button"
-                                        id="save-prompt"
-                                        class="save-prompt-btn"
-                                        >
+<button class="save-prompt-btn" id="save-prompt" type="button">
                                         Save Response ♡
                                         </button>
+</div>
+</div>
+</div>
+</div>
 
-                                    </div>
-
-                                </div>  
-
-                            </div>
-
-                        </div>
-                    
-                    </section>
-
-                </div>
-
-                        <div
-                            id="saved-prompt-entry"
-                            class="saved-journal-entry hidden"
-                            >
-                            <div class="saved-entry-header">
-
-                                <div>
-
-                                    <p class="saved-entry-eyebrow">
+</div>
+<div class="saved-journal-entry hidden" id="saved-prompt-entry">
+<div class="saved-entry-header">
+<div>
+<p class="saved-entry-eyebrow">
                                         SAVED REFLECTION
                                     </p>
-
-                                    <h3 id="saved-prompt-date">
+<h3 id="saved-prompt-date">
                                         August 14, 2026
                                     </h3>
-
-                                </div>
-
-                                <button
-                                    type="button"
-                                    id="edit-prompt-entry"
-                                    class="edit-entry-btn"
-                                >
+</div>
+<button class="edit-entry-btn" id="edit-prompt-entry" type="button">
                                     Edit ✎
                                 </button>
-
-                            </div>
-
-                            <div 
-
-                                id= "saved-prompt-question"
-                                class="saved-prompt-question">
+</div>
+<div class="saved-prompt-question" id="saved-prompt-question">
 
                                 “What made today feel a little lighter?”
 
                             </div>
-
-
-                            <div
-                                id="saved-prompt-text"
-                                class="saved-entry-text"
-                            ></div>
-
-
-                        </div>  
-
-                <!-- ==================================
+<div class="saved-entry-text" id="saved-prompt-text"></div>
+</div>
+<!-- ==================================
                      THOUGHTS TODAY / SELECTED DATE
                 =================================== -->
-
-                <section class="journal-section thoughts-section">
-
-                    <div class="section-heading-row">
-
-                        <div class="section-heading">
-                            <span id="thoughts-label">
+<section class="journal-section thoughts-section">
+<div class="section-heading-row">
+<div class="section-heading">
+<span id="thoughts-label">
                                 THOUGHTS TODAY
                             </span>
-                        </div>
-
-
-                        <button
-                            id="back-to-today"
-                            class="back-today-btn hidden"
-                        >
+</div>
+<button class="back-today-btn hidden" id="back-to-today">
                             ← Back to Today
                         </button>
-
-                    </div>
-
-
-                    <div class="journal-editor">
-
-                        <textarea
-                            id="journal-entry"
-                            placeholder="What's on your mind?"
-                            spellcheck="true"
-                        ></textarea>
-
-
-                        <div class="editor-footer">
-
-                            <div class="journal-meta">
-
-                                <span id="word-count">
+</div>
+<div class="journal-editor">
+<div class="emoji-toolbar" aria-label="Journal emojis">
+<span>♡</span>
+<button type="button" data-emoji="☀️">☀️</button>
+<button type="button" data-emoji="🌷">🌷</button>
+<button type="button" data-emoji="✨">✨</button>
+<button type="button" data-emoji="🤍">🤍</button>
+<button type="button" data-emoji="🌿">🌿</button>
+<button type="button" data-emoji="😊">😊</button>
+<button type="button" data-emoji="🥹">🥹</button>
+</div>
+<textarea id="journal-entry" placeholder="What's on your mind?" spellcheck="true"></textarea>
+<div class="editor-footer">
+<div class="journal-meta">
+<span id="word-count">
                                     0 words
                                 </span>
-
-                                <span class="meta-divider">
+<span class="meta-divider">
                                     •
                                 </span>
-
-                                <span id="last-edited">
+<span id="last-edited">
                                     Not saved yet
                                 </span>
-
-                            </div>
-
-
-                            <button
-                                type="button"
-                                id="save-journal"
-                                class="save-entry-btn"
-                            >
+</div>
+<button class="save-entry-btn" id="save-journal" type="button">
                                 Save Entry <span>♡</span>
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-                 <div id="saved-journal-entry" class="saved-journal-entry hidden">
-
-                <div class="saved-entry-header">
-
-                    <div>
-
-                        <p class="saved-entry-eyebrow">
+</button>
+</div>
+</div>
+</section>
+<div class="saved-journal-entry hidden" id="saved-journal-entry">
+<div class="saved-entry-header">
+<div>
+<p class="saved-entry-eyebrow">
                             SAVED ENTRY
                         </p>
-
-                        <h3 id="saved-entry-date">
+<h3 id="saved-entry-date">
                             August 14, 2026
                         </h3>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        id="edit-journal-entry"
-                        class="edit-entry-btn"
-                        >
+</div>
+<button class="edit-entry-btn" id="edit-journal-entry" type="button">
                             Edit ✎
 
                     </button>
-            
-                 </div>
-
-
-                    <div
-                        id="saved-entry-text"
-                        class="saved-entry-text"
-                    ></div>
-
-                </div>  
-
-            </div>
-
-        </div>
-
-         
-
-    </main>
-
-
-    <!-- ==========================================
+</div>
+<div class="saved-entry-text" id="saved-entry-text"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- ==========================================
          JOURNAL JS
     ========================================== -->
-
-    
-    <script src="../../assets/js/storage.js"></script>
-    <script src="journal.js"></script>
-    <script src="../../assets/css/brand%20identity/brand.js"></script>
-   
-
-
+<script src="../../assets/js/storage.js"></script>
+<script src="journal.js"></script>
+<script src="../../assets/css/brand%20identity/brand.js"></script>
 </body>
-
 </html>

@@ -1,403 +1,163 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Settings • Daylight</title>
-
-    <!-- GOOGLE FONTS -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- SHARED CSS -->
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/variables.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/base.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/layout.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/navigation.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/cards.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/responsive.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/brand%20identity/brand.css"
-    >
-
-
-    <!-- SETTINGS CSS -->
-
-    <link
-        rel="stylesheet"
-        href="settings.css"
-    >
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings • Daylight</title>
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- SHARED CSS -->
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/base.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/navigation.css" rel="stylesheet"/>
+<link href="../../assets/css/cards.css" rel="stylesheet"/>
+<link href="../../assets/css/responsive.css" rel="stylesheet"/>
+<link href="../../assets/css/brand%20identity/brand.css" rel="stylesheet"/>
+<!-- SETTINGS CSS -->
+<link href="settings.css" rel="stylesheet"/>
 </head>
-
-
 <body data-page="settings">
-
-
-    <!-- ==========================================
+<!-- ==========================================
          DAYLIGHT BRAND
     =========================================== -->
-
-    <div id="daylight-brand"></div>
-
-
-    <!-- ==========================================
+<div id="daylight-brand"></div>
+<!-- ==========================================
          SETTINGS
     =========================================== -->
-
-    <main class="settings-page">
-
-
-        <!-- PAGE INTRO -->
-
-        <section class="settings-header">
-
-            <p class="settings-eyebrow">
+<main class="settings-page">
+<!-- PAGE INTRO -->
+<section class="settings-header">
+<p class="settings-eyebrow">
                 YOUR SPACE
             </p>
-
-            <h1>
+<h1>
                 Settings
             </h1>
-
-            <p>
+<p>
                 Make Daylight feel like yours.
             </p>
-
-        </section>
-
-
-        <!-- SETTINGS CONTENT -->
-
-        <section class="settings-layout">
-
-
-            <!-- PERSONALIZATION -->
-
-            <div class="settings-card">
-
-                <div class="settings-card-header">
-
-                    <div>
-
-                        <p class="settings-section-label">
+</section>
+<!-- SETTINGS CONTENT -->
+<section class="settings-layout">
+<!-- PERSONALIZATION -->
+<div class="settings-card">
+<div class="settings-card-header">
+<div>
+<p class="settings-section-label">
                             PERSONALIZATION
                         </p>
-
-                        <h2>
+<h2>
                             Your space
                         </h2>
-
-                    </div>
-
-                    <span class="settings-card-icon">
+</div>
+<span class="settings-card-icon">
                         ♡
                     </span>
-
-                </div>
-
-
-                <div class="settings-row">
-
-                    <div>
-
-                        <strong>
+</div>
+<div class="settings-row">
+<div>
+<strong>
                             Your name
                         </strong>
-
-                        <p>
+<p>
                             The name Daylight uses to greet you.
                         </p>
-
-                    </div>
-
-                    <div class="settings-name-control">
-
-                        <input
-                            type="text"
-                            id="settings-name"
-                            placeholder="Jim"
-                            >
-                        <button
-                            type="button"
-                            id="save-settings"
-                            class="settings-button"
-                            >
+</div>
+<div class="settings-name-control">
+<input id="settings-name" placeholder="Your name" type="text"/>
+<button class="settings-button" id="save-settings" type="button">
                             Save
                         </button>
-                        
-                        <span
-                            id="settings-save-status"
-                            class="settings-save-status"
-                            aria-live="polite"
-                        ></span>
-
-                    </div>
-                    
-                </div>
-
-
-            </div>
-
-
-            <!-- APPEARANCE -->
-
-            <div class="settings-card">
-
-                <div class="settings-card-header">
-
-                    <div>
-
-                        <p class="settings-section-label">
-                            APPEARANCE
-                        </p>
-
-                        <h2>
-                            How Daylight feels
-                        </h2>
-
-                    </div>
-
-                    <span class="settings-card-icon">
-                        ✦
-                    </span>
-
-                </div>
-
-
-                <div class="settings-row">
-
-                    <div>
-
-                        <strong>
-                            Theme
-                        </strong>
-
-                        <p>
-                            Daylight currently uses its soft light theme.
-                        </p>
-
-                    </div>
-
-
-                    <span class="settings-static-value">
-                        Light
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- DATA -->
-
-            <div class="settings-card">
-
-                <div class="settings-card-header">
-
-                    <div>
-
-                        <p class="settings-section-label">
+<span aria-live="polite" class="settings-save-status" id="settings-save-status"></span>
+</div>
+</div>
+</div>
+<!-- DATA -->
+<div class="settings-card">
+<div class="settings-card-header">
+<div>
+<p class="settings-section-label">
                             YOUR DATA
                         </p>
-
-                        <h2>
+<h2>
                             Keep your memories yours.
                         </h2>
-
-                    </div>
-
-                    <span class="settings-card-icon">
+</div>
+<span class="settings-card-icon">
                         ♧
                     </span>
-
-                </div>
-
-
-                <div class="settings-row">
-
-                    <div>
-
-                        <strong>
+</div>
+<div class="settings-row">
+<div>
+<strong>
                             Export Daylight Data
                         </strong>
-
-                        <p>
+<p>
                             Download everything stored in Daylight.
                         </p>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        id="export-data"
-                        class="settings-button"
-                    >
+</div>
+<button class="settings-button" id="export-data" type="button">
                         Export
                     </button>
-
-                </div>
-
-
-                <div class="settings-row">
-
-                    <div>
-
-                        <strong>
+</div>
+<div class="settings-row">
+<div>
+<strong>
                             Restore Daylight Data
                         </strong>
-
-                        <p>
+<p>
                             Bring your Daylight data back from a backup.
                         </p>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        id="import-data"
-                        class="settings-button secondary"
-                    >
+</div>
+<button class="settings-button secondary" id="import-data" type="button">
                         Restore
                     </button>
-
-                </div>
-
-
-                <input
-                    type="file"
-                    id="import-file"
-                    accept=".json,application/json"
-                    hidden
-                >
-
-            </div>
-
-
-            <!-- RESET -->
-
-            <div class="settings-card settings-danger-card">
-
-                <div class="settings-card-header">
-
-                    <div>
-
-                        <p class="settings-section-label">
+</div>
+<input accept=".json,application/json" hidden="" id="import-file" type="file"/>
+</div>
+<!-- RESET -->
+<div class="settings-card settings-danger-card">
+<div class="settings-card-header">
+<div>
+<p class="settings-section-label">
                             RESET
                         </p>
-
-                        <h2>
+<h2>
                             Start fresh
                         </h2>
-
-                    </div>
-
-                    <span class="settings-card-icon">
+</div>
+<span class="settings-card-icon">
                         ◌
                     </span>
-
-                </div>
-
-
-                <div class="settings-row">
-
-                    <div>
-
-                        <strong>
+</div>
+<div class="settings-row">
+<div>
+<strong>
                             Reset Daylight
                         </strong>
-
-                        <p>
+<p>
                             Remove all saved Daylight data from this device.
                         </p>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        id="reset-data"
-                        class="settings-button danger"
-                    >
+</div>
+<button class="settings-button danger" id="reset-data" type="button">
                         Reset
                     </button>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-
-        <p class="settings-footer">
+</div>
+</div>
+</section>
+<p class="settings-footer">
             Daylight · Soft. Intentional. Yours.
         </p>
-
-
-    </main>
-
-
-    <!-- ==========================================
+</main>
+<!-- ==========================================
          CORE SCRIPTS
     =========================================== -->
-
-    <script
-        src="../../assets/js/storage.js"
-    ></script>
-
-    <script
-        src="../../assets/css/brand%20identity/brand.js"
-    ></script>
-
-    <script
-        src="settings.js"
-    ></script>
-
+<script src="../../assets/js/storage.js"></script>
+<script src="../../assets/css/brand%20identity/brand.js"></script>
+<script src="settings.js"></script>
 </body>
-
 </html>

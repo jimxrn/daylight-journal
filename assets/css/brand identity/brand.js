@@ -466,21 +466,77 @@ function renderDaylightBrand(
    INITIALIZE
 ========================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+function initDaylightBrand() {
+    const page = document.body?.dataset.page || "";
+    renderDaylightBrand(page);
+    renderDaylightIcon("planner-brand-icon");
+}
 
-        const page =
-            document.body.dataset.page ||
-            "";
+// brand.js is loaded at the end of each page, so render immediately when
+// the DOM is already available. This prevents the legacy static logo from
+// flashing during cross-document tab transitions.
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDaylightBrand, { once: true });
+} else {
+    initDaylightBrand();
+}
 
-        renderDaylightBrand(
-            page
-        );
+/* ==========================================
+   DAYLIGHT — LIGHT PAGE TRANSITIONS
+========================================== */
+(function initDaylightPageTransitions(){
+    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const body = document.body;
+    if (!body) return;
 
-        renderDaylightIcon(
-            "planner-brand-icon"
-        );
+    // The incoming document starts covered. Reveal it only after the page
+    // has had a chance to render its real header/content, avoiding flashes.
+    const reveal = () => {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                body.classList.add("daylight-transition-enter");
+                body.classList.remove("daylight-transition-exit");
+            });
+        });
+    };
 
+    if (reduceMotion) {
+        body.classList.add("daylight-transition-enter");
+        return;
     }
-);
+
+    window.addEventListener("pageshow", reveal, { once: true });
+    if (document.readyState === "complete") {
+        reveal();
+    } else {
+        window.addEventListener("load", reveal, { once: true });
+    }
+
+    // Intercept same-origin anchor navigation so the outgoing page is
+    // covered immediately, then let the browser perform the normal
+    // navigation. No artificial navigation delay.
+    document.addEventListener("click", (event) => {
+        const link = event.target.closest("a[href]");
+        if (!link) return;
+        if (link.target === "_blank" || link.hasAttribute("download") || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+
+        let url;
+        try {
+            url = new URL(link.href, location.href);
+        } catch {
+            return;
+        }
+
+        if (url.origin !== location.origin) return;
+        if (url.href === location.href) return;
+
+        const destination = url.pathname + url.search + url.hash;
+        const current = location.pathname + location.search + location.hash;
+        if (destination === current) return;
+
+        event.preventDefault();
+        body.classList.remove("daylight-transition-enter");
+        body.classList.add("daylight-transition-exit");
+        window.location.assign(url.href);
+    }, true);
+})();

@@ -548,6 +548,17 @@ function openJournal() {
         "../journal/journal.html";
 
 }
+
+/* ==========================================
+   OPEN HABITS
+========================================== */
+
+function openHabits() {
+
+    window.location.href =
+        "../habits/habits.html";
+
+}
 /* ==========================================
    HABITS WIDGET
 ========================================== */
@@ -991,6 +1002,20 @@ document.addEventListener(
             openJournalButton.addEventListener(
                 "click",
                 openJournal
+            );
+
+        }
+
+        const openHabitsButton =
+            document.querySelector(
+                "#open-habits"
+            );
+
+        if (openHabitsButton) {
+
+            openHabitsButton.addEventListener(
+                "click",
+                openHabits
             );
 
         }

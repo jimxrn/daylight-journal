@@ -1677,6 +1677,22 @@ if (journalEntry) {
         updateWordCount
     );
 
+    document.querySelectorAll("[data-emoji]").forEach(button => {
+        button.addEventListener("click", () => {
+            const emoji = button.dataset.emoji || "";
+            const start = journalEntry.selectionStart;
+            const end = journalEntry.selectionEnd;
+            journalEntry.value =
+                journalEntry.value.slice(0, start) +
+                emoji +
+                journalEntry.value.slice(end);
+            journalEntry.focus();
+            const caret = start + emoji.length;
+            journalEntry.setSelectionRange(caret, caret);
+            updateWordCount();
+        });
+    });
+
 }
 
 

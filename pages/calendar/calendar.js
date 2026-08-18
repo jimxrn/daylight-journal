@@ -554,23 +554,12 @@ function loadEvents() {
                     </div>
 
                     <div class="event-actions">
-
                         <button
-                            class="edit-event"
-                            onclick="editEvent(${event.id})">
-
-                            ✏️
-
+                            class="event-options-btn"
+                            aria-label="Event options"
+                            onclick="openEventMenu(${event.id}, this)">
+                            ⋯
                         </button>
-
-                        <button
-                            class="delete-event"
-                            onclick="deleteEvent(${event.id})">
-
-                            🗑️
-
-                        </button>
-
                     </div>
 
                 </div>
@@ -612,6 +601,23 @@ function loadEvents() {
     
 
 }
+function openEventMenu(eventId, anchor){
+    document.querySelectorAll(".calendar-event-menu").forEach(menu => menu.remove());
+    const menu = document.createElement("div");
+    menu.className = "calendar-event-menu";
+    menu.innerHTML = `
+        <button type="button" onclick="closeEventMenu(); editEvent(${eventId})">Edit</button>
+        <button type="button" class="danger" onclick="closeEventMenu(); deleteEvent(${eventId})">Delete</button>
+    `;
+    document.body.appendChild(menu);
+    const rect = anchor.getBoundingClientRect();
+    menu.style.top = `${rect.bottom + 6 + window.scrollY}px`;
+    menu.style.left = `${Math.max(12, rect.right - 130 + window.scrollX)}px`;
+    setTimeout(() => document.addEventListener("click", closeEventMenuOnOutside, {once:true}), 0);
+}
+function closeEventMenu(){ document.querySelectorAll(".calendar-event-menu").forEach(menu => menu.remove()); }
+function closeEventMenuOnOutside(event){ if(!event.target.closest(".calendar-event-menu")) closeEventMenu(); }
+
 // ==========================================
 // BIRTHDAY FUNCTIONS
 // ==========================================

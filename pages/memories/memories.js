@@ -42,12 +42,6 @@ const nextMonthButton =
         "next-month"
     );
 
-const addMemoryButton =
-    document.getElementById(
-        "add-memory-button"
-    );
-
-
 /* ==========================================
    STATE
 ========================================== */
@@ -1196,39 +1190,6 @@ nextMonthButton.addEventListener(
     }
 );
 
-
-/* ==========================================
-   ADD BUTTON
-========================================== */
-
-addMemoryButton.addEventListener(
-    "click",
-    () => {
-
-        const now =
-            new Date();
-
-
-        currentMonth =
-            new Date(
-                now.getFullYear(),
-                now.getMonth(),
-                1
-            );
-
-
-        selectedDate =
-            getDateKey(
-                now
-            );
-
-
-        renderMonth();
-
-        renderDetail();
-
-    }
-);
 
 
 /* ==========================================

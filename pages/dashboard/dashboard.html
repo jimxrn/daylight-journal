@@ -1,557 +1,276 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Dashboard • Daylight</title>
-
-
-    <!-- ==========================================
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard • Daylight</title>
+<!-- ==========================================
          GOOGLE FONTS
     =========================================== -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- ==========================================
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- ==========================================
          SHARED CSS
     =========================================== -->
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/variables.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/base.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/layout.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/navigation.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/cards.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/widgets.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/responsive.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/brand%20identity/brand.css"
-    >
-
-
-    <!-- ==========================================
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/base.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/navigation.css" rel="stylesheet"/>
+<link href="../../assets/css/cards.css" rel="stylesheet"/>
+<link href="../../assets/css/widgets.css" rel="stylesheet"/>
+<link href="../../assets/css/responsive.css" rel="stylesheet"/>
+<link href="../../assets/css/brand%20identity/brand.css" rel="stylesheet"/>
+<!-- ==========================================
          DASHBOARD CSS
     =========================================== -->
-
-    <link
-        rel="stylesheet"
-        href="dashboard.css"
-    >
-
+<link href="dashboard.css" rel="stylesheet"/>
 </head>
-
-
 <body data-page="dashboard">
-
-
-    <!-- ==========================================
+<!-- ==========================================
          NAVIGATION
     =========================================== -->
-
-    <div id="daylight-brand"></div>
-
-
-    <!-- ==========================================
+<div id="daylight-brand"></div>
+<!-- ==========================================
          DASHBOARD
     =========================================== -->
-
-    <main class="dashboard-page">
-
-
-        <!-- ======================================
+<main class="dashboard-page">
+<!-- ======================================
              01. DASHBOARD HEADER
         ======================================= -->
-
-        <section class="dashboard-header">
-
-            <div class="dashboard-header-content">
-
-                <p
-                    id="today"
-                    class="dashboard-date"
-                ></p>
-
-
-                <h1
-                    id="greeting"
-                    class="dashboard-greeting"
-                ></h1>
-
-
-                <p class="dashboard-tagline">
+<section class="dashboard-header">
+<div class="dashboard-header-content">
+<p class="dashboard-date" id="today"></p>
+<h1 class="dashboard-greeting" id="greeting"></h1>
+<p class="dashboard-tagline">
                     Let's make today a good one.
                 </p>
-
-            </div>
-
-
-            <div class="dashboard-date-card">
-
-                <span class="date-icon">
+</div>
+<div class="dashboard-date-card">
+<span class="date-icon">
                     📅
                 </span>
-
-                <span id="dashboard-full-date">
+<span id="dashboard-full-date">
                     Today
                 </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
+</div>
+</section>
+<!-- ======================================
              02. TODAY HERO
         ======================================= -->
-
-        <section class="dashboard-today">
-
-            <div class="section-heading">
-
-                <span>
+<section class="dashboard-today">
+<div class="section-heading">
+<span>
                     TODAY
                 </span>
-
-            </div>
-
-
-            <div class="today-hero-card">
-
-                <div class="today-hero-content">
-
-                    <div class="today-hero-icon">
+</div>
+<div class="today-hero-card">
+<div class="today-hero-content">
+<div class="today-hero-icon">
                         ♡
                     </div>
-
-
-                    <div>
-
-                        <h2>
+<div>
+<h2>
                             Small steps today,
                             big changes tomorrow.
                         </h2>
-
-                        <p>
+<p>
                             You've got this.
                         </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="today-hero-art">
+</div>
+</div>
+<div class="today-hero-art">
 
                     ☀️
 
                 </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
+</div>
+</section>
+<!-- ======================================
              03. TODAY'S ACTIVITY
         ======================================= -->
-
-        <section class="dashboard-activity">
-
-
-            <!-- ==================================
+<section class="dashboard-activity">
+<!-- ==================================
                  PLANNER
             =================================== -->
-
-            <div class="dashboard-panel planner-panel">
-
-                <div class="panel-header">
-
-                    <div>
-
-                        <p class="panel-eyebrow">
+<div class="dashboard-panel planner-panel">
+<div class="panel-header">
+<div>
+<p class="panel-eyebrow">
                             TODAY'S PLANS
                         </p>
-
-                        <h2>
+<h2>
                             Planner
                         </h2>
-
-                    </div>
-
-
-                    <span class="panel-icon">
+</div>
+<span class="panel-icon">
                         ✓
                     </span>
-
-                </div>
-
-
-                <div
-                    id="dashboard-planner-content"
-                    class="panel-content"
-                >
-
-                    <p class="dashboard-empty-state">
+</div>
+<div class="panel-content" id="dashboard-planner-content">
+<p class="dashboard-empty-state">
                         Your daily plans will appear here.
                     </p>
-
-                </div>
-
-
-                <div class="panel-footer">
-
-                    <button
-                        type="button"
-                        id="open-planner"
-                        class="panel-link"
-                        onclick="location.href='../planner/planner.html'"
-                    >
+</div>
+<div class="panel-footer">
+<button class="panel-link" id="open-planner" onclick="location.href='../planner/planner.html'" type="button">
                         Open Planner →
                     </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- ==================================
+</div>
+</div>
+<!-- ==================================
                  CALENDAR
             =================================== -->
-
-            <div class="dashboard-panel calendar-panel">
-
-                <div class="panel-header">
-
-                    <div>
-
-                        <p class="panel-eyebrow">
+<div class="dashboard-panel calendar-panel">
+<div class="panel-header">
+<div>
+<p class="panel-eyebrow">
                             TODAY'S SCHEDULE
                         </p>
-
-                        <h2>
+<h2>
                             Calendar
                         </h2>
-
-                    </div>
-
-
-                    <span class="panel-icon">
+</div>
+<span class="panel-icon">
                         📅
                     </span>
-
-                </div>
-
-
-                <div
-                    id="dashboard-calendar-content"
-                    class="panel-content"
-                >
-
-                    <p class="dashboard-empty-state">
+</div>
+<div class="panel-content" id="dashboard-calendar-content">
+<p class="dashboard-empty-state">
                         Your calendar will appear here.
                     </p>
-
-                </div>
-
-
-                <div class="panel-footer">
-
-                    <button
-                        type="button"
-                        id="open-calendar"
-                        class="panel-link"
-                        onclick="location.href='../calendar/calendar.html'"
-                    >
+</div>
+<div class="panel-footer">
+<button class="panel-link" id="open-calendar" onclick="location.href='../calendar/calendar.html'" type="button">
                         Open Calendar →
                     </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
+</div>
+</div>
+</section>
+<!-- ======================================
              04. PERSONAL SPACE
         ======================================= -->
-
-        <section class="dashboard-personal">
-
-
-            <!-- ==================================
+<section class="dashboard-personal">
+<!-- ==================================
                  JOURNAL
             =================================== -->
-
-            <div class="dashboard-personal-card journal-dashboard-card">
-
-                <div class="personal-card-header">
-
-                    <div class="personal-card-title">
-
-                        <div class="personal-icon">
+<div class="dashboard-personal-card journal-dashboard-card">
+<div class="personal-card-header">
+<div class="personal-card-title">
+<div class="personal-icon">
                             ✍️
                         </div>
-
-                        <div>
-
-                            <p class="panel-eyebrow">
+<div>
+<p class="panel-eyebrow">
                                 PERSONAL SPACE
                             </p>
-
-                            <h2>
+<h2>
                                 Today's Journal
                             </h2>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    id="dashboard-journal-preview"
-                    class="dashboard-journal-preview"
-                >
-
-                    <p class="dashboard-empty-state">
+</div>
+</div>
+</div>
+<div class="dashboard-journal-preview" id="dashboard-journal-preview">
+<p class="dashboard-empty-state">
                         Nothing written today yet.
                     </p>
-
-                </div>
-
-
-                <div class="personal-card-footer">
-
-                    <span id="dashboard-journal-status">
+</div>
+<div class="personal-card-footer">
+<span id="dashboard-journal-status">
                         No entry today
                     </span>
-
-
-                    <button
-                        type="button"
-                        id="open-journal"
-                        class="panel-link"
-                    >
+<button class="panel-link" id="open-journal" type="button">
                         Open Journal →
                     </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- ==================================
+</div>
+</div>
+<!-- ==================================
                  HABITS
             =================================== -->
-
-            <div class="dashboard-personal-card habits-dashboard-card">
-
-                <div class="personal-card-header">
-
-                    <div class="personal-card-title">
-
-                        <div class="personal-icon">
+<div class="dashboard-personal-card habits-dashboard-card">
+<div class="personal-card-header">
+<div class="personal-card-title">
+<div class="personal-icon">
                             🌱
                         </div>
-
-                        <div>
-
-                            <p class="panel-eyebrow">
+<div>
+<p class="panel-eyebrow">
                                 DAILY RHYTHM
                             </p>
-
-                            <h2>
+<h2>
                                 Habits
                             </h2>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    id="dashboard-habits-content"
-                    class="dashboard-personal-content"
-                >
-
-                     
-                    <div class="dashboard-habits-progress-info">
-
-                        <span class="dashboard-habits-label">
+</div>
+</div>
+</div>
+<div class="dashboard-personal-content" id="dashboard-habits-content">
+<div class="dashboard-habits-progress-info">
+<span class="dashboard-habits-label">
                             TODAY'S PROGRESS
                         </span>
-
-                        <span
-                            id="dashboard-habits-progress-text"
-                            class="dashboard-habits-count"
-                        >
+<span class="dashboard-habits-count" id="dashboard-habits-progress-text">
                             0 of 0 completed
                         </span>
-
-                    </div>
-
-
-                    <span
-                        id="dashboard-habits-percentage"
-                        class="dashboard-habits-percentage"
-                    >
+</div>
+<span class="dashboard-habits-percentage" id="dashboard-habits-percentage">
                         0%
                     </span>
-
-                </div>
-
-
-                <div class="dashboard-habits-progress-bar">
-
-                    <div
-                        id="dashboard-habits-progress-fill"
-                        class="dashboard-habits-progress-fill"
-                    ></div>
-
-                </div>
-
-
-                <div
-                    id="dashboard-habits-list"
-                    class="dashboard-habits-list"
-                ></div>
-
-            </div>
-
-
-            <!-- ==================================
+</div>
+<div class="dashboard-habits-progress-bar">
+<div class="dashboard-habits-progress-fill" id="dashboard-habits-progress-fill"></div>
+</div>
+<div class="dashboard-habits-list" id="dashboard-habits-list"></div>
+<div class="personal-card-footer">
+<span>
+                        Stay consistent.
+                    </span>
+<button class="panel-link" id="open-habits" type="button">
+                        View Habits →
+                    </button>
+</div>
+</div>
+<!-- ==================================
                  MEMORIES
             =================================== -->
-
-            <div class="dashboard-personal-card memories-dashboard-card">
-
-                <div class="personal-card-header">
-
-                    <div class="personal-card-title">
-
-                        <div class="personal-icon">
+<div class="dashboard-personal-card memories-dashboard-card">
+<div class="personal-card-header">
+<div class="personal-card-title">
+<div class="personal-icon">
                             🎞
                         </div>
-
-                        <div>
-
-                            <p class="panel-eyebrow">
+<div>
+<p class="panel-eyebrow">
                                 YOUR MOMENTS
                             </p>
-
-                            <h2>
+<h2>
                                 Memories
                             </h2>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    id="dashboard-memories-content"
-                    class="dashboard-personal-content"
-                >
-
-                    <p class="dashboard-empty-state">
+</div>
+</div>
+</div>
+<div class="dashboard-personal-content" id="dashboard-memories-content">
+<p class="dashboard-empty-state">
                         Your memories will appear here.
                     </p>
-
-                </div>
-
-
-                <div class="personal-card-footer">
-
-                    <span>
+</div>
+<div class="personal-card-footer">
+<span>
                         Little moments matter.
                     </span>
-
-
-                    <button
-                        type="button"
-                        class="panel-link"
-                        onclick="location.href='../memories/memories.html'"
-                    >
+<button class="panel-link" onclick="location.href='../memories/memories.html'" type="button">
                         View Memories →
                     </button>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-
-    </main>
-
-
-    <!-- ==========================================
+</div>
+</div>
+</section>
+</main>
+<!-- ==========================================
          CORE SCRIPTS
     =========================================== -->
-
-    <script src="../../assets/js/storage.js"></script>
-
-    <script src="../../assets/js/greeting.js"></script>
-
-    <script src="../../assets/css/brand%20identity/brand.js"></script>
-
-    <script src="dashboard.js"></script>
-
-
+<script src="../../assets/js/storage.js"></script>
+<script src="../../assets/js/greeting.js"></script>
+<script src="../../assets/css/brand%20identity/brand.js"></script>
+<script src="dashboard.js"></script>
 </body>
-
 </html>

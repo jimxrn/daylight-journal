@@ -33,3 +33,49 @@ a{
     text-decoration:none;
 
 }
+
+/* ==========================================
+   DAYLIGHT GLOBAL POLISH
+========================================== */
+html, body { min-height: 100%; }
+
+body {
+    background: #FBF8F5;
+    overflow-x: hidden;
+}
+
+/*
+   DAYLIGHT PAGE SWAP
+   ------------------
+   Keep the existing multi-page architecture. A warm, non-interactive
+   curtain covers the document during navigation so the browser never
+   exposes a half-rendered incoming page. The curtain is visible on the
+   first paint and fades away only after the new document is ready.
+*/
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #FBF8F5;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 180ms cubic-bezier(.22, .61, .36, 1);
+}
+
+body.daylight-transition-enter::before {
+    opacity: 0;
+}
+
+body.daylight-transition-exit::before {
+    opacity: 1;
+    transition-duration: 140ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body.daylight-transition-enter::before,
+    body.daylight-transition-exit::before {
+        transition: none;
+    }
+}

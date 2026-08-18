@@ -1427,3 +1427,10 @@
     margin: 0;
     line-height: 1.4;
 }
+
+/* FINAL DASHBOARD HIERARCHY */
+.dashboard-page { width:min(1320px, calc(100% - 48px)); overflow-x:hidden; }
+.dashboard-greeting { font-size:3.15rem; max-width:100%; overflow-wrap:anywhere; }
+@media(max-width:1000px){ .dashboard-page{width:calc(100% - 40px);} .dashboard-greeting{font-size:2.8rem;} }
+@media(max-width:700px){ .dashboard-page{width:calc(100% - 28px); padding:24px 0 60px;} .dashboard-header{margin:20px 0 32px;} .dashboard-greeting{font-size:2.15rem; line-height:1.08;} .dashboard-date{font-size:.68rem;} }
+@media(max-width:430px){ .dashboard-greeting{font-size:1.95rem;} }

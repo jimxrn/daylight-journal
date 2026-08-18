@@ -1,498 +1,194 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Daylight • Habits</title>
-
-    <!-- Google Fonts -->
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- Shared Daylight CSS -->
-    <link
-        rel="stylesheet"
-        href="../../assets/css/variables.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/base.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/layout.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/navigation.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/cards.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="../../assets/css/responsive.css"
-    >
-
-    <!-- Habits CSS -->
-    <link
-        rel="stylesheet"
-        href="habits.css"
-    >
-   <link
-    rel="stylesheet"
-    href="../../assets/css/brand%20identity/brand.css"
-    >
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Daylight • Habits</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Shared Daylight CSS -->
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/base.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/navigation.css" rel="stylesheet"/>
+<link href="../../assets/css/cards.css" rel="stylesheet"/>
+<link href="../../assets/css/responsive.css" rel="stylesheet"/>
+<!-- Habits CSS -->
+<link href="habits.css" rel="stylesheet"/>
+<link href="../../assets/css/brand%20identity/brand.css" rel="stylesheet"/>
 </head>
-
-
 <body data-page="habits">
-
-
-    <!-- ==========================================
+<!-- ==========================================
          NAVIGATION
     ========================================== -->
-
-    <div id="daylight-brand">
-
-        <div class="logo">
-
-            <div class="logo-icon">
-                🌅
-            </div>
-
-            <h2>
-                Daylight
-            </h2>
-
-            <span>
-                your personal space
-            </span>
-
-        </div>
-
-
-        <nav>
-
-            <button
-                class="nav-item"
-                onclick="location.href='../../index.html'"
-            >
-                Dashboard
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="location.href='../journal/journal.html'"
-            >
-                Journal
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="location.href='../calendar/calendar.html'"
-            >
-                Calendar
-            </button>
-
-
-            <button
-                class="nav-item"
-                onclick="location.href='../planner/planner.html'"
-            >
-                Planner
-            </button>
-
-
-            <button
-                class="nav-item active"
-            >
-                Habits
-            </button>
-
-
-            <button
-                class="nav-item"
-            >
-                Memories
-            </button>
-
-
-            <button
-                class="nav-item"
-            >
-                Settings
-            </button>
-
-        </nav>
-
-    </div>
-
-
-
-    <!-- ==========================================
+<div id="daylight-brand"></div>
+<!-- ==========================================
          HABITS
     ========================================== -->
-
-    <main class="habits-page">
-
-
-        <div class="habits-container">
-
-
-            <!-- HEADER -->
-
-            <header class="habits-header">
-
-                <div>
-
-                    <p class="habits-eyebrow">
+<main class="habits-page">
+<div class="habits-container">
+<!-- HEADER -->
+<header class="habits-header">
+<div>
+<p class="habits-eyebrow">
                         DAILY PRACTICE
                     </p>
-
-                    <h1>
+<h1>
                         Habits
                     </h1>
-
-                    <p class="habits-subtitle">
+<p class="habits-subtitle">
                         Small things, done consistently.
                     </p>
-
-                </div>
-
-
-                <button
-                    class="today-button"
-                    id="todayButton"
-                >
+</div>
+<button class="today-button" id="todayButton">
                     Today
                 </button>
-
-            </header>
-
-
-
-            <!-- TODAY -->
-
-            <section class="habits-section">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <p class="section-label">
+</header>
+<!-- TODAY -->
+<section class="habits-section">
+<div class="section-header">
+<div>
+<p class="section-label">
                             TODAY
                         </p>
-
-                        <h2 id="todayDate">
+<h2 id="todayDate">
                             Today
                         </h2>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- HABIT LIST -->
-
-                <div
-                    class="habit-list"
-                    id="habitList"
-                >
-
-                    <!-- JavaScript will render habits here -->
-
-                </div>
-
-
-            </section>
-
-
-
-            <!-- PROGRESS -->
-
-            <section class="progress-card">
-
-
-                <div class="progress-circle">
-
-                    <span id="progressNumber">
+</div>
+</div>
+<!-- HABIT LIST -->
+<div class="habit-list" id="habitList">
+<!-- JavaScript will render habits here -->
+</div>
+</section>
+<!-- PROGRESS -->
+<section class="progress-card">
+<div class="progress-circle">
+<span id="progressNumber">
                         0%
                     </span>
-
-                </div>
-
-
-                <div class="progress-content">
-
-                    <p class="section-label">
+</div>
+<div class="progress-content">
+<p class="section-label">
                         TODAY'S PROGRESS
                     </p>
-
-                    <h3 id="progressText">
+<h3 id="progressText">
                         0 of 0 completed
                     </h3>
-
-                    <p id="progressMessage">
+<p id="progressMessage">
                         Start with one small thing.
                     </p>
-
-                </div>
-
-
-            </section>
-
-
-
-            <!-- ADD HABIT -->
-
-            <div class="habit-actions">
-
-                <button
-                    id="addHabitButton"
-                    type="button"
-                >
+</div>
+</section>
+<!-- ADD HABIT -->
+<div class="habit-actions">
+<button id="addHabitButton" type="button">
                     + Add a habit
                 </button>
-
-                <button
-                    id="manageHabitsButton"
-                    type="button"
-                    class="manage-habits-button"
-                >
+<button class="manage-habits-button" id="manageHabitsButton" type="button">
                     Manage habits
                 </button>
-
-            </div>
-
-            <!-- RHYTHM -->
-
-            <section class="rhythm-section">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <p class="section-label">
+</div>
+<!-- RHYTHM -->
+<section class="rhythm-section">
+<div class="section-header">
+<div>
+<p class="section-label">
                             YOUR RHYTHM
                         </p>
-
-                        <h2>
+<h2>
                             A little consistency goes a long way.
                         </h2>
-
-                    </div>
-
-
-                    <button
-                        class="view-all-button"
-                        id="viewAllButton"
-                    >
+</div>
+<button class="view-all-button" id="viewAllButton">
                         View all
                     </button>
-
-                </div>
-
-
-                <div
-                    class="rhythm-card"
-                    id="rhythmCard"
-                >
-
-                    <!-- JavaScript will render rhythm -->
-
-                </div>
-
-
-            </section>
-
-
-        </div>
-
-
-    </main>
-
-
-
-    <!-- ==========================================
+</div>
+<div class="rhythm-card" id="rhythmCard">
+<!-- JavaScript will render rhythm -->
+</div>
+</section>
+</div>
+</main>
+<!-- ==========================================
          ADD HABIT MODAL
     ========================================== -->
-
-    <div
-        class="habit-modal hidden"
-        id="habitModal"
-    >
-
-
-        <div
-            class="modal-overlay"
-            id="modalOverlay"
-        >
-        </div>
-
-
-        <div class="habit-modal-content">
-
-
-            <button
-                class="modal-close"
-                id="closeHabitModal"
-            >
+<div class="habit-modal hidden" id="habitModal">
+<div class="modal-overlay" id="modalOverlay">
+</div>
+<div class="habit-modal-content">
+<button class="modal-close" id="closeHabitModal">
                 ×
             </button>
-
-
-            <p id="habitModalLabel" class="section-label">
+<p class="section-label" id="habitModalLabel">
                 NEW HABIT
             </p>
-
-
-            <h2 id="habitModalTitle">
+<h2 id="habitModalTitle">
                  Add something worth practicing.
             </h2>
-
-
-            <p class="modal-description">
+<p class="modal-description">
                 Keep it simple. Choose something you
                 want to return to.
             </p>
-
-
-            <label for="habitName">
+<label for="habitName">
                 Habit name
             </label>
-
-
-            <input
-                type="text"
-                id="habitName"
-                placeholder="e.g. Drink water"
-            >
-
-
-            <label for="habitIcon">
+<input id="habitName" placeholder="e.g. Drink water" type="text"/>
+<label for="habitIcon">
                 Icon
             </label>
-
-
-            <select id="habitIcon">
-
-                <option value="💧">
+<select id="habitIcon">
+<option value="💧">
                     💧 Water
                 </option>
-
-                <option value="📖">
+<option value="📖">
                     📖 Reading
                 </option>
-
-                <option value="🚶">
+<option value="🚶">
                     🚶 Movement
                 </option>
-
-                <option value="✎">
+<option value="✎">
                     ✎ Journal
                 </option>
-
-                <option value="🌿">
+<option value="🌿">
                     🌿 Wellness
                 </option>
-
-                <option value="☀️">
+<option value="☀️">
                     ☀️ Morning
                 </option>
-
-                <option value="♡">
+<option value="♡">
                     ♡ Personal
                 </option>
-
-            </select>
-
-            <label for="habitFrequency">
+</select>
+<label for="habitFrequency">
                  Frequency
             </label>
-
-            <select id="habitFrequency">
-
-                <option value="daily">
+<select id="habitFrequency">
+<option value="daily">
                     Every day
                 </option>
-
-                <option value="weekdays">
+<option value="weekdays">
                     Weekdays
                 </option>
-
-                <option value="weekends">
+<option value="weekends">
                     Weekends
                 </option>
-
-            </select>
-
-
-            <div class="modal-actions">
-
-                <button
-                    class="cancel-button"
-                    id="cancelHabit"
-                >
+</select>
+<div class="modal-actions">
+<button class="cancel-button" id="cancelHabit">
                     Cancel
                 </button>
-
-
-                <button
-                    class="save-button"
-                    id="saveHabit"
-                >
+<button class="save-button" id="saveHabit">
                     Add habit
                 </button>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- Habits JavaScript -->
-
-    <script src="habits.js"></script>
-    <script src="../../assets/css/brand%20identity/brand.js"></script>
-
-
+</div>
+</div>
+</div>
+<!-- Habits JavaScript -->
+<script src="habits.js"></script>
+<script src="../../assets/css/brand%20identity/brand.js"></script>
 </body>
-
 </html>

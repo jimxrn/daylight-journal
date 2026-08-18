@@ -363,3 +363,14 @@ body[data-page="habits"] {
     background-color: #F8F6F3;
 
 }
+
+/* FINAL SHARED BRAND HIERARCHY */
+.daylight-brand-name { font-size:2.05rem; font-weight:500; }
+@media(max-width:700px){
+  .daylight-brand-header{padding:14px 14px 10px;}
+  .daylight-brand-icon{width:58px;height:58px;border-radius:17px;margin-bottom:7px;}
+  .daylight-brand-name{font-size:1.85rem;}
+  .daylight-brand-tagline{font-size:.64rem;letter-spacing:.18em;}
+  .daylight-brand-nav{gap:5px;margin-top:14px;}
+  .daylight-brand-nav a{min-height:30px;padding:6px 9px;font-size:.7rem;}
+}

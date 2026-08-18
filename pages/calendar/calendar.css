@@ -978,3 +978,33 @@
     line-height: 1.5;
 
 }
+
+/* FINAL CALENDAR CARD / RESPONSIVE POLISH */
+.event-card { display:grid; grid-template-columns:28px minmax(0,1fr) 28px; align-items:center; gap:12px; }
+.event-card.birthday-card { grid-template-columns:28px minmax(0,1fr) minmax(72px,auto); }
+.event-card .event-icon { grid-column:1; }
+.event-card .event-content { grid-column:2; min-width:0; }
+.event-card .event-content strong { display:block; }
+.event-card .event-content p { margin:3px 0 0; }
+.event-header { display:contents; }
+.event-title { grid-column:1 / span 2; min-width:0; }
+.event-title strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.event-title .event-icon { grid-column:auto; }
+.event-meta { grid-column:2; margin:3px 0 0; }
+.event-actions { grid-column:3; justify-content:flex-end; margin-left:0; }
+.event-actions button { width:28px; height:28px; border-radius:8px; font-size:0; color:#9A919F; }
+.event-actions button::before { content:"⋯"; font-size:1rem; line-height:1; }
+.event-actions .edit-event, .event-actions .delete-event { display:none; }
+.event-actions:hover button { background:#F5F1F8; color:#6F6476; }
+.birthday-card .event-content { grid-column:2; }
+.birthday-card::after { content:"Birthday"; grid-column:3; color:#8C8291; font-size:.82rem; white-space:nowrap; align-self:center; }
+@media(max-width:900px){ .calendar-page{padding:24px 14px 60px;} .calendar-layout{grid-template-columns:1fr;gap:20px;} .event-sidebar{position:static;} .calendar-container{padding:20px;border-radius:22px;} .calendar-grid{gap:7px;} .day{border-radius:13px;padding:9px;} }
+@media(max-width:600px){ .calendar-header h1{font-size:1.55rem;} .weekdays{gap:5px;} .weekdays span{font-size:.68rem;} .day{font-size:.82rem;padding:7px;} .event-card{grid-template-columns:26px minmax(0,1fr) 26px;padding:14px;} .event-card.birthday-card{grid-template-columns:26px minmax(0,1fr) auto;} .event-card.birthday-card::after{font-size:.75rem;} }
+
+
+.calendar-event-menu { position:absolute; z-index:1200; min-width:120px; padding:6px; background:#fff; border:1px solid #E7E0EF; border-radius:12px; box-shadow:0 12px 28px rgba(70,50,90,.12); }
+.calendar-event-menu button { display:block; width:100%; border:0; background:transparent; padding:9px 10px; text-align:left; border-radius:8px; cursor:pointer; color:#5C5264; font:500 .8rem/1.2 inherit; }
+.calendar-event-menu button:hover { background:#F7F2FA; }
+.calendar-event-menu button.danger { color:#A65F73; }
+.event-options-btn { border:0; background:transparent; color:#9A919F; width:28px; height:28px; border-radius:8px; cursor:pointer; font-size:1rem; }
+.event-options-btn:hover { background:#F5F1F8; color:#6F6476; }

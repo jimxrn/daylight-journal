@@ -1,374 +1,189 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Daylight • Calendar</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
-        rel="stylesheet">
-
-    <!-- Shared CSS -->
-     
-    <link rel="stylesheet" href="../../assets/css/variables.css">
-    <link rel="stylesheet" href="../../assets/css/base.css">
-    <link rel="stylesheet" href="../../assets/css/layout.css">
-    <link rel="stylesheet" href="../../assets/css/navigation.css">
-    <link rel="stylesheet" href="../../assets/css/cards.css">
-    <link rel="stylesheet" href="../../assets/css/responsive.css">
-
-    <link
-    rel="stylesheet"
-    href="../../assets/css/brand%20identity/brand.css"
-    >
-
-    <!-- Calendar CSS -->
-    <link rel="stylesheet" href="calendar.css">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Daylight • Calendar</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Shared CSS -->
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/base.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/navigation.css" rel="stylesheet"/>
+<link href="../../assets/css/cards.css" rel="stylesheet"/>
+<link href="../../assets/css/responsive.css" rel="stylesheet"/>
+<link href="../../assets/css/brand%20identity/brand.css" rel="stylesheet"/>
+<!-- Calendar CSS -->
+<link href="calendar.css" rel="stylesheet"/>
 </head>
-
 <body data-page="calendar">
-
-<div id="daylight-brand">
-
-    <div class="logo">
-
-        <div class="logo-icon">☀️</div>
-
-        <h2>Daylight</h2>
-
-        <span>your personal space</span>
-
-    </div>
-
-    <nav>
-
-        <button class="nav-item"
-            onclick="location.href='../index.html'">
-
-            Dashboard
-
-        </button>
-
-        <button class="nav-item">
-
-            Journal
-
-        </button>
-
-        <button class="nav-item active">
-
-            Calendar
-
-        </button>
-
-        <button 
-            class="nav-item"
-            onclick="location.href='../pages/planner.html'">
-            Planner
-
-        </button>
-
-        <button class="nav-item">
-
-            Habits
-
-        </button>
-
-        <button class="nav-item">
-
-            Memories
-
-        </button>
-
-        <button class="nav-item">
-
-            Settings
-
-        </button>
-
-    </nav>
-
-</div>
-
+<div id="daylight-brand"></div>
 <main class="calendar-page">
-
-    <div class="calendar-layout">
-
-        <!-- LEFT -->
-        <section class="calendar-container">
-
-            <div class="calendar-header">
-
-                <button id="prevMonth">←</button>
-
-                <h1 id="monthYear"></h1>
-
-                <button id="nextMonth">→</button>
-
-            </div>
-
-            <div class="weekdays">
-
-                <span>Sun</span>
-                <span>Mon</span>
-                <span>Tue</span>
-                <span>Wed</span>
-                <span>Thu</span>
-                <span>Fri</span>
-                <span>Sat</span>
-
-            </div>
-
-            <div
-                id="calendarGrid"
-                class="calendar-grid">
-
-            </div>
-
-        </section>
-
-        <!-- RIGHT -->
-
-        <aside class="event-sidebar">
-
-            <div class="sidebar-header">
-
-                <h2 id="selectedDate">
+<div class="calendar-layout">
+<!-- LEFT -->
+<section class="calendar-container">
+<div class="calendar-header">
+<button id="prevMonth">←</button>
+<h1 id="monthYear"></h1>
+<button id="nextMonth">→</button>
+</div>
+<div class="weekdays">
+<span>Sun</span>
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+</div>
+<div class="calendar-grid" id="calendarGrid">
+</div>
+</section>
+<!-- RIGHT -->
+<aside class="event-sidebar">
+<div class="sidebar-header">
+<h2 id="selectedDate">
 
                     Today
 
                 </h2>
-
-                <p id="selectedFullDate">
+<p id="selectedFullDate">
 
                     Saturday, August 1, 2026
 
                 </p>
-
-            </div>
-
-            <div class="event-list">
-
-                <p class="empty-events">
+</div>
+<div class="event-list">
+<p class="empty-events">
 
                     No events yet.
 
                 </p>
-
-            </div>
-
-    <div class="calendar-actions">
-
-            <button id="addEventBtn">
+</div>
+<div class="calendar-actions">
+<button id="addEventBtn">
 
                 + Add Event
 
             </button>
-
-            <button id="birthdaysBtn" class="birthdays-link">
+<button class="birthdays-link" id="birthdaysBtn">
 
             🎂 Birthdays
 
             </button>
-
-    </div>
-
-    </aside>
-
-    </div>
-
-    </main>
-
-
+</div>
+</aside>
+</div>
+</main>
 <!-- ==========================================
      ADD BIRTHDAY MODAL
 ========================================== -->
-
-<div id="birthdayFormModal" class="modal hidden">
-
-    <div class="modal-card">
-
-        <h2>Add Birthday</h2>
-
-        <div class="form-group">
-
-            <label>Name</label>
-
-            <input
-                type="text"
-                id="birthdayName"
-                placeholder="e.g. Austin">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Birthday</label>
-
-            <input
-                type="date"
-                id="birthdayDate">
-
-        </div>
-
-        <div class="modal-actions">
-
-            <button id="cancelBirthday">
+<div class="modal hidden" id="birthdayFormModal">
+<div class="modal-card">
+<h2>Add Birthday</h2>
+<div class="form-group">
+<label>Name</label>
+<input id="birthdayName" placeholder="e.g. Austin" type="text"/>
+</div>
+<div class="form-group">
+<label>Birthday</label>
+<input id="birthdayDate" type="date"/>
+</div>
+<div class="modal-actions">
+<button id="cancelBirthday">
 
                 Cancel
 
             </button>
-
-            <button id="saveBirthday">
+<button id="saveBirthday">
 
                 Save Birthday
 
             </button>
-
-        </div>
-
-    </div>
-
 </div>
-
+</div>
+</div>
 <!-- ==========================================
      BIRTHDAY EVENT MODAL
 ========================================== -->
-<div id="birthdayManagerModal" class="modal hidden">
-
-    <div class="modal-card">
-
-      <h2>🎂 Birthdays</h2>
-
-        <div class="birthday-list">
-
-            <p class="empty-events">
+<div class="modal hidden" id="birthdayManagerModal">
+<div class="modal-card">
+<h2>🎂 Birthdays</h2>
+<div class="birthday-list">
+<p class="empty-events">
 
                 No birthdays yet.
 
             </p>
-
-    </div>
-
-    <div class="birthday-footer">
-
-            <button id="openBirthdayForm">
+</div>
+<div class="birthday-footer">
+<button id="openBirthdayForm">
 
                 + Add Birthday
 
             </button>
-        
-    </div>
-
-        <div class="modal-actions">
-
-            <button id="closeBirthdayManager">
+</div>
+<div class="modal-actions">
+<button id="closeBirthdayManager">
 
                 Close
 
             </button>
-
-        </div>
-
-    </div>
-
+</div>
+</div>
 </div>
 <!-- ==========================================
      ADD EVENT MODAL
 ========================================== -->
-
-<div id="eventModal" class="modal hidden">
-
-    <div class="modal-card">
-
-        <h2 id="modalTitle">Add Event</h2>
-
-        <div class="form-group">
-
-            <label>Title</label>
-
-            <input
-                type="text"
-                id="eventTitle"
-                placeholder="Dinner with family">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Time</label>
-
-            <input
-                type="time"
-                id="eventTime">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Category</label>
-
-            <select id="eventCategory">
-
-                <option>Personal</option>
-                <option>Work</option>
-                <option>Birthday</option>
-                <option>Reminder</option>
-
-            </select>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Notes</label>
-
-            <textarea
-                id="eventNotes"
-                rows="4"
-                placeholder="Optional">
+<div class="modal hidden" id="eventModal">
+<div class="modal-card">
+<h2 id="modalTitle">Add Event</h2>
+<div class="form-group">
+<label>Title</label>
+<input id="eventTitle" placeholder="Dinner with family" type="text"/>
+</div>
+<div class="form-group">
+<label>Time</label>
+<input id="eventTime" type="time"/>
+</div>
+<div class="form-group">
+<label>Category</label>
+<select id="eventCategory">
+<option>Personal</option>
+<option>Work</option>
+<option>Birthday</option>
+<option>Reminder</option>
+</select>
+</div>
+<div class="form-group">
+<label>Notes</label>
+<textarea id="eventNotes" placeholder="Optional" rows="4">
 
             </textarea>
-
-        </div>
-
-        <div class="modal-actions">
-
-            <button id="cancelEvent">
+</div>
+<div class="modal-actions">
+<button id="cancelEvent">
 
                 Cancel
 
             </button>
-
-            <button id="saveEvent">
-
-                <span id="saveEventText">
+<button id="saveEvent">
+<span id="saveEventText">
 
                 Save Event
 
                 </span>
-
-            </button>
-
-        </div>
-
-    </div>
-
+</button>
 </div>
-
+</div>
+</div>
 <script src="../../assets/js/birthdays.js"></script>
 <script src="../../assets/js/storage.js"></script>
 <script src="calendar.js"></script>
 <script src="../../assets/css/brand%20identity/brand.js"></script>
-
 </body>
-
 </html>

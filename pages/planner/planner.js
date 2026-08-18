@@ -20,6 +20,11 @@ const savePlan = document.getElementById("savePlan");
 
 const planTitle = document.getElementById("planTitle");
 const planDate = document.getElementById("planDate");
+const planTime = document.getElementById("planTime");
+const viewArchivedPlansBtn = document.getElementById("viewArchivedPlansBtn");
+const archiveModal = document.getElementById("archiveModal");
+const archiveList = document.getElementById("archiveList");
+const closeArchive = document.getElementById("closeArchive");
 
 
 
@@ -192,6 +197,7 @@ function closeModal(){
     planTitle.value = "";
 
     planDate.value = "";
+    planTime.value = "";
 
 }
 
@@ -266,6 +272,7 @@ function createPlan(){
 
     const title = planTitle.value.trim();
     const date = planDate.value;
+    const time = planTime.value;
 
     if(!title){
 
@@ -280,6 +287,7 @@ function createPlan(){
         id: Date.now(),
         title,
         date,
+        time,
         goal: "",
         notes: "",
         checklist: [],
@@ -297,73 +305,71 @@ function createPlan(){
 
 }
 
+function formatPlanDate(date, time = "") {
+    if (!date) return "No date";
+    const d = new Date(`${date}T12:00:00`);
+    const label = d.toLocaleDateString("en-US", { month:"long", day:"numeric", year:"numeric" });
+    return time ? `${label} · ${formatPlanTime(time)}` : label;
+}
+
+function formatPlanTime(time) {
+    if (!time) return "";
+    const [h,m] = time.split(":").map(Number);
+    const d = new Date();
+    d.setHours(h,m,0,0);
+    return d.toLocaleTimeString("en-US", { hour:"numeric", minute:"2-digit" });
+}
+
 function renderPlanner(){
-
     allPlans.innerHTML = "";
-
-    const today = new Date();
-
-    const todayKey =
-        `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-
-    const todayPlans = planner.filter(plan =>
-        plan.date === todayKey
-    );
+    const todayKey = getTodayKey();
+    const todayPlans = planner.filter(plan => plan.date === todayKey);
 
     todayPlans.forEach(plan => {
-
         allPlans.innerHTML += `
-
-            <div
-                class="plan-card"
-                onclick="openPlan(${plan.id})">
-
+            <div class="plan-card" onclick="openPlan(${plan.id})">
                 <div class="plan-card-content">
-
-                    <h3>
-                        ${plan.title}
-                    </h3>
-
-                    <small>
-                        ${plan.date || "No date"}
-                    </small>
-
+                    <h3>${escapePlannerHTML(plan.title)}</h3>
+                    <small>${formatPlanDate(plan.date, plan.time)}</small>
                 </div>
-
-                <button
-                    class="plan-options-btn"
-                    onclick="event.stopPropagation(); openPlanMenu(${plan.id})">
-
-                    ⋯
-
-                </button>
-
-            </div>
-
-        `;
-
+                <button class="plan-options-btn" aria-label="Plan options" onclick="event.stopPropagation(); openPlanMenu(${plan.id})">⋯</button>
+            </div>`;
     });
 
     if(todayPlans.length === 0){
-
-        allPlans.innerHTML = `
-
-            <div class="plans-empty">
-
-                <p>
-                    Nothing planned for today.
-                </p>
-
-            </div>
-
-        `;
-
+        allPlans.innerHTML = `<div class="plans-empty"><p>Nothing planned for today.</p></div>`;
     }
 
     renderIncomingPlans();
-   
-    
 }
+
+function getTodayKey(){
+    const today = new Date();
+    return `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
+}
+
+function escapePlannerHTML(value = ""){
+    return String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+
+function openArchive(){
+    const todayKey = getTodayKey();
+    const archived = planner
+        .filter(plan => plan.date && plan.date < todayKey)
+        .sort((a,b) => `${b.date}${b.time||""}`.localeCompare(`${a.date}${a.time||""}`));
+
+    archiveList.innerHTML = archived.length ? archived.map(plan => `
+        <button class="archive-item" type="button" onclick="closeArchiveModal(); openPlan(${plan.id})">
+            <span class="archive-item-date">${formatPlanDate(plan.date, plan.time)}</span>
+            <strong>${escapePlannerHTML(plan.title)}</strong>
+            <span class="archive-item-arrow">→</span>
+        </button>
+    `).join("") : `<div class="archive-empty"><span>🌤</span><h3>No archived plans yet.</h3><p>Plans will appear here once their date has passed.</p></div>`;
+    archiveModal.classList.remove("hidden");
+}
+
+function closeArchiveModal(){ archiveModal.classList.add("hidden"); }
+
 function renderIncomingPlans(){
 
     const incomingPlansList =
@@ -549,6 +555,40 @@ function closePlanMenu(){
 
 }
 
+function normalizeEditorContent(value = ""){
+    if (!value) return "";
+    if (/<[a-z][\s\S]*>/i.test(value)) return value;
+    return escapePlannerHTML(value).replace(/\n/g, "<br>");
+}
+
+function setupRichEditor(editor, plan, key){
+    if(!editor) return;
+    editor.addEventListener("input", () => {
+        plan[key] = editor.innerHTML;
+        savePlannerData();
+    });
+    const toolbar = editor.previousElementSibling;
+    if(toolbar){
+        toolbar.querySelectorAll("button[data-command]").forEach(button => {
+            button.addEventListener("mousedown", event => event.preventDefault());
+            button.addEventListener("click", () => {
+                editor.focus();
+                document.execCommand(button.dataset.command, false, null);
+                plan[key] = editor.innerHTML;
+                savePlannerData();
+            });
+        });
+        toolbar.querySelector(`[data-save="${key}"]`)?.addEventListener("click", () => {
+            plan[key] = editor.innerHTML;
+            savePlannerData();
+            const button = toolbar.querySelector(`[data-save="${key}"]`);
+            const original = button.textContent;
+            button.textContent = "Saved ✓";
+            window.setTimeout(() => button.textContent = original, 1000);
+        });
+    }
+}
+
 function openPlan(id){
 
     console.log("Opening:", id);
@@ -629,8 +669,14 @@ function openPlan(id){
 
                 </p>
 
-                <textarea id="goalTextarea">${plan.goal || ""}</textarea>
-
+                <div class="format-toolbar" role="toolbar" aria-label="Goal formatting">
+                    <button type="button" data-command="bold" aria-label="Bold"><strong>B</strong></button>
+                    <button type="button" data-command="italic" aria-label="Italic"><em>I</em></button>
+                    <button type="button" data-command="underline" aria-label="Underline"><u>U</u></button>
+                    <button type="button" data-command="insertUnorderedList" aria-label="Bulleted list">•</button>
+                    <button type="button" class="editor-save-btn" data-save="goal">Save Goals</button>
+                </div>
+                <div id="goalEditor" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true">${normalizeEditorContent(plan.goal || "")}</div>
 
             </div>
 
@@ -695,7 +741,14 @@ function openPlan(id){
 
                 </p>
 
-                <textarea id="notesTextarea">${plan.notes || ""}</textarea>
+                <div class="format-toolbar" role="toolbar" aria-label="Notes formatting">
+                    <button type="button" data-command="bold" aria-label="Bold"><strong>B</strong></button>
+                    <button type="button" data-command="italic" aria-label="Italic"><em>I</em></button>
+                    <button type="button" data-command="underline" aria-label="Underline"><u>U</u></button>
+                    <button type="button" data-command="insertUnorderedList" aria-label="Bulleted list">•</button>
+                    <button type="button" class="editor-save-btn" data-save="notes">Save Notes</button>
+                </div>
+                <div id="notesEditor" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true">${normalizeEditorContent(plan.notes || "")}</div>
 
             </div>
 
@@ -732,24 +785,11 @@ function openPlan(id){
 
     updateProgress(plan);
 
-    const goalTextarea = document.getElementById("goalTextarea");
+    const goalEditor = document.getElementById("goalEditor");
+    const notesEditor = document.getElementById("notesEditor");
 
-    goalTextarea.addEventListener("input", () => {
-
-        plan.goal = goalTextarea.value;
-
-        savePlannerData();
-
-    });
-    const notesTextarea = document.getElementById("notesTextarea");
-
-    notesTextarea.addEventListener("input", () => {
-
-        plan.notes = notesTextarea.value;
-
-        savePlannerData();
-
-    });
+    setupRichEditor(goalEditor, plan, "goal");
+    setupRichEditor(notesEditor, plan, "notes");
 
     const calendarToggle =
     document.getElementById("calendarToggle");
@@ -1114,7 +1154,7 @@ function renderToday(){
 
                 <p>Nothing planned yet.</p>
 
-                <small>Capture something from the left.</small>
+                <small>Start with one small step.</small>
 
             </div>
 
@@ -1197,6 +1237,28 @@ savePlan.addEventListener(
     createPlan
 
 );
+
+if (viewArchivedPlansBtn) {
+    viewArchivedPlansBtn.addEventListener("click", openArchive);
+}
+
+if (closeArchive) {
+    closeArchive.addEventListener("click", closeArchiveModal);
+}
+
+if (archiveModal) {
+    archiveModal.addEventListener("click", (event) => {
+        if (event.target === archiveModal) closeArchiveModal();
+    });
+}
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeArchiveModal();
+        closePlanMenu();
+    }
+});
+
 // ==========================================
 // INITIALIZE
 // ==========================================

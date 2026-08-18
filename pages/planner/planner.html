@@ -1,281 +1,191 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>Planner • Daylight</title>
-
-    <!-- GOOGLE FONT -->
-     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
-
-    <link rel="stylesheet" href="../../assets/css/variables.css">
-    <link rel="stylesheet" href="../../assets/css/base.css">
-    <link rel="stylesheet" href="../../assets/css/layout.css">
-    <link rel="stylesheet" href="../../assets/css/navigation.css">
-    <link rel="stylesheet" href="../../assets/css/cards.css">
-    <link rel="stylesheet" href="../../assets/css/widgets.css">
-    <link rel="stylesheet" href="planner.css">
-    <link rel="stylesheet" href="../../assets/css/responsive.css">
-    <link rel="stylesheet" href="../../assets/css/brand%20identity/brand.css">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Planner • Daylight</title>
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- CSS -->
+<link href="../../assets/css/variables.css" rel="stylesheet"/>
+<link href="../../assets/css/base.css" rel="stylesheet"/>
+<link href="../../assets/css/layout.css" rel="stylesheet"/>
+<link href="../../assets/css/navigation.css" rel="stylesheet"/>
+<link href="../../assets/css/cards.css" rel="stylesheet"/>
+<link href="../../assets/css/widgets.css" rel="stylesheet"/>
+<link href="planner.css" rel="stylesheet"/>
+<link href="../../assets/css/responsive.css" rel="stylesheet"/>
+<link href="../../assets/css/brand%20identity/brand.css" rel="stylesheet"/>
 </head>
-
 <body data-page="planner">
-
-    <div id="daylight-brand"></div>
-
-    <div class="app-container">
-
-            <!-- ======================================
+<div id="daylight-brand"></div>
+<div class="app-container">
+<!-- ======================================
             SIDEBAR / NAVIGATION
             ======================================= -->
-
-                <!-- Reuse your existing navigation here -->
-
+<!-- Reuse your existing navigation here -->
 <main class="planner-page">
-
-    <!-- ======================================
+<!-- ======================================
          PAGE HEADER
     ======================================= -->
-
-    <section class="planner-header">
-
-        <div class="planner-greeting">
-
-            <div>
-                <p class="greeting-label">
+<section class="planner-header">
+<div class="planner-greeting">
+<div>
+<p class="greeting-label">
                     Good morning ☀️
                 </p>
-
-                <h1>
+<h1>
                     Ready to make today count?
                 </h1>
-
-                <p class="planner-tagline">
+<p class="planner-tagline">
                     Small plans today become big wins tomorrow.
                 </p>
-               
-            </div>   
-            <div class="planner-date-card">
+</div>
+<div class="planner-date-card">
 
                         📅
                 <span id="todayFullDate"></span>
-
-            </div>
-
-        </div>  
-
-    </section>
-
-    <!-- ======================================
+</div>
+</div>
+</section>
+<!-- ======================================
          PLANNER LAYOUT
     ======================================= -->
-
-    <div class="planner-layout">
-
-        <!-- ======================================
+<div class="planner-layout">
+<!-- ======================================
              LEFT PANEL
         ======================================= -->
-
-        <aside class="planner-sidebar">
-
-             <div class="daylight-brand">
-                
-                <div
-                    class="brand-icon"
-                    id="planner-brand-icon">
-
-                </div>    
-
-                <h2>Daylight</h2>
-
-                <p>
-                    Plan with purpose.<br>
+<aside class="planner-sidebar">
+<div class="daylight-brand">
+<div class="brand-icon" id="planner-brand-icon">
+</div>
+<h2>Daylight</h2>
+<p>
+                    Plan with purpose.<br/>
                     Live with intention.
-                </p>    
-           </div>
-
-           <hr class="brand-divider">
-
-            <!-- ALL PLANS -->
-
-            <section class="planner-card">
-
-                <div class="planner-group-header">
-
-                    <h2>📖 Plans </h2>
-
-                </div>
-
-                <div
-                    id="allPlans"
-                    class="plan-list">
-
-
-                </div>
-
-                <!-- NEW PLAN -->
-
-                <button id="newPlanBtn">
+                </p>
+</div>
+<hr class="brand-divider"/>
+<!-- ALL PLANS -->
+<section class="planner-card">
+<div class="planner-group-header">
+<h2>📖 Today's Plan</h2>
+</div>
+<div class="plan-list" id="allPlans">
+</div>
+<button class="archive-link" id="viewArchivedPlansBtn" type="button">
+                    View archived plans →
+                </button>
+<!-- NEW PLAN -->
+<button id="newPlanBtn">
 
                     + New Plan
 
                 </button>
-
-            </section>
-
-             <!-- INCOMING PLANS -->
-            
-            <section class="planner-card incoming-plans-card">
-
-                <div class="incoming-plans-header">
-
-                    <div>
-
-                        <p class="incoming-label">
+</section>
+<!-- INCOMING PLANS -->
+<section class="planner-card incoming-plans-card">
+<div class="incoming-plans-header">
+<div>
+<p class="incoming-label">
                             INCOMING PLANS
                         </p>
-
-                        <h3>
+<h3>
                             Coming up
                         </h3>
-
-                    </div>
-
-                    <span class="incoming-icon">
+</div>
+<span class="incoming-icon">
                         ✦
                     </span>
-
-                </div>
-
-                <div id="incomingPlansList"></div>
-
-                <button
-                    id="viewAllIncoming"
-                    class="view-incoming-btn"
-                    style="display: none;">
+</div>
+<div id="incomingPlansList"></div>
+<button class="view-incoming-btn" id="viewAllIncoming" style="display: none;">
 
                     View all →
 
                 </button>
-                    
-            </section>
-
-             <!-- Motivation -->
-
-            <section class="planner-card motivation-card">
-
-                <div class="motivation-icon">
+</section>
+<!-- Motivation -->
+<section class="planner-card motivation-card">
+<div class="motivation-icon">
 
                     🌅
 
                 </div>
-
-                <h3>
+<h3>
 
                     One thoughtful step.
 
                 </h3>
-
-
-                <p>
-                     One peaceful day.<br>
+<p>
+                     One peaceful day.<br/>
                     That's enough.
                 </p>
-
-            </section>
-
-        </aside>
-
-
-        <!-- ======================================
+</section>
+</aside>
+<!-- ======================================
             NEW PLAN MODAL
         ====================================== -->
-
-        <div
-            id="planModal"
-            class="modal hidden">
-
-            <div class="modal-content">
-
-                <h2>New Plan</h2>
-
-                <div class="form-group">
-
-                    <label>Plan Title</label>
-
-                     <input
-                    type="text"
-                    id="planTitle"
-                    placeholder="Website Launch">
-
-                </div>
-
-                <div class="form-group">
-
-                     <label>Date</label>
-
-                    <input
-                        type="date"
-                        id="planDate">
-
-                </div>
-
-                <div class="modal-actions">
-
-                    <button
-                        id="cancelPlan">
+<div class="modal hidden" id="planModal">
+<div class="modal-content">
+<h2>New Plan</h2>
+<div class="form-group">
+<label>Plan Title</label>
+<input id="planTitle" placeholder="Website Launch" type="text"/>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Date</label>
+<input id="planDate" type="date"/>
+</div>
+<div class="form-group">
+<label>Time <span>(optional)</span></label>
+<input id="planTime" type="time"/>
+</div>
+</div>
+<div class="modal-actions">
+<button id="cancelPlan">
 
                         Cancel
 
                     </button>
-
-                    <button
-                        id="savePlan">
+<button id="savePlan">
 
                         Create Plan
 
                     </button>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- ======================================
+</div>
+</div>
+</div>
+<!-- ARCHIVED PLANS -->
+<div class="modal hidden" id="archiveModal">
+<div class="modal-content archive-modal-content">
+<div class="archive-modal-header">
+<div>
+<p class="archive-eyebrow">PLANNER ARCHIVE</p>
+<h2>Archived Plans</h2>
+<p>Everything you've planned before, kept by date.</p>
+</div>
+<button aria-label="Close archive" class="archive-close" id="closeArchive" type="button">×</button>
+</div>
+<div class="archive-list" id="archiveList"></div>
+</div>
+</div>
+<!-- ======================================
              RIGHT PANEL
         ======================================= -->
-
-        <section class="planner-workspace">
-
-            <div id="planWorkspace"></div>
-
-        </section>
-
-    </div>
-
-</main>
-
+<section class="planner-workspace">
+<div id="planWorkspace"></div>
+</section>
 </div>
-
+</main>
+</div>
 <script src="../../assets/js/storage.js"></script>
 <script src="planner.js"></script>
 <script src="../../assets/css/brand%20identity/brand.js"></script>
-
 </body>
-
 </html>

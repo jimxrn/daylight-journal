@@ -505,11 +505,10 @@ if (document.readyState === "loading") {
         return;
     }
 
-    window.addEventListener("pageshow", reveal, { once: true });
-    if (document.readyState === "complete") {
-        reveal();
+    if (document.readyState === "loading") {
+        window.addEventListener("DOMContentLoaded", reveal, { once: true });
     } else {
-        window.addEventListener("load", reveal, { once: true });
+     reveal();
     }
 
     // Intercept same-origin anchor navigation so the outgoing page is

@@ -24,7 +24,7 @@
 
 .planner-header h1{
 
-    font-family:"Plus Jakarta Sans",sans-serif;
+    font-family: "Cormorant Garamond", serif;
 
     font-size:2.6rem;
 
@@ -373,23 +373,25 @@ background:linear-gradient(
 
 .form-group input{
 
-    width:100%;
+    width: 100%;
 
-    height:52px;
+    height: 52px;
 
-    padding:0 18px;
+    padding: 0 18px;
 
-    border:1px solid var(--border);
+    box-sizing: border-box;
 
-    border-radius:14px;
+    border: 1px solid var(--border);
 
-    font-size:15px;
+    border-radius: 14px;
 
-    font-family:'Inter',sans-serif;
+    font-size: 15px;
 
-    background:#fff;
+    font-family: 'Inter', sans-serif;
 
-    transition:.25s ease;
+    background: #fff;
+
+    transition: .25s ease;
 
 
 }
@@ -776,15 +778,13 @@ background:linear-gradient(
 }
 
 .plan-section{
-
     display:flex;
 
     flex-direction:column;
 
     gap:10px;
 
-    margin-top:42px;
-
+    margin-top:0;
 }
 
 .plan-section h3{
@@ -1649,19 +1649,18 @@ body{
     );
 
 }
-.empty-checklist{
+.empty-checklist {
+    display: flex;
 
-    display:flex;
+    flex-direction: column;
 
-    flex-direction:column;
+    align-items: center;
 
-    align-items:center;
+    justify-content: center;
 
-    justify-content:center;
+    text-align: center;
 
-    text-align:center;
-
-    padding:64px 24px;
+    padding: 32px 24px;
 
 }
 
@@ -2032,7 +2031,7 @@ body{
 
 /* Individual sections */
 .plan-section {
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 }
 
 /* Section headings */
@@ -3058,7 +3057,13 @@ body{
 .archive-link:hover { color:#735FBE; }
 .form-row { display:grid; grid-template-columns:1.3fr 1fr; gap:12px; }
 .form-group label span { color:#9B93A5; font-weight:400; }
-.modal-content { width:min(460px, calc(100vw - 32px)); border-radius:24px; padding:30px; }
+.modal-content {
+    width:min(460px, calc(100vw - 32px));
+    box-sizing:border-box;
+    border-radius:24px;
+    padding:30px;
+}
+
 .archive-modal-content { width:min(620px, calc(100vw - 32px)); max-height:min(78vh,720px); overflow:auto; }
 .archive-modal-header { display:flex; justify-content:space-between; gap:20px; align-items:flex-start; }
 .archive-eyebrow { margin:0 0 5px; font-size:.68rem; letter-spacing:.16em; color:#9276C6; font-weight:700; }
@@ -3119,4 +3124,35 @@ html, body {
 
 .planner-page {
     background: #FBF8F5;
+}
+@media (max-width: 760px) {
+
+    .planner-home {
+        gap: 16px;
+    }
+
+    .morning-banner {
+        margin-top: 14px;
+    }
+
+    .task-input-card {
+        margin-top: 12px;
+    }
+
+}
+@media (max-width: 760px) {
+
+    .planner-sidebar {
+        order: 1;
+    }
+
+    .planner-workspace {
+        order: 2;
+    }
+
+}
+@media (max-width: 760px) {
+    .daylight-brand {
+        display: none;
+    }
 }

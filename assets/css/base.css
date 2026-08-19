@@ -6,7 +6,7 @@
 
 body{
 
-    font-family:"Plus Jakarta Sans",sans-serif;
+    font-family: var(--daylight-font-body);
 
     background:#FCFBFF;
 

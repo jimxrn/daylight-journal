@@ -1,31 +1,35 @@
-/* ==========================================
-   DAYLIGHT — BRAND SYSTEM
-========================================== */
 
 :root {
 
     /* ==========================================
-       BRAND COLORS
+       BRAND COLORS — DAYLIGHT PASTEL PALETTE
     ========================================== */
 
-    --daylight-lavender-50: #F7F6FB;
-    --daylight-lavender-100: #EBDDF5;
-    --daylight-lavender-200: #DCCDF2;
-    --daylight-lavender-300: #C8B6E8;
-    --daylight-lavender-400: #B49DDC;
-    --daylight-lavender-500: #9B84C8;
+    --daylight-lavender-50: #F8F4FC;
+    --daylight-lavender-100: #EEE6F7;
+    --daylight-lavender-200: #DCCFF0;
+    --daylight-lavender-300: #D1C0E8;
+    --daylight-lavender-400: #B9A3D6;
+    --daylight-lavender-500: #9A82BD;
 
-    --daylight-lavender-deep: #7B6D8F;
+    --daylight-lavender-deep: #766584;
 
-    --daylight-warm-50: #FDEDE1;
-    --daylight-warm-100: #F7D5C8;
+    --daylight-warm-50: #FCEFF0;
+    --daylight-warm-100: #F6D9DC;
 
-    --daylight-surface: #FFFFFF;
-    --daylight-background: #F7F6FB;
+    --daylight-mint-100: #E9F7EF;
+    --daylight-mint-200: #CDEDDC;
+    --daylight-mint-500: #78B99A;
 
-    --daylight-text: #443B5A;
-    --daylight-text-soft: #7B6D8F;
-    --daylight-border: #E4DDF0;
+    --daylight-blue-100: #EAF2FA;
+    --daylight-blue-200: #C9DCF0;
+
+    --daylight-surface: #FFFCF9;
+    --daylight-background: #FBF5EE;
+
+    --daylight-text: #443B50;
+    --daylight-text-soft: #81758F;
+    --daylight-border: #E7DDF0;
 
     /* ==========================================
        BRAND TYPOGRAPHY
@@ -55,10 +59,10 @@
     ========================================== */
 
     --daylight-shadow-soft:
-        0 10px 30px rgba(123, 109, 143, 0.08);
+        0 10px 30px rgba(118, 101, 132, 0.08);
 
     --daylight-shadow-hover:
-        0 14px 34px rgba(123, 109, 143, 0.12);
+        0 14px 34px rgba(118, 101, 132, 0.12);
 
 }
 
@@ -130,14 +134,14 @@
 
     background:
         linear-gradient(
-            145deg,
-            #EBDDF5,
-            #DCCDF2
+        145deg,
+        #EEE6F7,
+        #DCCFF0
         );
 
     box-shadow:
-        0 8px 20px
-        rgba(123, 109, 143, 0.08);
+          0 8px 20px
+        rgba(118, 101, 132, 0.08);
 
     overflow: hidden;
 
@@ -172,7 +176,7 @@
 
     line-height: 1;
 
-    font-weight: 500;
+    font-weight: 600;
 
     letter-spacing: -0.03em;
 
@@ -250,7 +254,7 @@
 
     font-size: 0.78rem;
 
-    font-weight: 500;
+    font-weight: 600;
 
     color:
         var(--daylight-text-soft);
@@ -269,7 +273,7 @@
         var(--daylight-text);
 
     background:
-        rgba(220, 205, 242, 0.45);
+        color-mix(in srgb, var(--daylight-lavender-200) 45%, transparent);
 
 }
 
@@ -283,7 +287,7 @@
 
     box-shadow:
         0 6px 14px
-        rgba(180, 157, 220, 0.22);
+        rgba(185, 163, 214, 0.22);
 
 }
 
@@ -356,11 +360,15 @@
    DAYLIGHT — PAGE BACKGROUND
 ========================================== */
 
+body[data-page="dashboard"],
+body[data-page="planner"],
 body[data-page="journal"],
 body[data-page="calendar"],
-body[data-page="habits"] {
+body[data-page="habits"],
+body[data-page="memories"]
+body[data-page="settings"]{
 
-    background-color: #F8F6F3;
+    background-color: var(--daylight-background);
 
 }
 

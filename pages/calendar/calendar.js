@@ -399,6 +399,29 @@ function selectDate(day) {
     loadEvents();
 
 }
+function calculateAge(dateString) {
+
+    const birthDate = new Date(dateString);
+    const today = new Date();
+
+    let age =
+        today.getFullYear() -
+        birthDate.getFullYear();
+
+    const hasHadBirthday =
+        today.getMonth() > birthDate.getMonth() ||
+        (
+            today.getMonth() === birthDate.getMonth() &&
+            today.getDate() >= birthDate.getDate()
+        );
+
+    if (!hasHadBirthday) {
+        age--;
+    }
+
+    return age;
+
+}
 
 // ==========================================
 // LOAD EVENTS
@@ -479,7 +502,7 @@ function loadEvents() {
 
                     <strong>${birthday.name}</strong>
 
-                    <p>Birthday</p>
+                    <p>Birthday · ${calculateAge(birthday.date)}</p>
 
                 </div>
 

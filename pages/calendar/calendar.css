@@ -440,7 +440,7 @@
 
     right:8px;
 
-    font-size: 0.9rem;
+    font-size: 0.65rem;
 
 }
 
@@ -537,6 +537,9 @@
 
     background:#9B8ACF;
 
+}
+.day.today .event-pill {
+    background: #FFFFFF;
 }
 
 /* ==========================================
